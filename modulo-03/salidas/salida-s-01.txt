@@ -1,0 +1,131 @@
+ sqlplus /nolog
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Oct 15 11:51:55 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> @s-01-inicia-bd-oracle.sql
+Connected.
+deteniendo la instancia
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+moviendo archivos a respaldo seguro
+
+moviendo spfile y pfile
+
+
+Moviendo un solo archivo de control
+
+Moviendo un archivo redo log
+
+
+
+Moviendo datafiles
+
+
+mostrando archivos en el directorio de respaldos (verificar 8 archivos)
+total 1.4G
+-rw-rw----. 1 oracle oinstall  18M Oct 15 11:52 control01.ctl
+-rw-r--r--. 1 oracle oinstall  273 Sep 23 19:27 initrgpdip02.ora
+-rw-rw----. 1 oracle oinstall  51M Oct 15 11:32 redo01a.log
+-rw-rw----. 1 oracle oinstall  51M Oct 15 11:47 redo01b.log
+-rw-rw----. 1 oracle oinstall  51M Oct 15 11:47 redo01c.log
+-rw-rw----. 1 oracle oinstall 2.5K Oct 15 11:47 spfilergpdip02.ora
+-rw-rw----. 1 oracle oinstall 701M Oct 15 11:52 system01.dbf
+-rw-rw----. 1 oracle oinstall 501M Oct 15 11:52 users01.dbf
+
+[Archivos en directorio de respaldos, enter para continuar]
+
+intentando iniciar instancia modo nomount
+ORA-01078: failure in processing system parameters
+LRM-00109: could not open parameter file '/u01/app/oracle/product/19.3.0/dbhome_1/dbs/initrgpdip02.ora'
+[Enter para corregir y reintentar]
+
+restaurando archivos de parametros
+
+
+iniciando instancia
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  616562688 bytes
+Database Buffers	  171966464 bytes
+Redo Buffers		    7872512 bytes
+[Se corrigio el error? Enter para continuar]
+
+Intentando pasar al modo mount
+alter database mount
+*
+ERROR at line 1:
+ORA-00205: error in identifying control file, check alert log for more info
+
+
+[Enter para corregir y reintentar]
+
+restaurando el archivo de control
+
+cambiando al modo mount
+
+Database altered.
+
+[Se corrigo el error? Enter para continuar]
+
+intentar pasar al modo open
+alter database open
+*
+ERROR at line 1:
+ORA-01157: cannot identify/lock data file 1 - see DBWR trace file
+ORA-01110: data file 1: '/u01/app/oracle/oradata/RGPDIP02/system01.dbf'
+
+
+[Enter para restaurar datafile del tablespace system]
+
+restaurando datafile para el tablespace system
+
+intentando abrir nuevamente
+alter database open
+*
+ERROR at line 1:
+ORA-01157: cannot identify/lock data file 4 - see DBWR trace file
+ORA-01110: data file 4: '/u01/app/oracle/oradata/RGPDIP02/users01.dbf'
+
+
+[Se corrigio el error? Enter para restaurar datafile del tablespace user]
+
+
+intentando abrir nuevamente
+alter database open
+*
+ERROR at line 1:
+ORA-03113: end-of-file on communication channel
+Process ID: 12201
+Session ID: 1 Serial number: 57275
+
+
+[Se corrigio el error? Enter para restaurar Redo Logs]
+
+
+
+
+intentando iniciar nuevamente en modo OPEN, requiere autenticar y volver a iniciar
+Connected to an idle instance.
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  616562688 bytes
+Database Buffers	  171966464 bytes
+Redo Buffers		    7872512 bytes
+Database mounted.
+Database opened.
+Mostrando status
+
+STATUS
+------------
+OPEN
+
+[La base ha regresado a la normalidad? Enter para terminar]
+

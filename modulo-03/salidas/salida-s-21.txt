@@ -1,0 +1,28 @@
+sqlplus /nolog
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Nov 5 10:27:07 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start s-21-terminar-sesiones.sql
+conectando como sysdba
+Connected.
+Mostrando status de inactividad
+
+ACTIVE_ST
+---------
+QUIESCING
+
+Eliminando sesiones que impiden inactivar
+Cuantas sesiones deberan terminarse? [Enter] para continuar
+
+Cerrando sesion para el usuario USER03_A2
+
+PL/SQL procedure successfully completed.
+
+sys@rgpdip02> exit
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0

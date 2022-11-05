@@ -1,0 +1,73 @@
+sqlplus /nolog
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Nov 5 10:09:22 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start s-20-inactivar-bd.sql
+conectando como sysdba
+Connected.
+creando usuarios
+
+User created.
+
+
+Grant succeeded.
+
+
+User created.
+
+
+Grant succeeded.
+
+
+User created.
+
+
+Grant succeeded.
+
+Asignando privilegio sysbackup a user03_a1
+
+Grant succeeded.
+
+Abrir 2 terminales T1 y T2, autenticar en T1 como user03_a1
+en T2 autenticar como user03_a2, crear tabla y registro
+[Enter] al terminar
+
+Inactivando la BD. Que sucedera? Considerando las sesion en T1 y T2
+[Enter] para continuar
+
+
+System altered.
+
+BD Inactiva
+Abrir una terminal T3, intentar autenticar con user03_a3
+Abrir una terminal T4, intentar autenticar con user03_a1 como sysbackup
+Que sucedera? [Enter para continuar]
+
+Mostrando status de inactividad
+
+ACTIVE_ST
+---------
+QUIESCED
+
+Reactivando instancia
+Analizar terminales, comentar lo que suceder [Enter] para continuar
+
+
+System altered.
+
+Cerrar sesiones para realizar limpieza [Enter] para continuar
+
+
+User dropped.
+
+
+User dropped.
+
+
+User dropped.
+

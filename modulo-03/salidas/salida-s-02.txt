@@ -1,0 +1,106 @@
+sqlplus /nolog
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Oct 15 12:55:36 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start s-02-modos-inicio.sql
+Autenticando como sysdba
+Connected.
+Creando al usuario user01
+
+User created.
+
+
+Grant succeeded.
+
+Creando al usuario user02
+
+User created.
+
+
+Grant succeeded.
+
+Abre una terminal e inicia sesion como user01, [Enter] para continuar
+
+Iniciando en modo restringido
+Será posible pasar a modo restringido con user01 en sesión, [Enter] para continuar
+
+
+System altered.
+
+En caso afirmativo crear una tabla de prueba e insertar 1 registro, hacer commit. ¿Qué sucederá? [Enter] para continuar
+
+Intentado autenticar como user02
+Qué sucederá? [Enter ] para continuar
+
+ERROR:
+ORA-01035: ORACLE only available to users with RESTRICTED SESSION privilege
+
+
+Warning: You are no longer connected to ORACLE.
+Asignando el privilegio restricted session a user02
+Connected.
+
+Grant succeeded.
+
+Intentado crear sesión como user02
+Connected.
+[Qué sucedió? Enter para continuar]
+
+Regresando al modo no restringido
+Connected.
+
+System altered.
+
+[Enter para continuar]
+
+Abrir en modo read only, primero detener la BD
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+Abriendo la bd en modo read only
+¿será posible iniciar en modo read only con el usuario user01 previamente conectado?
+
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  595591168 bytes
+Database Buffers	   88080384 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+Qué sucedio?
+
+Conectando como user02,
+Connected.
+[Qué sucedió? Enter para continuar]
+
+Regresando al modo de escritura y lectura
+Connected.
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  595591168 bytes
+Database Buffers	   88080384 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+Haciendo limpieza, borrando a user01
+
+User dropped.
+
+
+User dropped.
+
+Listo!
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0

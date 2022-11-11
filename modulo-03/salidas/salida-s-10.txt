@@ -1,0 +1,59 @@
+idle> start s-10-column-store.sql
+Autenticando como sys
+Connected.
+Alterando parametro inmemory_size
+
+System altered.
+
+Reiniciando base de datos
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  595591168 bytes
+Database Buffers	   88080384 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+Mostrando parametro inmemory_size
+
+NAME				     TYPE	 VALUE
+------------------------------------ ----------- ------------------------------
+inmemory_size			     big integer 100M
+
+PL/SQL procedure successfully completed.
+
+Creando usuario user03imc
+
+User created.
+
+
+Grant succeeded.
+
+Iniciando sesion como user03imc
+Connected.
+Creando tabla movie
+
+Table created.
+
+ejecutar script s-11-movie-carga-inicial.sql [enter] para continuar
+
+Contando registros, se esperan 58788
+
+  COUNT(*)
+----------
+     58788
+
+1 row selected.
+
+Revisar resultados [enter] para hacer commit
+
+Haciendo commit
+
+Commit complete.
+
+Listo!

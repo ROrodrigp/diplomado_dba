@@ -1,0 +1,46 @@
+idle> start s-05-bind-variables.sql
+Connected.
+Creando usuario user01
+
+User created.
+
+
+Grant succeeded.
+
+Creando tabla de prueba
+
+Table created.
+
+Remueve informacion del shared_pool
+
+System altered.
+
+Habilitando conteo de tiempo
+1. Sentencia sql con bind variables
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:01.27
+Mostrando datos de la secuencia con bind variables
+
+EXECUTIONS	LOADS PARSE_CALLS DISK_READS BUFFER_GETS CPU_TIME_MS ELAPSED_TIME_MS
+---------- ---------- ----------- ---------- ----------- ----------- ---------------
+    100000	    1		1	   2	  104787     500.095	     799.795
+
+Elapsed: 00:00:00.01
+2. Sentencia sql sin bind variables
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:27.82
+Mostrando datos de la secuencia sin bind variables
+
+    T_ROWS EXECUTIONS	   LOADS PARSE_CALLS DISK_READS BUFFER_GETS CPU_TIME_MS ELAPSED_TIME_MS
+---------- ---------- ---------- ----------- ---------- ----------- ----------- ---------------
+       359	  201	     359	 201	      0 	416	 56.161 	 55.485
+
+Elapsed: 00:00:00.01
+limpieza
+Connected.
+
+User dropped.

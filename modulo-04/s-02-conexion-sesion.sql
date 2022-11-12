@@ -43,3 +43,13 @@ prompt Indicar el valor del address del proceso que se muestra en la sesión de 
 select sosid, username, program
 from v$process
 where addr=hextoraw('&p_addr');
+
+pause Analizar resultados [Enter] para continuar
+
+prompt Mostrando datos del proceso a nivel de s.o.
+prompt Observar la consulta anterior y proporcionar el valor del id del proceso (sosid)
+!ps -ef | grep -e &p_sosid | grep -v grep 
+
+pause [Enter] para realizar limpieza
+drop user user04 cascade;
+

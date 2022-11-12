@@ -1,0 +1,141 @@
+[rodrigo@pc-ragp modulo-04]$ sqlplus /nolog
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Nov 12 09:28:11 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start s-02-conexion-sesion.sql
+Conectando como sysdba
+Connected.
+Creando user04
+
+User created.
+
+
+Grant succeeded.
+
+Iniciar sesión en T2 como user04 [Enter] para continuar
+
+Mostrando datos de las sesiones de user04
+
+USERNAME			      SID    SERIAL# SERVER    PADDR		STATUS
+------------------------------ ---------- ---------- --------- ---------------- --------
+USER04				      167      50830 DEDICATED 0000000075F459F8 INACTIVE
+
+Analizar resultados, [Enter] para continuar
+
+Configurando el rol plustrace
+sys@rgpdip02>
+sys@rgpdip02> drop role plustrace;
+drop role plustrace
+          *
+ERROR at line 1:
+ORA-01919: role 'PLUSTRACE' does not exist
+
+
+sys@rgpdip02> create role plustrace;
+
+Role created.
+
+sys@rgpdip02>
+sys@rgpdip02> grant select on v_$sesstat to plustrace;
+
+Grant succeeded.
+
+sys@rgpdip02> grant select on v_$statname to plustrace;
+
+Grant succeeded.
+
+sys@rgpdip02> grant select on v_$mystat to plustrace;
+
+Grant succeeded.
+
+sys@rgpdip02> grant plustrace to dba with admin option;
+
+Grant succeeded.
+
+sys@rgpdip02>
+sys@rgpdip02> set echo off
+
+Grant succeeded.
+
+En T2, cerrar sesión, volver a iniciar y habilitar autotrace
+[Enter] al terminar
+
+Mostrando nuevamente las sesiones del USER04
+Qué se obtendrá? [Enter]
+
+
+USERNAME			      SID    SERIAL# SERVER    PADDR		STATUS
+------------------------------ ---------- ---------- --------- ---------------- --------
+USER04				       27      37757 DEDICATED 0000000075F484B8 INACTIVE
+USER04				      167      23955 DEDICATED 0000000075F459F8 INACTIVE
+
+Analizar resultados, [Enter] para continuar
+
+En T2, cerrar sesión de user04, manatener conexion (ejecutar disconnect)
+[Enter] al terminar
+
+Mostrando sesiones nuevamente, la sesion user04 ya no debería existir
+
+no rows selected
+
+Analizar resultados, [Enter] para continuar
+
+Mostrando los datos del server process que en teoria debe seguir existiendo
+Indicar el valor del address del proceso que se muestra en la sesión de USER04
+Enter value for p_addr: 0000000075F459F8
+old   3: where addr=hextoraw('&p_addr')
+new   3: where addr=hextoraw('0000000075F459F8')
+
+SOSID			 USERNAME			PROGRAM
+------------------------ ------------------------------ ------------------------------------------------
+7160			 rodrigo			oracle@pc-ragp.fi.unam (TNS V1-V3)
+
+Analizar resultados [Enter] para continuar
+
+Mostrando datos del proceso a nivel de s.o.
+Observar la consulta anterior y proporcionar el valor del id del proceso (sosid)
+Enter value for p_sosid: 7160
+oracle      7160    7069  0 09:35 ?        00:00:00 oraclergpdip02 (DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))
+
+[Enter] para realizar limpieza
+
+
+User dropped.
+
+
+
+
+------------------------------------------------------------------------
+                              EN TERMINAL 2
+------------------------------------------------------------------------
+[rodrigo@pc-ragp ~]$ sqlplus user04/user04
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Nov 12 09:30:02 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+user04@rgpdip02> disconnect
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+user04@rgpdip02>
+user04@rgpdip02>
+user04@rgpdip02> connect user04/user04
+Connected.
+user04@rgpdip02> set autotrace on statistics
+user04@rgpdip02> disconnect
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+user04@rgpdip02>

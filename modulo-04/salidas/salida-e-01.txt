@@ -1,0 +1,65 @@
+[rodrigo@pc-ragp modulo-04]$ sqlplus /nolog
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Nov 26 10:47:46 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start e-01-bloques-indices.sql
+Connected.
+
+PL/SQL procedure successfully completed.
+
+Creando usuario
+
+User created.
+
+
+Grant succeeded.
+
+Connected.
+
+Table created.
+
+Insertando registro 1
+
+1 row created.
+
+Mostrando datos del indice
+
+INDEX_TYPE		    TABLE_NAME		 UNIQUENES TABLESPACE_NAME		  STATUS       BLEVEL DISTINCT_KEYS
+--------------------------- -------------------- --------- ------------------------------ -------- ---------- -------------
+NORMAL			    T01_ID		 UNIQUE    USERS			  VALID
+
+Analizar resultados, presionar [Enter] para continuar
+
+Recolectando estadisticas
+
+PL/SQL procedure successfully completed.
+
+Mostrando datos del indice despues de la recoleccion
+
+INDEX_TYPE		    TABLE_NAME		 UNIQUENES TABLESPACE_NAME		  STATUS       BLEVEL DISTINCT_KEYS
+--------------------------- -------------------- --------- ------------------------------ -------- ---------- -------------
+NORMAL			    T01_ID		 UNIQUE    USERS			  VALID 	    0		  1
+
+Analizar resultados
+
+
+PL/SQL procedure successfully completed.
+
+Recolectando estadisticas despues de la carga
+
+PL/SQL procedure successfully completed.
+
+Mostrando datos del indice despues de la carga
+
+INDEX_TYPE		    TABLE_NAME		 UNIQUENES TABLESPACE_NAME		  STATUS       BLEVEL DISTINCT_KEYS
+--------------------------- -------------------- --------- ------------------------------ -------- ---------- -------------
+NORMAL			    T01_ID		 UNIQUE    USERS			  VALID 	    2	    1000000
+
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[rodrigo@pc-ragp modulo-04]$

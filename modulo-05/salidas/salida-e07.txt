@@ -1,0 +1,52 @@
+Connected.
+
+                                                                                                                                                       
+
+Mostrando datos de los tablespaces empleando database_properties
+
+PROPERTY_NAME                  PROPERTY_VALUE                                                                                                          
+------------------------------ ------------------------------                                                                                          
+DEFAULT_PERMANENT_TABLESPACE   USERS                                                                                                                   
+DEFAULT_TEMP_TABLESPACE        TEMPTS1                                                                                                                 
+
+Mostrando datos de los tablespace a traves de user_user
+Connected.
+
+                                                                                                                                                       
+
+
+DEFAULT_TABLESPACE             TEMPORARY_TABLESPACE           LOCAL_TEMP_TABLESPACE                                                                    
+------------------------------ ------------------------------ ------------------------------                                                           
+USERS                          TEMPTS1                        TEMPTS1                                                                                  
+
+Mostrando tablespace undo empleado por todos los usuarios
+Connected.
+
+                                                                                                                                                       
+
+
+NAME                                 TYPE        VALUE                                                                                                 
+------------------------------------ ----------- ------------------------------                                                                        
+undo_tablespace                      string      UNDOTBS1                                                                                              
+Mostrando cuotas de almacenamientos para los usuarios
+
+TABLESPACE_NAME                USERNAME                         QUOTA_MB     BLOCKS MAX_BLOCKS                                                         
+------------------------------ ------------------------------ ---------- ---------- ----------                                                         
+SYSAUX                         AUDSYS                                  0          0         -1                                                         
+SYSTEM                         OUTLN                               .5625         72         -1                                                         
+SYSAUX                         DBSFWUSER                               0          0         -1                                                         
+SYSAUX                         GSMADMIN_INTERNAL                    .875        112         -1                                                         
+SYSAUX                         APPQOSSYS                               0          0         -1                                                         
+SYSAUX                         GGSYS                                   0          0         -1                                                         
+USERS                          USER03IMC                               6        768         -1                                                         
+USERS                          USER04MONITOR                       .0625          8         -1                                                         
+USERS                          RODRIGO05                          33.875       4336         -1                                                         
+
+9 rows selected.
+
+Mostrar los datos de la ts temporal
+
+TABLESPACE_NAME                TS_SIZE_MB ALLOCATE_SPACE_MB FREE_SPACE_MB                                                                              
+------------------------------ ---------- ----------------- -------------                                                                              
+TEMPTS1                                20                 9            17                                                                              
+

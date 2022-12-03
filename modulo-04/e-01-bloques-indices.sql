@@ -28,7 +28,7 @@ insert into t01_id values(1);
 prompt Mostrando datos del indice 
 set linesize window 
 col table_name format a20
-select index_type, table_name, UNIQUENESS, tablespace_name, status, blevel, DISTINCT_KEYS
+select index_type, table_name, UNIQUENESS, tablespace_name, status, blevel, DISTINCT_KEYS, leaf_blocks
 from user_indexes
 where index_name = 'T01_ID_PK';
 

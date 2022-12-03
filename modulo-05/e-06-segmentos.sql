@@ -1,4 +1,5 @@
-prompt Explorando segmentos 
+prompt Explorando segmentos
+spool 'salida-e06.txt' create;
 connect rodrigo05/rodrigo05
 
 begin
@@ -35,4 +36,7 @@ col index_name format A30
 col column_name format A30 
 select tablespace_name, segment_name, index_name, column_name
 from user_lobs
-where segment_name = 'EMPLEADO';
+where table_name = 'EMPLEADO';
+
+spool off;
+exit

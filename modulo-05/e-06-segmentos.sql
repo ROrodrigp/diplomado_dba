@@ -38,5 +38,14 @@ select tablespace_name, segment_name, index_name, column_name
 from user_lobs
 where table_name = 'EMPLEADO';
 
+--en total se crean 4 segmentos en user_lobs
+select s.tablespace_name, s.segment_name, segment_type, blocks, extents
+from user_segments s inner join user_lobs l on s.segment_name= l.segment_name
+where table_name = 'EMPLEADO'
+union all
+select s.tablespace_name, s.segment_name, segment_type, blocks, extents
+from user_segments s inner join user_lobs l on s.segment_name= l.index_name
+where table_name = 'EMPLEADO';
+
 spool off;
 exit

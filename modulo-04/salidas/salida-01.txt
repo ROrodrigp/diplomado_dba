@@ -1,0 +1,98 @@
+SQL*Plus: Release 19.0.0.0.0 - Production on Wed Dec 7 20:09:22 2022
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start s-01-processes.sql
+Mostrando procesos con instancia detenida
+rodrigo     8410    5557  0 20:09 pts/0    00:00:00 rlwrap sqlplus /nolog
+rodrigo     8411    8410  0 20:09 pts/1    00:00:00 sqlplus       
+
+Autenticando como sys
+Connected to an idle instance.
+Mostrando nuevamente los procesos
+Qué se obtendrá? [Enter] para continuar
+
+rodrigo     8410    5557  0 20:09 pts/0    00:00:00 rlwrap sqlplus /nolog
+rodrigo     8411    8410  0 20:09 pts/1    00:00:00 sqlplus       
+oracle      8443    8411  0 20:09 ?        00:00:00 oraclergpdip02 (DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))
+
+Mostrando proceso del listener
+oracle      5758       1  0 19:38 ?        00:00:00 /u01/app/oracle/product/19.3.0/dbhome_1/bin/tnslsnr LISTENER -inherit
+rodrigo     8410    5557  0 20:09 pts/0    00:00:00 rlwrap sqlplus /nolog
+rodrigo     8411    8410  0 20:09 pts/1    00:00:00 sqlplus       
+oracle      8443    8411  0 20:09 ?        00:00:00 oraclergpdip02 (DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))
+
+[Enter] para continuar
+
+Iniciando instancia en modo nomount
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size                  8901696 bytes
+Variable Size             620756992 bytes
+Database Buffers           62914560 bytes
+Redo Buffers                7872512 bytes
+In-Memory Area            104857600 bytes
+Mostrando procesos en modo nomount
+Qué se mostrará? [Enter] para continuar
+
+oracle      5758       1  0 19:38 ?        00:00:00 /u01/app/oracle/product/19.3.0/dbhome_1/bin/tnslsnr LISTENER -inherit
+rodrigo     8410    5557  0 20:09 pts/0    00:00:00 rlwrap sqlplus /nolog
+rodrigo     8411    8410  0 20:09 pts/1    00:00:00 sqlplus       
+oracle      8570       1  0 20:09 ?        00:00:00 ora_pmon_rgpdip02
+oracle      8572       1  0 20:09 ?        00:00:00 ora_clmn_rgpdip02
+oracle      8574       1  0 20:09 ?        00:00:00 ora_psp0_rgpdip02
+oracle      8587       1  1 20:09 ?        00:00:00 ora_vktm_rgpdip02
+oracle      8591       1  0 20:09 ?        00:00:00 ora_gen0_rgpdip02
+oracle      8593       1  0 20:09 ?        00:00:00 ora_mman_rgpdip02
+oracle      8603       1  0 20:09 ?        00:00:00 ora_gen1_rgpdip02
+oracle      8609       1  0 20:09 ?        00:00:00 ora_diag_rgpdip02
+oracle      8611       1  0 20:09 ?        00:00:00 ora_ofsd_rgpdip02
+oracle      8614       1  0 20:09 ?        00:00:00 ora_dbrm_rgpdip02
+oracle      8616       1  0 20:09 ?        00:00:00 ora_vkrm_rgpdip02
+oracle      8618       1  0 20:09 ?        00:00:00 ora_svcb_rgpdip02
+oracle      8620       1  0 20:09 ?        00:00:00 ora_pman_rgpdip02
+oracle      8622       1  0 20:09 ?        00:00:00 ora_dia0_rgpdip02
+oracle      8624       1  0 20:09 ?        00:00:00 ora_dbw0_rgpdip02
+oracle      8626       1  0 20:09 ?        00:00:00 ora_lgwr_rgpdip02
+oracle      8628       1  0 20:09 ?        00:00:00 ora_ckpt_rgpdip02
+oracle      8630       1  0 20:09 ?        00:00:00 ora_lg00_rgpdip02
+oracle      8632       1  0 20:09 ?        00:00:00 ora_smon_rgpdip02
+oracle      8634       1  0 20:09 ?        00:00:00 ora_lg01_rgpdip02
+oracle      8636       1  0 20:09 ?        00:00:00 ora_smco_rgpdip02
+oracle      8638       1  0 20:09 ?        00:00:00 ora_reco_rgpdip02
+oracle      8640       1  0 20:09 ?        00:00:00 ora_w000_rgpdip02
+oracle      8642       1  0 20:09 ?        00:00:00 ora_lreg_rgpdip02
+oracle      8644       1  0 20:09 ?        00:00:00 ora_w001_rgpdip02
+oracle      8646       1  0 20:09 ?        00:00:00 ora_pxmn_rgpdip02
+oracle      8650       1  0 20:09 ?        00:00:00 ora_mmon_rgpdip02
+oracle      8652       1  0 20:09 ?        00:00:00 ora_mmnl_rgpdip02
+oracle      8654       1  0 20:09 ?        00:00:00 ora_d000_rgpdip02
+oracle      8656       1  0 20:09 ?        00:00:00 ora_d001_rgpdip02
+oracle      8658       1  0 20:09 ?        00:00:00 ora_s000_rgpdip02
+oracle      8660       1  0 20:09 ?        00:00:00 ora_s001_rgpdip02
+oracle      8662       1  0 20:09 ?        00:00:00 ora_s002_rgpdip02
+oracle      8664       1  0 20:09 ?        00:00:00 ora_tmon_rgpdip02
+oracle      8665    8411  0 20:09 ?        00:00:00 oraclergpdip02 (DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))
+oracle      8668       1  0 20:09 ?        00:00:00 ora_m000_rgpdip02
+
+Abriendo BD
+
+Database altered.
+
+
+Database altered.
+
+Cerrando sesión de sys
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+Conectando como sysdba
+Connected.
+Mostrando los procesos de esta nueva conexion
+oracle      5758       1  0 19:38 ?        00:00:00 /u01/app/oracle/product/19.3.0/dbhome_1/bin/tnslsnr LISTENER -inherit
+rodrigo     8410    5557  0 20:09 pts/0    00:00:00 rlwrap sqlplus /nolog
+rodrigo     8411    8410  0 20:09 pts/1    00:00:00 sqlplus       
+oracle      8727    8411  0 20:10 ?        00:00:00 oraclergpdip02 (DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))
+
+Analizar respuestas, anotar los IDs de los procesos y compararlos  con los obtenidos en SQL Developer

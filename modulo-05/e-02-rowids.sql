@@ -1,4 +1,4 @@
-spool 'output.txt' create;
+spool 'salida-e02.txt' create;
 connect rodrigo05/rodrigo05
 whenever sqlerror exit rollback
 

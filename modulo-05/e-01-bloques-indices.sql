@@ -1,3 +1,4 @@
+spool 'salida-e01.txt' create;
 whenever sqlerror exit rollback
 
 connect sys/system2 as sysdba
@@ -70,4 +71,5 @@ select index_type, table_name, UNIQUENESS, tablespace_name, status, blevel, DIST
 from user_indexes
 where index_name = 'T01_ID_PK';
 
+spool off;
 exit

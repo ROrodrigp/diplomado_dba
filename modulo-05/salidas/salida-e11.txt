@@ -1,0 +1,252 @@
+[oracle@pc-ragp modulo-05]$ sqlplus /nolog
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Jan 7 12:27:41 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+idle> start e-11-redo-logs-oracle.sql
+Connected.
+SP2-0606: Cannot create SPOOL file "salida-e011.txt"
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 20:26 /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/redo01a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  7 09:36 /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/redo02a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  7 12:27 /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/redo03a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 20:26 /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/redo01b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  7 09:36 /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/redo02b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  7 12:27 /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/redo03b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 20:26 /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/redo01c.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  7 09:36 /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/redo02c.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  7 12:27 /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/redo03c.log
+
+Pasos 2 al 4
+
+    GROUP# STATUS  TYPE    MEMBER					      IS_     CON_ID
+---------- ------- ------- -------------------------------------------------- --- ----------
+	 1	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo01a.log
+
+	 1	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo01b.log
+
+	 1	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo01c.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo02a.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo02b.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo02c.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo03a.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo03b.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo03c.log
+
+
+9 rows selected.
+
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 1	    1	     133   52428800	   512		3 NO  INACTIVE		     3917420 06-JAN-23		     4018202 06-JAN-23			 0
+	 2	    1	     134   52428800	   512		3 NO  INACTIVE		     4018202 06-JAN-23		     4032172 07-JAN-23			 0
+	 3	    1	     135   52428800	   512		3 NO  CURRENT		     4032172 07-JAN-23		  1.8447E+19				 0
+
+[Enter] para continuar
+
+5 Agregar nuevos grupos
+Creando group 4
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+Agregar miembros
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+SP2-0734: unknown command beginning "pompt 7. C..." - rest of line ignored.
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 1	    1	     133   52428800	   512		3 NO  INACTIVE		     3917420 06-JAN-23		     4018202 06-JAN-23			 0
+	 2	    1	     134   52428800	   512		3 NO  INACTIVE		     4018202 06-JAN-23		     4032172 07-JAN-23			 0
+	 3	    1	     135   52428800	   512		3 NO  CURRENT		     4032172 07-JAN-23		  1.8447E+19				 0
+	 4	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+6 rows selected.
+
+Analizar [Enter] para continuar
+
+8. Consultar nuevamente los miembros
+
+    GROUP# STATUS  TYPE    MEMBER					      IS_     CON_ID
+---------- ------- ------- -------------------------------------------------- --- ----------
+	 1	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo01a.log
+
+	 1	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo01b.log
+
+	 1	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo01c.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo02a.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo02b.log
+
+	 2	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo02c.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo03a.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo03b.log
+
+	 3	   ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo03c.log
+
+	 4	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo04a_60.log
+
+	 4	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo04b_60.log
+
+	 5	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo05a_60.log
+
+	 5	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo05b_60.log
+
+	 6	   ONLINE  /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPD NO	   0
+
+    GROUP# STATUS  TYPE    MEMBER					      IS_     CON_ID
+---------- ------- ------- -------------------------------------------------- --- ----------
+			   IP02/redo06a_60.log
+
+	 6	   ONLINE  /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo06b_60.log
+
+	 4 INVALID ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo04c_60.log
+
+	 5 INVALID ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo05c_60.log
+
+	 6 INVALID ONLINE  /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPD NO	   0
+			   IP02/redo06c_60.log
+
+
+18 rows selected.
+
+9. Forzar log switch  para liberar los grupos 1,2,3
+SP2-0735: unknown SET option beginning "severoutpu..."
+
+PL/SQL procedure successfully completed.
+
+10. Confirmando el grupo actual
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 1	    1	     133   52428800	   512		3 NO  INACTIVE		     3917420 06-JAN-23		     4018202 06-JAN-23			 0
+	 2	    1	     134   52428800	   512		3 NO  INACTIVE		     4018202 06-JAN-23		     4032172 07-JAN-23			 0
+	 3	    1	     135   52428800	   512		3 NO  ACTIVE		     4032172 07-JAN-23		     4046214 07-JAN-23			 0
+	 4	    1	     136   62914560	   512		3 NO  CURRENT		     4046214 07-JAN-23		  1.8447E+19				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+6 rows selected.
+
+Analizar y [Enter] para continuar
+
+11. Validando que los grupos 1 a 3 no tengan status ACTIVE
+
+PL/SQL procedure successfully completed.
+
+12. Confirmando que no existen grupos con status ACTIVE
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 1	    1	     133   52428800	   512		3 NO  INACTIVE		     3917420 06-JAN-23		     4018202 06-JAN-23			 0
+	 2	    1	     134   52428800	   512		3 NO  INACTIVE		     4018202 06-JAN-23		     4032172 07-JAN-23			 0
+	 3	    1	     135   52428800	   512		3 NO  INACTIVE		     4032172 07-JAN-23		     4046214 07-JAN-23			 0
+	 4	    1	     136   62914560	   512		3 NO  CURRENT		     4046214 07-JAN-23		  1.8447E+19				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+6 rows selected.
+
+Analizar y [Enter] para continuar
+
+13. Eliminar grupos 1,2 y 3
+
+Database altered.
+
+
+Database altered.
+
+
+Database altered.
+
+14. Confirmando que se han eliminado los grupos 1,2 y 3
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------
+	 4	    1	     136   62914560	   512		3 NO  CURRENT		     4046214 07-JAN-23		  1.8447E+19				 0
+	 5	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+	 6	    1	       0   62914560	   512		3 YES UNUSED			   0				   0				 0
+
+Analizar [Enter] para continuar, validar que todo esta bien
+
+15 y 16 Eliminar los archivos via S.O.
+eliminado redo logs grupo 1
+
+
+
+eliminado redo logs grupo 2
+
+
+
+eliminado redo logs grupo 3
+
+
+
+17. Revisar archivos esperados a nivel operativo  del S.O.
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:29 /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/redo04a_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:27 /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/redo05a_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:28 /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/redo06a_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:29 /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/redo04b_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:27 /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/redo05b_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:28 /unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/redo06b_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:29 /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/redo04c_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:28 /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/redo05c_60.log
+-rw-r-----. 1 oracle oinstall 62915072 Jan  7 12:28 /unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/redo06c_60.log
+
+not spooling currently
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[oracle@pc-ragp modulo-05]$

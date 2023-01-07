@@ -1,0 +1,524 @@
+sys@rgpdip02> select *
+  2  from v$controlfile;
+
+STATUS	NAME			  IS_ BLOCK_SIZE FILE_SIZE_BLKS     CON_ID
+------- ------------------------- --- ---------- -------------- ----------
+	/unam-diplomado-bd/disk-0 NO	   16384	   1134 	 0
+	1/app/oracle/oradata/RGPD
+	IP02/control01.ctl
+
+	/unam-diplomado-bd/disk-0 NO	   16384	   1134 	 0
+	2/app/oracle/oradata/RGPD
+	IP02/control02.ctl
+
+	/unam-diplomado-bd/disk-0 NO	   16384	   1134 	 0
+	3/app/oracle/oradata/RGPD
+	IP02/control03.ctl
+
+
+sys@rgpdip02> select *
+  2  from v$controlfile_record_section;
+
+TYPE			     RECORD_SIZE RECORDS_TOTAL RECORDS_USED FIRST_INDEX LAST_INDEX LAST_RECID	  CON_ID
+---------------------------- ----------- ------------- ------------ ----------- ---------- ---------- ----------
+DATABASE			     316	     1		  1	      0 	 0	    0	       0
+CKPT PROGRESS			    8180	     4		  0	      0 	 0	    0	       0
+REDO THREAD			     256	     1		  1	      0 	 0	    0	       0
+REDO LOG			      72	    16		  3	      0 	 0	    3	       0
+DATAFILE			     520	  1024		 10	      0 	 0	   32	       0
+FILENAME			     524	  4146		 20	      0 	 0	    0	       0
+TABLESPACE			     180	  1024		  8	      0 	 0	   23	       0
+TEMPORARY FILENAME		      56	  1024		  1	      0 	 0	    1	       0
+RMAN CONFIGURATION		    1108	    50		  0	      0 	 0	    0	       0
+LOG HISTORY			      56	   292		131	      1        131	  131	       0
+OFFLINE RANGE			     200	  1063		  0	      0 	 0	    0	       0
+ARCHIVED LOG			     584	    28		  0	      0 	 0	    0	       0
+BACKUP SET			      96	  1022		  0	      0 	 0	    0	       0
+BACKUP PIECE			     780	  1006		  0	      0 	 0	    0	       0
+BACKUP DATAFILE 		     200	  1063		  0	      0 	 0	    0	       0
+BACKUP REDOLOG			      76	   215		  0	      0 	 0	    0	       0
+DATAFILE COPY			     736	  1000		  0	      0 	 0	    0	       0
+BACKUP CORRUPTION		      44	  1115		  0	      0 	 0	    0	       0
+COPY CORRUPTION 		      40	  1227		  0	      0 	 0	    0	       0
+DELETED OBJECT			      20	   818		  0	      0 	 0	    0	       0
+PROXY COPY			     928	  1004		  0	      0 	 0	    0	       0
+BACKUP SPFILE			     124	   131		  0	      0 	 0	    0	       0
+DATABASE INCARNATION		      56	   292		  1	      1 	 1	    1	       0
+FLASHBACK LOG			      84	  2048		  0	      0 	 0	    0	       0
+RECOVERY DESTINATION		     180	     1		  0	      0 	 0	    0	       0
+INSTANCE SPACE RESERVATION	      28	  1055		  1	      0 	 0	    0	       0
+REMOVABLE RECOVERY FILES	      32	  1000		  0	      0 	 0	    0	       0
+RMAN STATUS			     116	   141		  0	      0 	 0	    0	       0
+THREAD INSTANCE NAME MAPPING	      80	     1		  1	      0 	 0	    0	       0
+MTTR				     100	     1		  1	      0 	 0	    0	       0
+DATAFILE HISTORY		     568	    57		  0	      0 	 0	    0	       0
+STANDBY DATABASE MATRIX 	     400	   128		128	      0 	 0	    0	       0
+GUARANTEED RESTORE POINT	     256	  2048		  0	      0 	 0	    0	       0
+RESTORE POINT			     256	  2108		  0	      0 	 0	    0	       0
+DATABASE BLOCK CORRUPTION	      80	  8384		  0	      0 	 0	    0	       0
+ACM OPERATION			     104	    64		 11	      0 	 0	    0	       0
+FOREIGN ARCHIVED LOG		     604	  1002		  0	      0 	 0	    0	       0
+PDB RECORD			     780	    10		  0	      0 	 0	    0	       0
+AUXILIARY DATAFILE COPY 	     584	   128		  0	      0 	 0	    0	       0
+MULTI INSTANCE REDO APPLY	     556	     1		  0	      0 	 0	    0	       0
+PDBINC RECORD			     144	   113		  0	      0 	 0	    0	       0
+
+TYPE			     RECORD_SIZE RECORDS_TOTAL RECORDS_USED FIRST_INDEX LAST_INDEX LAST_RECID	  CON_ID
+---------------------------- ----------- ------------- ------------ ----------- ---------- ---------- ----------
+TABLESPACE KEY HISTORY		     108	   151		  0	      0 	 0	    0	       0
+
+42 rows selected.
+
+sys@rgpdip02> show spparameter control_files
+
+SID	 NAME			       TYPE	   VALUE
+-------- ----------------------------- ----------- ----------------------------
+*	 control_files		       string	   /unam-diplomado-bd/disk-01/a
+						   pp/oracle/oradata/RGPDIP02/c
+						   ontrol01.ctl
+*	 control_files		       string	   /unam-diplomado-bd/disk-02/a
+						   pp/oracle/oradata/RGPDIP02/c
+						   ontrol02.ctl
+*	 control_files		       string	   /unam-diplomado-bd/disk-03/a
+						   pp/oracle/oradata/RGPDIP02/c
+						   ontrol03.ctl
+alter database backup controlfile to trace
+  2    as '/home/oracle/backups/controlfile.bkp.sql';
+alter database backup controlfile to trace
+*
+ERROR at line 1:
+ORA-01278: error creating file '/home/oracle/backups/controlfile.bkp.sql'
+ORA-27300: OS system dependent operation:open failed failed with status: 2
+ORA-27301: OS failure message: No such file or directory
+ORA-27302: failure occurred at: SlfFopen1
+
+
+sys@rgpdip02> alter database backup controlfile to trace
+  2   as '/home/oracle/backups/controlfile.bkp.sql';
+alter database backup controlfile to trace
+*
+ERROR at line 1:
+ORA-01278: error creating file '/home/oracle/backups/controlfile.bkp.sql'
+ORA-27300: OS system dependent operation:open failed failed with status: 2
+ORA-27301: OS failure message: No such file or directory
+ORA-27302: failure occurred at: SlfFopen1
+
+
+sys@rgpdip02> exit
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[rodrigo@pc-ragp ~]$ su - oracle
+Password:
+[oracle@pc-ragp ~]$ cd '/home/oracle/
+> ^C
+[oracle@pc-ragp ~]$ cd /home/oracle/
+[oracle@pc-ragp ~]$ ls
+backup
+[oracle@pc-ragp ~]$ cd backup/
+[oracle@pc-ragp backup]$ ll
+total 4
+drwxr-xr-x. 2 oracle oinstall 4096 Oct 15 11:54 modulo-03
+[oracle@pc-ragp backup]$ logout
+[rodrigo@pc-ragp ~]$ sqlplus sys/system2 as sysdba
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 6 19:07:41 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Jan 06 2023 18:13:24 -06:00
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+sys@rgpdip02> alter database backup controlfile to trace
+  2  as '/home/oracle/backup/controlfile.bkp.sql';
+
+Database altered.
+
+sys@rgpdip02> exit
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[rodrigo@pc-ragp ~]$ su - oracle
+Password:
+[oracle@pc-ragp ~]$ cd /home/oracle/backup/
+
+
+
+
+
+sys@rgpdip02> select status from v$instance�;
+
+STATUS
+------------
+OPEN
+
+
+
+
+
+
+
+[oracle@pc-ragp unam-diplomado-bd]$ cd disk-01/app/oracle/oradata/RGPDIP02/
+[oracle@pc-ragp RGPDIP02]$ ll
+total 171772
+-rw-rw----. 1 oracle oinstall 18595840 Jan  6 19:17 control01.ctl
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 18:13 redo01a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 18:13 redo02a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 19:16 redo03a.log
+[oracle@pc-ragp RGPDIP02]$ mv control01.ctl /home/oracle/backup/
+[oracle@pc-ragp RGPDIP02]$ ll
+total 153612
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 18:13 redo01a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 18:13 redo02a.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 19:17 redo03a.log
+
+
+
+
+
+sys@rgpdip02> select status from v$instance;
+
+STATUS
+------------
+OPEN
+
+sys@rgpdip02> connect rodrigo05/rodrigo05
+Connected.
+rodrigo05@rgpdip02> select table_name from user_tables;
+
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+T01_ID
+T02_RANDOM_STR_0
+T02_RANDOM_STR_50
+
+
+
+
+
+create table numeros(
+  2        id number constraint numeros_pk primary key,
+  3        numero_aleatorio number
+  4      );
+
+Table created.
+
+rodrigo05@rgpdip02>  select table_name from user_tables;
+
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+T01_ID
+NUMEROS
+T02_RANDOM_STR_0
+T02_RANDOM_STR_50
+
+rodrigo05@rgpdip02> insert into numeros(id)
+  2  values(10001);
+
+
+1 row created.
+
+rodrigo05@rgpdip02> rodrigo05@rgpdip02> select * from numeros;
+
+	ID NUMERO_ALEATORIO
+---------- ----------------
+     10001
+
+rodrigo05@rgpdip02> connect sys/system2 as sysdba
+Connected.
+sys@rgpdip02>
+
+
+
+rodrigo05@rgpdip02> commit;
+
+Commit complete.
+
+rodrigo05@rgpdip02> connect sys/system2 as sysdba
+Connected.
+sys@rgpdip02> alter system checkpoint;
+
+System altered.
+
+sys@rgpdip02> shutdown immediate
+ORA-00210: cannot open the specified control file
+ORA-00202: control file: '/unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/control01.ctl'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+sys@rgpdip02>
+
+
+
+[rodrigo@pc-ragp ~]$ sqlplus rodrigo05/rodrigo05
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 6 19:43:54 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Jan 06 2023 19:37:58 -06:00
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+rodrigo05@rgpdip02> desc numeros
+ Name												  Null?    Type
+ ------------------------------------------------------------------------------------------------ -------- -----------------------------------------------------------------
+ ID												  NOT NULL NUMBER
+ NUMERO_ALEATORIO											   NUMBER
+
+rodrigo05@rgpdip02> select * from numeros;
+
+	ID NUMERO_ALEATORIO
+---------- ----------------
+     10001
+
+rodrigo05@rgpdip02> insert into numeros(id)�
+  2  values(10002);
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+rodrigo05@rgpdip02> insert into numeros(id)�
+  2
+
+rodrigo05@rgpdip02> insert into numeros(id) values(10002);
+
+1 row created.
+
+rodrigo05@rgpdip02> commit;
+
+Commit complete.
+
+rodrigo05@rgpdip02>
+[rodrigo@pc-ragp ~]$ cd $ORACLE_HOME
+[rodrigo@pc-ragp dbhome_1]$ cd dbs/
+[rodrigo@pc-ragp dbs]$ ll
+total 52
+-rw-rw----. 1 oracle oinstall  1544 Sep 24 10:11 hc_rgpdip01.dat
+-rw-rw----. 1 oracle oinstall  1544 Jan  6 18:13 hc_rgpdip02.dat
+-rw-r--r--. 1 oracle oinstall  3079 May 14  2015 init.ora
+-rw-rw-r--. 1 oracle oinstall  1098 Sep 10 12:48 initrgpdip01.ora
+-rw-r--r--. 1 oracle oinstall   954 Jan  6 19:46 initrgpdip02.ora
+-rw-r-----. 1 oracle oinstall    24 Sep  6 10:40 lkRGPDIP01
+-rw-rw----. 1 oracle oinstall    24 Sep 24 12:40 lkRGPDIP02
+-rw-r-----. 1 oracle oinstall  2560 Sep 24 11:06 orapwrgpdip01
+-rw-r-----. 1 oracle oinstall 11264 Jan  6 19:46 orapwrgpdip02
+-rw-r-----. 1 oracle oinstall  3584 Sep 24 10:11 spfilergpdip01.ora
+-rw-rw----. 1 oracle oinstall  2560 Jan  6 18:13 spfilergpdip02.ora
+[rodrigo@pc-ragp dbs]$ ls -lrt
+total 52
+-rw-r--r--. 1 oracle oinstall  3079 May 14  2015 init.ora
+-rw-r-----. 1 oracle oinstall    24 Sep  6 10:40 lkRGPDIP01
+-rw-rw-r--. 1 oracle oinstall  1098 Sep 10 12:48 initrgpdip01.ora
+-rw-rw----. 1 oracle oinstall  1544 Sep 24 10:11 hc_rgpdip01.dat
+-rw-r-----. 1 oracle oinstall  3584 Sep 24 10:11 spfilergpdip01.ora
+-rw-r-----. 1 oracle oinstall  2560 Sep 24 11:06 orapwrgpdip01
+-rw-rw----. 1 oracle oinstall    24 Sep 24 12:40 lkRGPDIP02
+-rw-rw----. 1 oracle oinstall  1544 Jan  6 18:13 hc_rgpdip02.dat
+-rw-rw----. 1 oracle oinstall  2560 Jan  6 18:13 spfilergpdip02.ora
+-rw-r-----. 1 oracle oinstall 11264 Jan  6 19:46 orapwrgpdip02
+-rw-r--r--. 1 oracle oinstall   954 Jan  6 19:46 initrgpdip02.ora
+
+[oracle@pc-ragp dbs]$ vi initrgpdip02.ora
+*.control_files='/unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/control02.ctl','/unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/control03.ctl'
+
+[rodrigo@pc-ragp dbs]$ sqlplus sys/system2 as sysdba
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 6 20:00:31 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Last Successful login time: Fri Jan 06 2023 19:46:43 -06:00
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+sys@rgpdip02> shutdown abort
+ORACLE instance shut down.
+sys@rgpdip02> exit
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+[rodrigo@pc-ragp dbs]$ sqlplus sys/system2 as sysdba
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 6 20:02:50 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+idle> startup pfile=/u01/app/oracle/product/19.3.0/dbhome_1/dbs/initrgpdip02.ora
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  620756992 bytes
+Database Buffers	   62914560 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+idle>
+idle> create spfile from pfile;
+
+File created.
+
+idle> shutdown abort
+ORACLE instance shut down.
+idle> startup
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  620756992 bytes
+Database Buffers	   62914560 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+
+idle> show parameter control_files
+
+NAME				     TYPE	 VALUE
+------------------------------------ ----------- ------------------------------
+control_files			     string	 /unam-diplomado-bd/disk-02/app
+						 /oracle/oradata/RGPDIP02/contr
+						 ol02.ctl, /unam-diplomado-bd/d
+						 isk-03/app/oracle/oradata/RGPD
+						 IP02/control03.ctl
+idle>
+idle> connect rodrigo05/rodrigo05
+Connected.
+rodrigo05@rgpdip02> select * from numeros;
+
+	ID NUMERO_ALEATORIO
+---------- ----------------
+     10001
+     10002
+
+rodrigo05@rgpdip02>
+
+
+
+[oracle@pc-ragp RGPDIP02]$ ll
+total 171772
+-rw-rw----. 1 oracle oinstall 18595840 Jan  6 20:14 control02.ctl
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 20:07 redo01b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 20:14 redo02b.log
+-rw-rw----. 1 oracle oinstall 52429312 Jan  6 20:07 redo03b.log
+[oracle@pc-ragp RGPDIP02]$ pwd
+/unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02
+[oracle@pc-ragp RGPDIP02]$ cp control02.ctl /unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/control01.ctl
+[oracle@pc-ragp RGPDIP02]$
+
+[oracle@pc-ragp RGPDIP02]$ cd $ORACLE_HOME
+[oracle@pc-ragp dbhome_1]$ cd dbs/
+[oracle@pc-ragp dbs]$ ll
+total 52
+-rw-rw----. 1 oracle oinstall  1544 Sep 24 10:11 hc_rgpdip01.dat
+-rw-rw----. 1 oracle oinstall  1544 Jan  6 20:14 hc_rgpdip02.dat
+-rw-r--r--. 1 oracle oinstall  3079 May 14  2015 init.ora
+-rw-rw-r--. 1 oracle oinstall  1098 Sep 10 12:48 initrgpdip01.ora
+-rw-r--r--. 1 oracle oinstall   883 Jan  6 19:58 initrgpdip02.ora
+-rw-r-----. 1 oracle oinstall    24 Sep  6 10:40 lkRGPDIP01
+-rw-rw----. 1 oracle oinstall    24 Sep 24 12:40 lkRGPDIP02
+-rw-r-----. 1 oracle oinstall  2560 Sep 24 11:06 orapwrgpdip01
+-rw-r-----. 1 oracle oinstall 11264 Jan  6 20:14 orapwrgpdip02
+-rw-r-----. 1 oracle oinstall  3584 Sep 24 10:11 spfilergpdip01.ora
+-rw-rw----. 1 oracle oinstall  2560 Jan  6 20:07 spfilergpdip02.ora
+[oracle@pc-ragp dbs]$ vi init
+init.ora          initrgpdip01.ora  initrgpdip02.ora
+[oracle@pc-ragp dbs]$ vi init
+init.ora          initrgpdip01.ora  initrgpdip02.ora
+[oracle@pc-ragp dbs]$ vi initrgpdip02.ora
+*.control_files='/unam-diplomado-bd/disk-01/app/oracle/oradata/RGPDIP02/control01.ctl','/unam-diplomado-bd/disk-02/app/oracle/oradata/RGPDIP02/control02.ctl','/unam-diplomado-bd/disk-03/app/oracle/oradata/RGPDIP02/control03.ctl'
+
+[rodrigo@pc-ragp dbs]$ sqlplus sys/system2 as sysdba
+rlwrap: warning: could not set locale
+warnings can be silenced by the --no-warnings (-n) option
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 6 20:21:55 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+idle> startup pfile=/u01/app/oracle/product/19.3.0/dbhome_1/dbs/initrgpdip02.ora
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  620756992 bytes
+Database Buffers	   62914560 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+idle> create spfile from pfile;
+
+File created.
+
+idle>
+
+idle> shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+idle> startup
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  620756992 bytes
+Database Buffers	   62914560 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+Database opened.
+idle> show parameter control_files
+
+NAME				     TYPE	 VALUE
+------------------------------------ ----------- ------------------------------
+control_files			     string	 /unam-diplomado-bd/disk-01/app
+						 /oracle/oradata/RGPDIP02/contr
+						 ol01.ctl, /unam-diplomado-bd/d
+						 isk-02/app/oracle/oradata/RGPD
+						 IP02/control02.ctl, /unam-dipl
+						 omado-bd/disk-03/app/oracle/or
+						 adata/RGPDIP02/control03.ctl
+idle>
+
+idle> conn rodrigo05/rodrigo05
+Connected.
+rodrigo05@rgpdip02> se�lect * from numeros;
+SP2-0734: unknown command beginning "se�lect * f..." - rest of line ignored.
+rodrigo05@rgpdip02> select * from numeros;
+
+	ID NUMERO_ALEATORIO
+---------- ----------------
+     10001
+     10002
+     10003
+
+rodrigo05@rgpdip02>
+
+
+
+
+

@@ -1,0 +1,68 @@
+Consultando extensiones, conectando como sys
+Connected.
+
+                                                                                                                                                                           
+
+
+PL/SQL procedure successfully completed.
+
+Creando tabla de prueba
+
+Table created.
+
+Consultando extensiones
+
+no rows selected
+
+Insertando 100 registros
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+Mostrando datos de las extensiones despues de la insercion
+
+SEGMENT_TYPE       TABLESPACE_NAME                   FILE_ID  EXTENT_ID   BLOCK_ID EXTENT_SIZE_KB     BLOCKS                                                               
+------------------ ------------------------------ ---------- ---------- ---------- -------------- ----------                                                               
+TABLE              USERS                                   4          0       6928             64          8                                                               
+TABLE              USERS                                   4          1       6936             64          8                                                               
+TABLE              USERS                                   4          2       6944             64          8                                                               
+
+Mostrando estado de los bloques
+Mostrando valores de los bloques                                                                                                                                           
+v_unformatted_blocks = 0                                                                                                                                                   
+v_unformatted_bytes = 0                                                                                                                                                    
+v_fs1_blocks = 0                                                                                                                                                           
+v_fs1_bytes = 0                                                                                                                                                              
+v_fs2_blocks = 0                                                                                                                                                           
+v_fs2_bytes = 0                                                                                                                                                            
+v_fs3_blocks = 1                                                                                                                                                           
+v_fs3_bytes = 8192                                                                                                                                                         
+v_fs4_blocks = 5                                                                                                                                                           
+v_fs4_bytes = 40960                                                                                                                                                        
+v_full_blocks = 14                                                                                                                                                         
+v_full_bytes = 114688                                                                                                                                                      
+
+PL/SQL procedure successfully completed.
+
+Eliminando los cien registros
+
+PL/SQL procedure successfully completed.
+
+Mostrando valores de los bloques                                                                                                                                           
+v_unformatted_blocks = 0                                                                                                                                                   
+v_unformatted_bytes = 0                                                                                                                                                    
+v_fs1_blocks = 0                                                                                                                                                           
+v_fs1_bytes = 0                                                                                                                                                            
+v_fs2_blocks = 0                                                                                                                                                           
+v_fs2_bytes = 0                                                                                                                                                            
+v_fs3_blocks = 0                                                                                                                                                           
+v_fs3_bytes = 0                                                                                                                                                            
+v_fs4_blocks = 0                                                                                                                                                           
+v_fs4_bytes = 0                                                                                                                                                            
+v_full_blocks = 0                                                                                                                                                          
+v_full_bytes = 0                                                                                                                                                           
+
+PL/SQL procedure successfully completed.
+

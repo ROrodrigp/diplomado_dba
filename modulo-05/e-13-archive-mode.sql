@@ -9,7 +9,7 @@ prompt 2 Configurando parametros
 --proces ARCn 
 alter system set log_archive_max_processes=5 scope spfile;
 --formato del archivo 
-alter system set log_archive_format='arch_rgpdip02_%t_%s_%r.arc' scoppe spfile;
+alter system set log_archive_format='arch_rgpdip02_%t_%s_%r.arc' scope spfile;
 --configuracion de dos copias 
 alter system set log_archive_dest_1='LOCATION=/unam-diplomado-bd/disk-04/RGPDIP02/arclogs MANDATORY' scope spfile;
 alter system set log_archive_dest_2='LOCATION=/unam-diplomado-bd/disk-05/RGPDIP02/arclogs' scope spfile;
@@ -46,5 +46,5 @@ archive log list
 prompt 6 Respaldar al spfile 
 create pfile from spfile;
 
-prompt 7 
+prompt 7 Mostrando procesos ARC
 !ps -ef | grep ora_arc

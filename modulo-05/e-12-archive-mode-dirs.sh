@@ -12,14 +12,14 @@ then
 fi 
 
 echo "Creando puntos de montaje"
-mkdir -p /unam-diplomado-bd/disk-04/RGPDIP02/archlogs
-mkdir -p /unam-diplomado-bd/disk-05/RGPDIP02/archlogs
+mkdir -p /unam-diplomado-bd/disk-04/RGPDIP02/arclogs
+mkdir -p /unam-diplomado-bd/disk-05/RGPDIP02/arclogs
 
 echo "Cambiando permisos y dueno al directorio de arclogs"
 cd /unam-diplomado-bd/disk-04
-chown -R oracle:oinstall RGPDIP02/archlogs
-chmod -R 750 RGPDIP02/archlogs
+chown -R oracle:oinstall RGPDIP02/arclogs
+chmod -R 750 RGPDIP02/arclogs
 
 cd /unam-diplomado-bd/disk-05
-chown -R oracle:oinstall RGPDIP02/archlogs
-chmod -R 750 RGPDIP02/archlogs
+chown -R oracle:oinstall RGPDIP02/arclogs
+chmod -R 750 RGPDIP02/arclogs

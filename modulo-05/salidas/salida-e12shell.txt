@@ -1,0 +1,16 @@
+./e-12-archive-mode-dirs.sh
+Validar ORACLE_SID
+Creando directorios para Archive Redo Logs
+Mostrando estructuras de directorios
+/unam-diplomado-bd/disk-41/
+`-- archivelogs
+    `-- RGPDIP02
+        `-- disk_a
+/unam-diplomado-bd/disk-42/
+`-- archivelogs
+    `-- RGPDIP02
+        `-- disk_b
+
+6 directories, 0 files
+total 0
+total 0

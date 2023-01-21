@@ -35,5 +35,8 @@ prompt 9 Mostrando el tiempo de retencion de datos undo
 show parameter undo_ret
 
 prompt Modificando el tiempo de retencion de datos undo 
-alter system set undo_retention=1800;
+alter system set undo_retention=1800 scope both;
 
+prompt Mostrando nuevamente el tiempo de retencion 
+show parameter undo_ret
+exit

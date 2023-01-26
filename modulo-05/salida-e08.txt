@@ -1,0 +1,140 @@
+Connected.
+
+                                                                                                                                                                           
+
+Crea y abre el wallet
+
+System altered.
+
+Creando un nuevo tablespace
+
+Tablespace created.
+
+otorgando cuota
+
+User altered.
+
+comprobando la configuracion de los ts
+
+TABLESPACE_NAME                ENC                                                                                                                                         
+------------------------------ ---                                                                                                                                         
+SYSTEM                         NO                                                                                                                                          
+SYSAUX                         NO                                                                                                                                          
+UNDOTBS1                       NO                                                                                                                                          
+TEMPTS1                        NO                                                                                                                                          
+USERS                          NO                                                                                                                                          
+M05_ENCRYPTED_TS               YES                                                                                                                                         
+
+6 rows selected.
+
+[Enter] para continuar
+
+conectando como rodrigo05 para crear objetos cifrados
+Connected.
+
+                                                                                                                                                                           
+
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+
+        ID MENSAJE                                                                                                                                                         
+---------- --------------------                                                                                                                                            
+         1 mensaje 1                                                                                                                                                       
+         2 mensaje 2                                                                                                                                                       
+
+creando la misma tabla en el tablespace user sin cifrar
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+forzando sincronizacion, conectando como sys
+Connected.
+
+                                                                                                                                                                           
+
+
+System altered.
+
+[Enter] para realizar la busqueda del texto en el TS cifrado
+
+
+Reiniciando instancia [Enter] para continuar
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes                                                                                                                                  
+Fixed Size                  8901696 bytes                                                                                                                                  
+Variable Size             637534208 bytes                                                                                                                                  
+Database Buffers           46137344 bytes                                                                                                                                  
+Redo Buffers                7872512 bytes                                                                                                                                  
+In-Memory Area            104857600 bytes                                                                                                                                  
+Database mounted.
+Database opened.
+Consultando los datos nuevamente
+Connected.
+
+                                                                                                                                                                           
+
+select * from mensaje_seguro
+              *
+ERROR at line 1:
+ORA-28365: wallet is not open 
+
+
+[Enter] para continuar y corregir el problema
+
+Connected.
+
+                                                                                                                                                                           
+
+
+System altered.
+
+Mostrando datos nuevamente
+Connected.
+
+                                                                                                                                                                           
+
+
+        ID MENSAJE                                                                                                                                                         
+---------- --------------------                                                                                                                                            
+         1 mensaje 1                                                                                                                                                       
+         2 mensaje 2                                                                                                                                                       
+
+[Enter] para realizar la limpieza
+
+
+Table dropped.
+
+
+Table dropped.
+
+Connected.
+
+                                                                                                                                                                           
+
+
+Tablespace dropped.
+
+Listo!

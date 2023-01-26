@@ -1,0 +1,266 @@
+Conectando como sys
+Connected.
+
+                                                                                                                                                                           
+
+Creando tablespaces.
+Ejercicio 1 crear TS m05_store_tbs1
+
+Tablespace created.
+
+Ejercicio 2 creat TS m05_store_multiple_tbs
+
+Tablespace created.
+
+Ejercicio 3 creat TS m05_store_tbs_custom
+
+Tablespace created.
+
+Ejercicio 4 Consultar tablespaces creados
+
+TABLESPACE_NAME                STATUS    CONTENTS                                                                                                                          
+------------------------------ --------- ---------------------                                                                                                             
+SYSTEM                         ONLINE    PERMANENT                                                                                                                         
+SYSAUX                         ONLINE    PERMANENT                                                                                                                         
+UNDOTBS1                       ONLINE    UNDO                                                                                                                              
+TEMPTS1                        ONLINE    TEMPORARY                                                                                                                         
+USERS                          ONLINE    PERMANENT                                                                                                                         
+M05_STORE_TBS1                 ONLINE    PERMANENT                                                                                                                         
+M05_STORE_TBS_CUSTOM           OFFLINE   PERMANENT                                                                                                                         
+M05_STORE_MULTIPLE_TBS         ONLINE    PERMANENT                                                                                                                         
+
+8 rows selected.
+
+Ejercicio 5 crear usuario m05_store_user
+
+User created.
+
+
+Grant succeeded.
+
+Ejercicio 6 Crear tabla store_data con el usuario m05_store_user
+Connected.
+
+                                                                                                                                                                           
+
+
+Table created.
+
+Ejercicio 7 Programa que llena un TS
+
+Procedure created.
+
+No errors.
+Ejecutando procedimiento
+====> Sin espacio en TS                                                                                                                                                    
+====> Codigo error-1653                                                                                                                                                    
+====> Mensaje errorORA-01653: unable to extend table M05_STORE_USER.STORE_DATA by 128 in tablespace M05_STORE_TBS1                                                         
+====> ORA-06512: at "M05_STORE_USER.SP_E6_RESERVA_EXTENSIONES", line 8
+                                                                                                   
+
+==> Total de extensiones reservadas: 44                                                                                                                                    
+==> Total de espacio reservado (MB): 29                                                                                                                                    
+
+PL/SQL procedure successfully completed.
+
+Analizar resultados [Enter] para continuar
+
+Ejercicio 8 modificar TS para almacenar
+Connected.
+
+                                                                                                                                                                           
+
+
+Tablespace altered.
+
+Ejercicio 9 Ejecutar nuevamente el programa para confirmar resultados
+Connected.
+
+                                                                                                                                                                           
+
+====> Sin espacio en TS                                                                                                                                                    
+====> Codigo error-1653                                                                                                                                                    
+====> Mensaje errorORA-01653: unable to extend table M05_STORE_USER.STORE_DATA by 128 in tablespace M05_STORE_TBS1                                                         
+====> ORA-06512: at "M05_STORE_USER.SP_E6_RESERVA_EXTENSIONES", line 8
+                                                                                                   
+
+==> Total de extensiones reservadas: 53                                                                                                                                    
+==> Total de espacio reservado (MB): 38                                                                                                                                    
+
+PL/SQL procedure successfully completed.
+
+Analizar nuevamente los resultados [Enter] para continuar
+
+Ejercicio 10 consultar tablespaces
+Connected.
+
+                                                                                                                                                                           
+
+
+TABLESPACE_NAME                TOTAL_SEGMENTOS                                                                                                                             
+------------------------------ ---------------                                                                                                                             
+SYSAUX                                    2443                                                                                                                             
+SYSTEM                                    2172                                                                                                                             
+USERS                                       21                                                                                                                             
+UNDOTBS1                                    10                                                                                                                             
+M05_STORE_TBS1                               1                                                                                                                             
+M05_STORE_MULTIPLE_TBS                       0                                                                                                                             
+TEMPTS1                                      0                                                                                                                             
+M05_STORE_TBS_CUSTOM                         0                                                                                                                             
+
+8 rows selected.
+
+Analizar los resultados [Enter] para continuar
+
+Ejecutando datos de los datafiles
+Consultando data files empleando dba_data_files
+Connected.
+
+                                                                                                                                                                           
+
+
+FILE_NAME                                                            FILE_ID RELATIVE_FNO TABLESPACE_NAME                  BYTES_MB STATUS    AUT INCREMENT_BY             
+----------------------------------------------------------------- ---------- ------------ ------------------------------ ---------- --------- --- ------------             
+USER_BYTES_MB  HEADER_KB ONLINE_                                                                                                                                           
+------------- ---------- -------                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/system01.dbf                              1            1 SYSTEM                                760 AVAILABLE YES         1280             
+          759       1024 SYSTEM                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/sysaux01.dbf                              2            2 SYSAUX                                550 AVAILABLE YES         1280             
+          549       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/undotbs01.dbf                             3            3 UNDOTBS1                             3425 AVAILABLE YES          640             
+         3424       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/users01.dbf                               4            4 USERS                                 500 AVAILABLE YES            1             
+          499       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_tbs01.dbf                       5            5 M05_STORE_TBS1                         30 AVAILABLE NO             0             
+           29       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_01.dbf             6            6 M05_STORE_MULTIPLE_TBS                 15 AVAILABLE NO             0             
+           14       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_02.dbf             7            7 M05_STORE_MULTIPLE_TBS                 15 AVAILABLE NO             0             
+           14       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_03.dbf             8            8 M05_STORE_MULTIPLE_TBS                 15 AVAILABLE NO             0             
+           14       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_tbs_custom_01.dbf               9            9 M05_STORE_TBS_CUSTOM                      AVAILABLE                              
+                         OFFLINE                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_tbs02.dbf                      10           10 M05_STORE_TBS1                         10 AVAILABLE NO             0             
+            9       1024 ONLINE                                                                                                                                            
+                                                                                                                                                                           
+
+10 rows selected.
+
+Consultando data files de v$datafile
+
+NAME                                                                   FILE# CREATION_CHANGE# CREATION_TIME       CHECKPOINT_CHANGE# CHECKPOINT_TIME     LAST_CHANGE#      
+----------------------------------------------------------------- ---------- ---------------- ------------------- ------------------ ------------------- ------------      
+LAST_TIME                                                                                                                                                                  
+-------------------                                                                                                                                                        
+/u01/app/oracle/oradata/RGPDIP02/system01.dbf                              1                8 24/09/2022 12:40:59            4213644 26/01/2023 11:51:09                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/sysaux01.dbf                              2             3164 24/09/2022 12:41:02            4213644 26/01/2023 11:51:09                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/undotbs01.dbf                             3             4107 24/09/2022 12:41:03            4213644 26/01/2023 11:51:09                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/users01.dbf                               4             4271 24/09/2022 12:41:05            4213644 26/01/2023 11:51:09                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_tbs01.dbf                       5          4222759 26/01/2023 13:24:58            4222760 26/01/2023 13:24:58                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_01.dbf             6          4222789 26/01/2023 13:24:58            4222792 26/01/2023 13:24:58                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_02.dbf             7          4222790 26/01/2023 13:24:58            4222792 26/01/2023 13:24:58                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_03.dbf             8          4222791 26/01/2023 13:24:58            4222792 26/01/2023 13:24:58                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_tbs_custom_01.dbf               9          4222822 26/01/2023 13:24:59            4222822 26/01/2023 13:24:59      4222822      
+26/01/2023 13:24:59                                                                                                                                                        
+                                                                                                                                                                           
+/u01/app/oracle/oradata/RGPDIP02/m05_store_tbs02.dbf                      10          4223307 26/01/2023 13:25:01            4223308 26/01/2023 13:25:01                   
+                                                                                                                                                                           
+                                                                                                                                                                           
+
+10 rows selected.
+
+Analizar salida, [Enter] para continuar
+
+Mostrando datos del header del datafile
+
+     FILE# NAME                                                              ERROR                                                             REC CHECKPOINT_CHANGE#      
+---------- ----------------------------------------------------------------- ----------------------------------------------------------------- --- ------------------      
+CHECKPOINT_TIME                                                                                                                                                            
+-------------------                                                                                                                                                        
+         1 /u01/app/oracle/oradata/RGPDIP02/system01.dbf                                                                                       NO             4213644      
+26/01/2023 11:51:09                                                                                                                                                        
+                                                                                                                                                                           
+         2 /u01/app/oracle/oradata/RGPDIP02/sysaux01.dbf                                                                                       NO             4213644      
+26/01/2023 11:51:09                                                                                                                                                        
+                                                                                                                                                                           
+         3 /u01/app/oracle/oradata/RGPDIP02/undotbs01.dbf                                                                                      NO             4213644      
+26/01/2023 11:51:09                                                                                                                                                        
+                                                                                                                                                                           
+         4 /u01/app/oracle/oradata/RGPDIP02/users01.dbf                                                                                        NO             4213644      
+26/01/2023 11:51:09                                                                                                                                                        
+                                                                                                                                                                           
+         5 /u01/app/oracle/oradata/RGPDIP02/m05_store_tbs01.dbf                                                                                NO             4222760      
+26/01/2023 13:24:58                                                                                                                                                        
+                                                                                                                                                                           
+         6 /u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_01.dbf                                                                      NO             4222792      
+26/01/2023 13:24:58                                                                                                                                                        
+                                                                                                                                                                           
+         7 /u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_02.dbf                                                                      NO             4222792      
+26/01/2023 13:24:58                                                                                                                                                        
+                                                                                                                                                                           
+         8 /u01/app/oracle/oradata/RGPDIP02/m05_store_multiple_tbs_03.dbf                                                                      NO             4222792      
+26/01/2023 13:24:58                                                                                                                                                        
+                                                                                                                                                                           
+         9 /u01/app/oracle/oradata/RGPDIP02/m05_store_tbs_custom_01.dbf                                                                        NO             4222822      
+26/01/2023 13:24:59                                                                                                                                                        
+                                                                                                                                                                           
+        10 /u01/app/oracle/oradata/RGPDIP02/m05_store_tbs02.dbf                                                                                NO             4223308      
+26/01/2023 13:25:01                                                                                                                                                        
+                                                                                                                                                                           
+
+10 rows selected.
+
+Analizar salida, [Enter] para continuar
+
+mostrando datos de archivos temporales
+
+   FILE_ID FILE_NAME                                                         TABLESPACE_NAME                STATUS  AUT   BYTES_MB                                         
+---------- ----------------------------------------------------------------- ------------------------------ ------- --- ----------                                         
+         1 /u01/app/oracle/oradata/RGPDIP02/temp01.dbf                       TEMPTS1                        ONLINE  YES         20                                         
+
+Analizar salida [Enter] para continuar
+
+limpieza
+Connected.
+
+                                                                                                                                                                           
+
+
+Tablespace dropped.
+
+
+Tablespace dropped.
+
+
+Tablespace dropped.
+
+
+User dropped.
+
+Listo

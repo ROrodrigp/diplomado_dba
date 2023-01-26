@@ -3,7 +3,7 @@ define t_user='m05_store_user'
 define t_userlogon='&t_user/&t_user'
 
 set linesize window 
-
+spool 'salida-e09.txt' create;
 prompt Conectando como sys 
 
 connect &syslogon
@@ -130,7 +130,7 @@ Pause Analizar los resultados [Enter] para continuar
 
 prompt Ejecutando datos de los datafiles
 ---------------------------------------------------
-@e-10-data-files.sql
+@/unam-diplomado-bd/diplomado_dba/modulo-05/e-10-data-files.sql
 
 prompt limpieza
 ---------------------------------
@@ -144,4 +144,5 @@ drop tablespace m05_store_tbs_custom including contents and datafiles;
 drop user m05_store_user cascade;
 
 prompt Listo 
+spool off;
 exit 

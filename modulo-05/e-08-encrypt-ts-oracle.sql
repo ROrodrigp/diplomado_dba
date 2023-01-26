@@ -82,4 +82,5 @@ connect sys/system2 as sysdba
 drop tablespace m05_encrypted_ts including contents and datafiles;
 
 Prompt Listo! 
+spool off;
 exit 

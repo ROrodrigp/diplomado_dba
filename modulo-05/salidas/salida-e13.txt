@@ -1,0 +1,111 @@
+idle> start e-13-archive-mode.sql
+Habilitando el modo archive
+autenticando como sysdba
+Connected.
+1 Respaldar al spfile
+
+File created.
+
+2 Configurando parametros
+
+System altered.
+
+
+System altered.
+
+
+System altered.
+
+
+System altered.
+
+
+System altered.
+
+mostrando cambios
+
+SID	 NAME			       TYPE	   VALUE
+-------- ----------------------------- ----------- ----------------------------
+*	 log_archive_max_processes     integer	   5
+
+SID	 NAME			       TYPE	   VALUE
+-------- ----------------------------- ----------- ----------------------------
+*	 log_archive_format	       string	   arch_rgpdip02_%t_%s_%r.arc
+
+SID	 NAME			       TYPE	   VALUE
+-------- ----------------------------- ----------- ----------------------------
+*	 log_archive_dest_1	       string	   LOCATION=/unam-diplomado-bd/
+						   disk-04/RGPDIP02/arclogs
+						   MANDATORY
+*	 log_archive_dest_10	       string
+*	 log_archive_dest_11	       string
+*	 log_archive_dest_12	       string
+*	 log_archive_dest_13	       string
+*	 log_archive_dest_14	       string
+*	 log_archive_dest_15	       string
+*	 log_archive_dest_16	       string
+*	 log_archive_dest_17	       string
+*	 log_archive_dest_18	       string
+*	 log_archive_dest_19	       string
+
+SID	 NAME			       TYPE	   VALUE
+-------- ----------------------------- ----------- ----------------------------
+*	 log_archive_dest_2	       string	   LOCATION=/unam-diplomado-bd/
+						   disk-05/RGPDIP02/arclogs
+*	 log_archive_dest_20	       string
+*	 log_archive_dest_21	       string
+*	 log_archive_dest_22	       string
+*	 log_archive_dest_23	       string
+*	 log_archive_dest_24	       string
+*	 log_archive_dest_25	       string
+*	 log_archive_dest_26	       string
+*	 log_archive_dest_27	       string
+*	 log_archive_dest_28	       string
+*	 log_archive_dest_29	       string
+
+SID	 NAME			       TYPE	   VALUE
+-------- ----------------------------- ----------- ----------------------------
+*	 log_archive_min_succeed_dest  integer	   1
+Revisar [Enter] para continuar
+
+3 Reiniciando en modo mount
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area  805303360 bytes
+Fixed Size		    8901696 bytes
+Variable Size		  637534208 bytes
+Database Buffers	   46137344 bytes
+Redo Buffers		    7872512 bytes
+In-Memory Area		  104857600 bytes
+Database mounted.
+[Enter] para cambiar a modo archive
+
+
+Database altered.
+
+4 Abriendo BD en modo open
+
+Database altered.
+
+5 Comprobando modo archive
+Database log mode	       Archive Mode
+Automatic archival	       Enabled
+Archive destination	       /unam-diplomado-bd/disk-05/RGPDIP02/arclogs
+Oldest online log sequence     140
+Next log sequence to archive   142
+Current log sequence	       142
+6 Respaldar al spfile
+
+File created.
+
+7 Mostrando procesos ARC
+oracle      6700       1  0 11:09 ?        00:00:00 ora_arc0_rgpdip02
+oracle      6706       1  0 11:09 ?        00:00:00 ora_arc1_rgpdip02
+oracle      6708       1  0 11:09 ?        00:00:00 ora_arc2_rgpdip02
+oracle      6710       1  0 11:09 ?        00:00:00 ora_arc3_rgpdip02
+oracle      6712       1  0 11:09 ?        00:00:00 ora_arc4_rgpdip02
+rodrigo     6721    6575  0 11:09 pts/1    00:00:00 /bin/bash -c ps -ef | grep ora_arc
+rodrigo     6723    6721  0 11:09 pts/1    00:00:00 grep ora_arc

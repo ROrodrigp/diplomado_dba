@@ -7,15 +7,15 @@ create pfile from spfile;
 
 prompt 2 Configurando parametros 
 --proces ARCn 
-alter system set log_archive_max_processes=5 scope spfile;
+alter system set log_archive_max_processes=5 scope=spfile;
 --formato del archivo 
-alter system set log_archive_format='arch_rgpdip02_%t_%s_%r.arc' scope spfile;
+alter system set log_archive_format='arch_rgpdip02_%t_%s_%r.arc' scope=spfile;
 --configuracion de dos copias 
-alter system set log_archive_dest_1='LOCATION=/unam-diplomado-bd/disk-04/RGPDIP02/arclogs MANDATORY' scope spfile;
-alter system set log_archive_dest_2='LOCATION=/unam-diplomado-bd/disk-05/RGPDIP02/arclogs' scope spfile;
+alter system set log_archive_dest_1='LOCATION=/unam-diplomado-bd/disk-04/RGPDIP02/arclogs MANDATORY' scope=spfile;
+alter system set log_archive_dest_2='LOCATION=/unam-diplomado-bd/disk-05/RGPDIP02/arclogs' scope=spfile;
 
 --copias obligatorias
-alter system set log_archive_min_succeed_dest=1 scope spfile;
+alter system set log_archive_min_succeed_dest=1 scope=spfile;
 
 prompt mostrando cambios 
 show spparameter log_archive_max_processes

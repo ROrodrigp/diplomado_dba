@@ -84,7 +84,7 @@ Database altered.
 
 Database altered.
 
-SP2-0734: unknown command beginning "pompt 7. C..." - rest of line ignored.
+7. Consultar nuevamente los grupos
 
     GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TIME 	NEXT_CHANGE# NEXT_TIME		    CON_ID
 ---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- ------------------ ------------ ------------------ ----------

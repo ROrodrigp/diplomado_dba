@@ -103,20 +103,117 @@ begin
   if v_count > 0 then
     execute immediate 'drop table &test_user..random_str_2 purge';
   end if;
-
-  create table &test_user..random_str_2 (
-    id number, 
-    cadena varchar2(1024)
-  ) nologging;
-
-  create sequence &test_user..sec_random_str_2;
-
-  prompt secuencias actuales de redologs 
-  select group#, thread#, sequence#, bytes/1024/1024 size_mb
-  from v$log; 
-
-  pause [Enter] para comenzar el poblado de la tabla 
-
-  
 end;
 /
+
+create table &test_user..random_str_2 (
+  id number, 
+  cadena varchar2(1024)
+) nologging;
+
+create sequence &test_user..sec_random_str_2;
+
+prompt secuencias actuales de redologs 
+select group#, thread#, sequence#, bytes/1024/1024 size_mb
+from v$log; 
+
+pause [Enter] para comenzar el poblado de la tabla
+
+declare
+begin
+  for v_index in 1..50000 loop
+    insert /*+ append */ into &test_user..random_str_2
+    values(&test_user..sec_random_str_2.nextval,
+          dbms_random.string('X',1024));
+  end loop;
+end;
+/
+commit; 
+
+prompt secuencias actuales de redologs (Comparar la salida anterior)
+select group#, thread#, sequence#, bytes/1024/1024 size_mb
+from v$log; 
+
+pause Analizar salida, [Enter] para continuar 
+
+prompt Mostrando nuevamente datos de v$undostat y bloques libres 
+select * from 
+(select begin_time, end_time, undotsn, undoblks, txncount, maxqueryid,maxquerylen,
+  activeblks, unexpiredblks, expiredblks, tuned_undoretention, tuned_undoretention/60 tuned_undo_min
+from v$undostat
+order by begin_time desc;
+) where rownum <= 20; 
+
+select df.tablespace_name, df.blocks as total_bloques, 
+  sum(f.blocks) bloques_libres, round(sum(f.blocks)/df.blocks*100,2) as "%_BLOQUES_LIBRES"
+from dba_data_files df, dba_free_space f
+where df.tablespace_name = f.tablespace_name
+and df.tablespace_name = 'UNDOTBS2'
+group by df.tablespace_name, df.blocks;
+
+pause Revisar resultados [Enter] para continuar 
+
+prompt 10. Replicar el error al ejecutar sentencias DML 
+
+prompt BORRAR 1-10000
+delete from &test_user..random_str_2 where id between 1 and 10000;
+
+select df.tablespace_name, df.blocks as total_bloques, 
+  sum(f.blocks) bloques_libres, round(sum(f.blocks)/df.blocks*100,2) as "%_BLOQUES_LIBRES"
+from dba_data_files df, dba_free_space f
+where df.tablespace_name = f.tablespace_name
+and df.tablespace_name = 'UNDOTBS2'
+group by df.tablespace_name, df.blocks;
+
+pause Revisar resultados [Enter] para continuar 
+
+prompt BORRAR 10001-20000
+delete from &test_user..random_str_2 where id between 10001 and 20000;
+
+select df.tablespace_name, df.blocks as total_bloques, 
+  sum(f.blocks) bloques_libres, round(sum(f.blocks)/df.blocks*100,2) as "%_BLOQUES_LIBRES"
+from dba_data_files df, dba_free_space f
+where df.tablespace_name = f.tablespace_name
+and df.tablespace_name = 'UNDOTBS2'
+group by df.tablespace_name, df.blocks;
+
+pause Revisar resultados [Enter] para continuar 
+
+prompt BORRAR 20001-30000
+delete from &test_user..random_str_2 where id between 20001 and 30000;
+
+select df.tablespace_name, df.blocks as total_bloques, 
+  sum(f.blocks) bloques_libres, round(sum(f.blocks)/df.blocks*100,2) as "%_BLOQUES_LIBRES"
+from dba_data_files df, dba_free_space f
+where df.tablespace_name = f.tablespace_name
+and df.tablespace_name = 'UNDOTBS2'
+group by df.tablespace_name, df.blocks;
+
+pause Revisar resultados [Enter] para continuar 
+
+prompt BORRAR 30001-40000
+delete from &test_user..random_str_2 where id between 30001 and 40000;
+
+select df.tablespace_name, df.blocks as total_bloques, 
+  sum(f.blocks) bloques_libres, round(sum(f.blocks)/df.blocks*100,2) as "%_BLOQUES_LIBRES"
+from dba_data_files df, dba_free_space f
+where df.tablespace_name = f.tablespace_name
+and df.tablespace_name = 'UNDOTBS2'
+group by df.tablespace_name, df.blocks;
+
+pause Revisar resultados [Enter] para continuar 
+
+prompt BORRAR 40001-50000
+delete from &test_user..random_str_2 where id between 40001 and 50000;
+
+select df.tablespace_name, df.blocks as total_bloques, 
+  sum(f.blocks) bloques_libres, round(sum(f.blocks)/df.blocks*100,2) as "%_BLOQUES_LIBRES"
+from dba_data_files df, dba_free_space f
+where df.tablespace_name = f.tablespace_name
+and df.tablespace_name = 'UNDOTBS2'
+group by df.tablespace_name, df.blocks;
+
+pause Revisar resultados [Enter] para continuar 
+
+prompt haciendo rollback
+rollback;

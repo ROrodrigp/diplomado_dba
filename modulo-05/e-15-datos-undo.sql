@@ -19,7 +19,7 @@ declare
 begin 
   select count(*) into v_count
   from dba_tablespaces
-  where tablespace = 'UNDOTBS2';
+  where tablespace_name = 'UNDOTBS2';
   if v_count > 0 then
     dbms_output.put_line('Eliminando undotbs2');
     execute immediate
@@ -34,7 +34,7 @@ create undo tablespace undotbs2
 datafile '/u01/app/oracle/oradata/RGPDIP02/undotbs_2.dbf'
 size 30M
 autoextend off 
-extent management local autollocate;
+extent management local autoallocate;
 
 prompt 3. Configurando el nuevo TS undo 
 -------------------------------------------

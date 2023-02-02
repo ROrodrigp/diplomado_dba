@@ -2,7 +2,7 @@ define syslogon='sys/system2 as sysdba'
 define test_user='rodrigo05'
 set verify off 
 set linesize window 
-
+spool 'salida-e015.txt' replace;
 connect &syslogon
 
 prompt 1. Mostrando tablespace undo en uso 
@@ -217,3 +217,4 @@ pause Revisar resultados [Enter] para continuar
 
 prompt haciendo rollback
 rollback;
+spool off;

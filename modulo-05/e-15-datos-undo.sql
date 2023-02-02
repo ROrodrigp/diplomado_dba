@@ -62,7 +62,7 @@ prompt 7. Mostrando nombres de los dba_tablespaces
 select * from
 (
   select u.begin_time, u.end_time, u.undotsn, t.name 
-  from v$undostat, v$tablespace t
+  from v$undostat u, v$tablespace t
   where u.undotsn = t.ts#
   order by u.begin_time desc 
 ) where rownum <= 20;

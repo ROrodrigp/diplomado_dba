@@ -55,3 +55,68 @@ select * from
 from v$undostat
 order by begin_time desc;
 ) where rownum <= 20; 
+
+pause 6. Analizar resultados, contestar preguntas [Enter] para continuar 
+-------------------------------------------
+prompt 7. Mostrando nombres de los dba_tablespaces
+select * from
+(
+  select u.begin_time, u.end_time, u.undotsn, t.name 
+  from v$undostat, v$tablespace t
+  where u.undotsn = t.ts#
+  order by u.begin_time desc 
+) where rownum <= 20;
+
+pause Analizar resultados, [Enter] para continuar
+
+prompt 8. Mostrar los datos del nuevo TS
+-------------------------------------------
+select df.tablespace_name, df.blocks as total_bloques, 
+  sum(f.blocks) bloques_libres, round(sum(f.blocks)/df.blocks*100,2) as "%_BLOQUES_LIBRES"
+from dba_data_files df, dba_free_space f
+where df.tablespace_name = f.tablespace_name
+and df.tablespace_name = 'UNDOTBS2'
+group by df.tablespace_name, df.blocks;
+
+pause Analizar resultados [Enter] para continuar 
+prompt 9. Creacion y poblado de tabla  en el esquema  del usuario el modulo 
+-------------------------------------------
+declare
+  v_count number;
+begin 
+  --check sequence 
+  select count(*)
+  into v_count
+  from all_sequence 
+  where sequence_name  = 'SEC_RANDOM_STR_2'
+  and sequence_owner = upper('&test_user');
+
+  if v_count > 0 then 
+    execute immediate 'drop sequence &test_user..sec_random_str_2';
+  end if;
+  --check table 
+  select count(*)
+  into v_count
+  from all_tables
+  where table_name = 'RANDOM_STR_2'
+  and owner = upper('&test_user');
+  if v_count > 0 then
+    execute immediate 'drop table &test_user..random_str_2 purge';
+  end if;
+
+  create table &test_user..random_str_2 (
+    id number, 
+    cadena varchar2(1024)
+  ) nologging;
+
+  create sequence &test_user..sec_random_str_2;
+
+  prompt secuencias actuales de redologs 
+  select group#, thread#, sequence#, bytes/1024/1024 size_mb
+  from v$log; 
+
+  pause [Enter] para comenzar el poblado de la tabla 
+
+  
+end;
+/

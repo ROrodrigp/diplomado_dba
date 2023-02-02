@@ -53,7 +53,7 @@ select * from
 (select begin_time, end_time, undotsn, undoblks, txncount, maxqueryid,maxquerylen,
   activeblks, unexpiredblks, expiredblks, tuned_undoretention, tuned_undoretention/60 tuned_undo_min
 from v$undostat
-order by begin_time desc;
+order by begin_time desc
 ) where rownum <= 20; 
 
 pause 6. Analizar resultados, contestar preguntas [Enter] para continuar 

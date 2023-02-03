@@ -1,0 +1,239 @@
+Connected.
+
+                                                                                                                                                            
+
+1. Mostrando tablespace undo en uso
+
+NAME                                 TYPE        VALUE                                                                                                      
+------------------------------------ ----------- ------------------------------                                                                             
+undo_tablespace                      string      undotbs2                                                                                                   
+[Enter] para continuar
+
+2. Creando un nuevo tablespace
+Eliminando undotbs2                                                                                                                                         
+
+PL/SQL procedure successfully completed.
+
+
+Tablespace created.
+
+3. Configurando el nuevo TS undo
+
+System altered.
+
+4. Mostrar nuevamente el parametro undo_tablespace
+
+NAME                                 TYPE        VALUE                                                                                                      
+------------------------------------ ----------- ------------------------------                                                                             
+undo_tablespace                      string      undotbs2                                                                                                   
+Analizar resultado [Enter] para continuar
+
+5. Mostrando estadisticas de los datos undo
+
+Session altered.
+
+
+BEGIN_TIME          END_TIME               UNDOTSN   UNDOBLKS   TXNCOUNT MAXQUERYID    MAXQUERYLEN ACTIVEBLKS UNEXPIREDBLKS EXPIREDBLKS TUNED_UNDORETENTION 
+------------------- ------------------- ---------- ---------- ---------- ------------- ----------- ---------- ------------- ----------- ------------------- 
+TUNED_UNDO_MIN                                                                                                                                              
+--------------                                                                                                                                              
+02-02-2023 17:35:23 02-02-2023 17:37:29         10         28         10 f3yfg50ga0r8n        1890        160             0           0                 522 
+           8.7                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 17:25:23 02-02-2023 17:35:23         10       3606        289 f3yfg50ga0r8n        1587       3712             0           0                 477 
+          7.95                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 17:15:23 02-02-2023 17:25:23         10        524       2634 f3yfg50ga0r8n         983        160           496           0                7325 
+    122.083333                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 17:05:23 02-02-2023 17:15:23         10        500       3155 f3yfg50ga0r8n         379        160           496           0                9475 
+    157.916667                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:55:23 02-02-2023 17:05:23         10        288        211                         0        160             0           0               15352 
+    255.866667                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:45:23 02-02-2023 16:55:23         10          0          9                         0        160             0           0               26913 
+        448.55                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:35:23 02-02-2023 16:45:23         10         11        178                         0        160             0           0               20193 
+        336.55                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:25:23 02-02-2023 16:35:23         10         67        389                         0        160             0           0               14126 
+    235.433333                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:15:23 02-02-2023 16:25:23          2        164        477                         0        160             0        5888                 900 
+            15                                                                                                                                              
+                                                                                                                                                            
+
+9 rows selected.
+
+6. Analizar resultados, contestar preguntas [Enter] para continuar
+
+7. Mostrando nombres de los dba_tablespaces
+
+BEGIN_TIME          END_TIME               UNDOTSN NAME                                                                                                     
+------------------- ------------------- ---------- ------------------------------                                                                           
+02-02-2023 17:35:23 02-02-2023 17:37:31         10 UNDOTBS2                                                                                                 
+02-02-2023 17:25:23 02-02-2023 17:35:23         10 UNDOTBS2                                                                                                 
+02-02-2023 17:15:23 02-02-2023 17:25:23         10 UNDOTBS2                                                                                                 
+02-02-2023 17:05:23 02-02-2023 17:15:23         10 UNDOTBS2                                                                                                 
+02-02-2023 16:55:23 02-02-2023 17:05:23         10 UNDOTBS2                                                                                                 
+02-02-2023 16:45:23 02-02-2023 16:55:23         10 UNDOTBS2                                                                                                 
+02-02-2023 16:35:23 02-02-2023 16:45:23         10 UNDOTBS2                                                                                                 
+02-02-2023 16:25:23 02-02-2023 16:35:23         10 UNDOTBS2                                                                                                 
+02-02-2023 16:15:23 02-02-2023 16:25:23          2 UNDOTBS1                                                                                                 
+
+9 rows selected.
+
+Analizar resultados, [Enter] para continuar
+
+8. Mostrar los datos del nuevo TS
+
+TABLESPACE_NAME                TOTAL_BLOQUES BLOQUES_LIBRES %_BLOQUES_LIBRES                                                                                
+------------------------------ ------------- -------------- ----------------                                                                                
+UNDOTBS2                                3840           3552             92.5                                                                                
+
+Analizar resultados [Enter] para continuar
+
+9. Creacion y poblado de tabla  en el esquema  del usuario el modulo
+
+PL/SQL procedure successfully completed.
+
+
+Table created.
+
+
+Sequence created.
+
+secuencias actuales de redologs
+
+    GROUP#    THREAD#  SEQUENCE#    SIZE_MB                                                                                                                 
+---------- ---------- ---------- ----------                                                                                                                 
+         4          1        145         60                                                                                                                 
+         5          1        146         60                                                                                                                 
+         6          1        144         60                                                                                                                 
+
+[Enter] para comenzar el poblado de la tabla
+
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+secuencias actuales de redologs (Comparar la salida anterior)
+
+    GROUP#    THREAD#  SEQUENCE#    SIZE_MB                                                                                                                 
+---------- ---------- ---------- ----------                                                                                                                 
+         4          1        145         60                                                                                                                 
+         5          1        146         60                                                                                                                 
+         6          1        147         60                                                                                                                 
+
+Analizar salida, [Enter] para continuar
+
+Mostrando nuevamente datos de v$undostat y bloques libres
+
+BEGIN_TIME          END_TIME               UNDOTSN   UNDOBLKS   TXNCOUNT MAXQUERYID    MAXQUERYLEN ACTIVEBLKS UNEXPIREDBLKS EXPIREDBLKS TUNED_UNDORETENTION 
+------------------- ------------------- ---------- ---------- ---------- ------------- ----------- ---------- ------------- ----------- ------------------- 
+TUNED_UNDO_MIN                                                                                                                                              
+--------------                                                                                                                                              
+02-02-2023 17:35:23 02-02-2023 17:38:06         10        523       2618 f3yfg50ga0r8n        1890        160             0           0                 495 
+          8.25                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 17:25:23 02-02-2023 17:35:23         10       3606        289 f3yfg50ga0r8n        1587       3712             0           0                 477 
+          7.95                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 17:15:23 02-02-2023 17:25:23         10        524       2634 f3yfg50ga0r8n         983        160           496           0                7325 
+    122.083333                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 17:05:23 02-02-2023 17:15:23         10        500       3155 f3yfg50ga0r8n         379        160           496           0                9475 
+    157.916667                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:55:23 02-02-2023 17:05:23         10        288        211                         0        160             0           0               15352 
+    255.866667                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:45:23 02-02-2023 16:55:23         10          0          9                         0        160             0           0               26913 
+        448.55                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:35:23 02-02-2023 16:45:23         10         11        178                         0        160             0           0               20193 
+        336.55                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:25:23 02-02-2023 16:35:23         10         67        389                         0        160             0           0               14126 
+    235.433333                                                                                                                                              
+                                                                                                                                                            
+02-02-2023 16:15:23 02-02-2023 16:25:23          2        164        477                         0        160             0        5888                 900 
+            15                                                                                                                                              
+                                                                                                                                                            
+
+9 rows selected.
+
+
+TABLESPACE_NAME                TOTAL_BLOQUES BLOQUES_LIBRES %_BLOQUES_LIBRES                                                                                
+------------------------------ ------------- -------------- ----------------                                                                                
+UNDOTBS2                                3840           3056            79.58                                                                                
+
+Revisar resultados [Enter] para continuar
+
+10. Replicar el error al ejecutar sentencias DML
+BORRAR 1-10000
+
+10000 rows deleted.
+
+
+TABLESPACE_NAME                TOTAL_BLOQUES BLOQUES_LIBRES %_BLOQUES_LIBRES                                                                                
+------------------------------ ------------- -------------- ----------------                                                                                
+UNDOTBS2                                3840           1536               40                                                                                
+
+Revisar resultados [Enter] para continuar
+
+BORRAR 10001-20000
+
+10000 rows deleted.
+
+
+TABLESPACE_NAME                TOTAL_BLOQUES BLOQUES_LIBRES %_BLOQUES_LIBRES                                                                                
+------------------------------ ------------- -------------- ----------------                                                                                
+UNDOTBS2                                3840            128             3.33                                                                                
+
+Revisar resultados [Enter] para continuar
+
+BORRAR 20001-30000
+delete from rodrigo05.random_str_2 where id between 20001 and 30000
+                      *
+ERROR at line 1:
+ORA-30036: unable to extend segment by 8 in undo tablespace 'UNDOTBS2' 
+
+
+
+no rows selected
+
+Revisar resultados [Enter] para continuar
+
+BORRAR 30001-40000
+delete from rodrigo05.random_str_2 where id between 30001 and 40000
+                      *
+ERROR at line 1:
+ORA-30036: unable to extend segment by 8 in undo tablespace 'UNDOTBS2' 
+
+
+
+no rows selected
+
+Revisar resultados [Enter] para continuar
+
+BORRAR 40001-50000
+delete from rodrigo05.random_str_2 where id between 40001 and 50000
+                      *
+ERROR at line 1:
+ORA-30036: unable to extend segment by 8 in undo tablespace 'UNDOTBS2' 
+
+
+
+no rows selected
+
+Revisar resultados [Enter] para continuar
+
+haciendo rollback
+
+Rollback complete.
+

@@ -1,0 +1,101 @@
+1. Creando CDB a partir de SEED (from scratch)
+Iniciando CDB rgpdip03
+
+Conectando como sys en rgpdip03
+Connected.
+
+                                                                                                                                                                           
+
+Creando pdb rgpdip03_s3 a partir de SEED
+
+System altered.
+
+create pluggable database rgpdip03_s3 admin user admin_s3 identified by admin_s3
+*
+ERROR at line 1:
+ORA-65012: Pluggable database RGPDIP03_S3 already exists. 
+
+
+Cambiarse a /u01/app/oracle/oradata/RGPDIP03  como oracle
+Analizar datafiles [enter] para continuar
+
+Mostrando datos de la CDB desde el DD.
+
+   FILE_ID FILE_NAME                                                                                                                                                       
+---------- --------------------------------------------------------------------------------                                                                                
+         1 /u01/app/oracle/oradata/RGPDIP03/system01.dbf                                                                                                                   
+         3 /u01/app/oracle/oradata/RGPDIP03/sysaux01.dbf                                                                                                                   
+         4 /u01/app/oracle/oradata/RGPDIP03/undotbs01.dbf                                                                                                                  
+         7 /u01/app/oracle/oradata/RGPDIP03/users01.dbf                                                                                                                    
+
+Mostrando datos de las pdbs
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                                                            
+---------- ------------------------------ ---------- ----------                                                                                                            
+         2 PDB$SEED                       READ ONLY  NO                                                                                                                    
+         3 RGPDIP03_S1                    MOUNTED                                                                                                                          
+         4 RGPDIP03_S2                    MOUNTED                                                                                                                          
+         5 RGPDIP03_S3                    MOUNTED                                                                                                                          
+Mostrando datos de las PDBs (dba_pdbs)
+
+    PDB_ID PDB_NAME                       STATUS                                                                                                                           
+---------- ------------------------------ ----------                                                                                                                       
+         3 RGPDIP03_S1                    NORMAL                                                                                                                           
+         2 PDB$SEED                       NORMAL                                                                                                                           
+         4 RGPDIP03_S2                    NORMAL                                                                                                                           
+         5 RGPDIP03_S3                    NORMAL                                                                                                                           
+
+Analizar [enter] para continuar
+
+Accediendo a la PDB
+
+Pluggable database altered.
+
+
+Session altered.
+
+
+CON_ID                                                                                                                                                                     
+------------------------------                                                                                                                                             
+5                                                                                                                                                                          
+
+CON_NAME                                                                                                                                                                   
+------------------------------                                                                                                                                             
+RGPDIP03_S3                                                                                                                                                                
+Mostrando datos de la PDB desde el DD.
+
+   FILE_ID FILE_NAME                                                                                                                                                       
+---------- --------------------------------------------------------------------------------                                                                                
+        17 /u01/app/oracle/oradata/RGPDIP03/RGPDIP03/F46313833AA665C5E0530100007F4177/dataf                                                                                
+           ile/o1_mf_system_kyfswv3t_.dbf                                                                                                                                  
+                                                                                                                                                                           
+        18 /u01/app/oracle/oradata/RGPDIP03/RGPDIP03/F46313833AA665C5E0530100007F4177/dataf                                                                                
+           ile/o1_mf_sysaux_kyfswv3z_.dbf                                                                                                                                  
+                                                                                                                                                                           
+        19 /u01/app/oracle/oradata/RGPDIP03/RGPDIP03/F46313833AA665C5E0530100007F4177/dataf                                                                                
+           ile/o1_mf_undotbs1_kyfswv40_.dbf                                                                                                                                
+                                                                                                                                                                           
+
+[Enter] para comenzar con la limpieza
+
+Cambiando a cdb$root
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+
+Pluggable database altered.
+
+Mostrando contenido de los metadatos
+
+
+Analizar XML, [enter] para continuar (se eliminaran los archivos)
+
+
+Pluggable database dropped.
+
+
+Apagando spool

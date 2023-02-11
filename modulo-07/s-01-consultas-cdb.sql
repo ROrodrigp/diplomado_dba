@@ -73,7 +73,7 @@ alter session set container=rgpdip03_s1;
 --aqui se genera una transaccion 
 insert into rodrigo07.test values (100);
 
- 
+
 prompt Conectando a rgpdip03_s2 sin hacer commit desde esta transaccion 
 pause Se podrá? [Enter] para continuar
 alter session set container=rgpdip03_s2;

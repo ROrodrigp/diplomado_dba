@@ -1,0 +1,23 @@
+[rodrigo@pc-ragp e-crea-pdbs]$ ./s-030-start-cdb.sh  rgpdip03 system3
+Iniciando rgpdip03
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Feb 10 17:26:45 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+Warning: SET LINESIZE WINDOW is ignored in script redirection
+idle> ORACLE instance started.
+
+Total System Global Area  805304048 bytes
+Fixed Size		    9139952 bytes
+Variable Size		  281018368 bytes
+Database Buffers	  507510784 bytes
+Redo Buffers		    7634944 bytes
+Database mounted.
+Database opened.
+idle> USER is "SYS"
+idle> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0

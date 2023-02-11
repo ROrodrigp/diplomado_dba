@@ -1,0 +1,60 @@
+Hacer clon rgpdip03_s1 -> rgpdip04_m3 Ahora con DB links
+Iniciando rgpdip03
+
+Iniciando rgpdip04
+
+Conectando a rgpdip03
+Connected.
+
+                                                                                                                                                                           
+
+Creando usuario en rgpdip03
+
+User created.
+
+
+Grant succeeded.
+
+Conectando a rgpdip04 para crear DB link
+Connected.
+
+                                                                                                                                                                           
+
+
+Database link created.
+
+Creando pdb rgpdip04_m3
+
+Pluggable database created.
+
+Abriendo y verificando la nueva pdb
+
+Pluggable database altered.
+
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                                                            
+---------- ------------------------------ ---------- ----------                                                                                                            
+         2 PDB$SEED                       READ ONLY  NO                                                                                                                    
+         3 RGPDIP04_S1                    MOUNTED                                                                                                                          
+         4 RGPDIP04_S2                    MOUNTED                                                                                                                          
+         6 RGPDIP04_M3                    READ WRITE NO                                                                                                                    
+Analizar resultados. [Enter] para continuar con limpieza
+
+Borrar PDB
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+
+Database link dropped.
+
+Eliminando el usuario  en rgpdip03
+Connected.
+
+                                                                                                                                                                           
+
+
+User dropped.
+

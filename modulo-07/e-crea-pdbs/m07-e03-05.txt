@@ -1,0 +1,74 @@
+Clonar PDB a partir de una NON CDB
+Detener rgpdip03, se clonará en en rgpdip04
+
+Iniciar rgpdip04
+
+Iniciar NON CDB
+
+Crear un usuario en NON CDB
+Connected.
+
+                                                                                                                                                                           
+
+
+User created.
+
+
+Grant succeeded.
+
+Conectando a rgpdip04
+Connected.
+
+                                                                                                                                                                           
+
+Creando db link
+
+Database link created.
+
+Creando PDB
+create pluggable database rgpdip04_m4
+*
+ERROR at line 1:
+ORA-17628: Oracle error 28365 returned by remote Oracle server
+ORA-28365: wallet is not open 
+
+
+Abriendo nueva PDB
+alter pluggable database rgpdip04_m4 open read write
+*
+ERROR at line 1:
+ORA-65011: Pluggable database RGPDIP04_M4 does not exist. 
+
+
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                                                            
+---------- ------------------------------ ---------- ----------                                                                                                            
+         2 PDB$SEED                       READ ONLY  NO                                                                                                                    
+         3 RGPDIP04_S1                    MOUNTED                                                                                                                          
+         4 RGPDIP04_S2                    MOUNTED                                                                                                                          
+Analizar resultados. [Enter] para la limpieza.
+
+Borrar PDB
+alter pluggable database rgpdip04_m4 close
+*
+ERROR at line 1:
+ORA-65011: Pluggable database RGPDIP04_M4 does not exist. 
+
+
+drop pluggable database rgpdip04_m4 including datafiles
+*
+ERROR at line 1:
+ORA-65011: Pluggable database RGPDIP04_M4 does not exist. 
+
+
+
+Database link dropped.
+
+Eliminando el usuario  en rgpdip02
+Connected.
+
+                                                                                                                                                                           
+
+
+User dropped.
+

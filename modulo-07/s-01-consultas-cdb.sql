@@ -88,3 +88,29 @@ alter session set container=rgpdip03_s1;
 pause ¿Que mostrara al intentar consultar los datos de la tabla test?
 select * from rodrigo07.test;
 
+prompt Pregunta 6 conlsulta dbs_objects en root 
+alter session set container=cdb$root;
+select count(*), oracle_maintained from dba_objects group by oracle_maintained;
+prompt pregunta 6 consulta dba_objects en rgpdip03_s1
+alter session set container=rgpdip03_s1
+select count(*), oracle_maintained from dba_objects group by oracle_maintained;
+pause Analizar resultados [Enter] para continuar 
+
+prompt 7 Limpieza 
+--eliminando rgpdip01
+drop user rodrigo07 cascade;
+--eliminando en rgpdip02
+alter session set container=rgpdip03_s2;
+drop user rodrigo07 cascade 
+
+pause [Enter] para continuar
+
+prompt Ejecutando consultas del punto seis 
+
+prompt Pregunta 6 conlsulta dbs_objects en root 
+alter session set container=cdb$root;
+select count(*), oracle_maintained from dba_objects group by oracle_maintained;
+prompt pregunta 6 consulta dba_objects en rgpdip03_s1
+alter session set container=rgpdip03_s1
+select count(*), oracle_maintained from dba_objects group by oracle_maintained;
+pause Analizar resultados [Enter] para continuar 

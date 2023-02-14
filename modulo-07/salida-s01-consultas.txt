@@ -1,0 +1,238 @@
+Consulta 1, conectando a root
+Conectando a root
+Connected.
+
+                                                                                                                                                                           
+
+
+      DBID NAME                           CDB     CON_ID   CON_DBID                                                                                                        
+---------- ------------------------------ --- ---------- ----------                                                                                                        
+4058554443 RGPDIP03                       YES          0 4058554443                                                                                                        
+
+Consulta 1, conectando a rgpdip03_s1
+Connected.
+
+                                                                                                                                                                           
+
+
+      DBID NAME                           CDB     CON_ID   CON_DBID                                                                                                        
+---------- ------------------------------ --- ---------- ----------                                                                                                        
+4058554443 RGPDIP03                       YES          0  860127003                                                                                                        
+
+Analizar resultados [Enter] para continuar
+
+Consulta 2 en root - dba_pdbs
+Connected.
+
+                                                                                                                                                                           
+
+
+    PDB_ID PDB_NAME                             DBID STATUS                                                                                                                
+---------- ------------------------------ ---------- ----------                                                                                                            
+         3 RGPDIP03_S1                     860127003 NORMAL                                                                                                                
+         2 PDB$SEED                         12014930 NORMAL                                                                                                                
+         4 RGPDIP03_S2                    2733944917 NORMAL                                                                                                                
+
+Consulta 2 en rgpdip03_s2 - dba_pdbs
+Connected.
+
+                                                                                                                                                                           
+
+
+    PDB_ID PDB_NAME                             DBID STATUS                                                                                                                
+---------- ------------------------------ ---------- ----------                                                                                                            
+         4 RGPDIP03_S2                    2733944917 NORMAL                                                                                                                
+
+Analizar resultados [Enter] para continuar
+
+Consulta 3 en root - v$pdbs
+Connected.
+
+                                                                                                                                                                           
+
+
+    CON_ID NAME                           OPEN_MODE  OPEN_TIME                                                                                                             
+---------- ------------------------------ ---------- ----------------------------------------                                                                              
+         2 PDB$SEED                       READ ONLY  13-FEB-23 10.28.21.909 PM -06:00                                                                                      
+         3 RGPDIP03_S1                    READ WRITE 13-FEB-23 10.28.55.447 PM -06:00                                                                                      
+         4 RGPDIP03_S2                    READ WRITE 13-FEB-23 10.28.55.447 PM -06:00                                                                                      
+
+Consulta 3 en rgpdip03_s1 - v$pdbs
+Connected.
+
+                                                                                                                                                                           
+
+
+    CON_ID NAME                           OPEN_MODE  OPEN_TIME                                                                                                             
+---------- ------------------------------ ---------- ----------------------------------------                                                                              
+         3 RGPDIP03_S1                    READ WRITE 13-FEB-23 10.28.55.447 PM -06:00                                                                                      
+
+Consulta 3 en rgpdip03_s2 - v$pdbs
+Connected.
+
+                                                                                                                                                                           
+
+
+    CON_ID NAME                           OPEN_MODE  OPEN_TIME                                                                                                             
+---------- ------------------------------ ---------- ----------------------------------------                                                                              
+         4 RGPDIP03_S2                    READ WRITE 13-FEB-23 10.28.55.447 PM -06:00                                                                                      
+
+Analizar resultados [Enter] para continuar
+
+pregunta 4 desde root empleando alter session
+
+Session altered.
+
+
+CON_ID                                                                                                                                                                     
+------------------------------                                                                                                                                             
+1                                                                                                                                                                          
+
+CON_NAME                                                                                                                                                                   
+------------------------------                                                                                                                                             
+CDB$ROOT                                                                                                                                                                   
+pregunta 4 desde rgpdip03_s1 empleando alter session
+
+Session altered.
+
+
+CON_ID                                                                                                                                                                     
+------------------------------                                                                                                                                             
+3                                                                                                                                                                          
+
+CON_NAME                                                                                                                                                                   
+------------------------------                                                                                                                                             
+RGPDIP03_S1                                                                                                                                                                
+pregunta 4 desde rgpdip03_s2 empleando alter session
+
+Session altered.
+
+
+CON_ID                                                                                                                                                                     
+------------------------------                                                                                                                                             
+4                                                                                                                                                                          
+
+CON_NAME                                                                                                                                                                   
+------------------------------                                                                                                                                             
+RGPDIP03_S2                                                                                                                                                                
+Analizar resultados [Enter] para continuar
+
+pregunta 5, conectando a rgpdip03_s1, creando una tabla
+
+Session altered.
+
+
+User created.
+
+
+Grant succeeded.
+
+
+Table created.
+
+pregunta 5, conectando a rgpdip03_s2, creando una tabla
+
+Session altered.
+
+
+User created.
+
+
+Grant succeeded.
+
+
+Table created.
+
+Creando un nuevo registro en rgpdip03_s1 para  rodrigo07.test
+
+Session altered.
+
+
+1 row created.
+
+Conectando a rgpdip03_s2 sin hacer commit desde esta transaccion
+Se podrá? [Enter] para continuar
+
+
+Session altered.
+
+¿Fue posible? [Enter] para continuar
+
+Intentando insertar en la tabla ¿Se genera otra transaccion?
+insert into rodrigo07.test values (200)
+                      *
+ERROR at line 1:
+ORA-65023: active transaction exists in container RGPDIP03_S1 
+
+
+¿Fue posible? [Enter] para continuar
+
+Conectando nuevamente a la rgpdip03_s1 ¿Qué sucedio con la transaccion ?
+
+Session altered.
+
+¿Que mostrara al intentar consultar los datos de la tabla test?
+
+
+        ID                                                                                                                                                                 
+----------                                                                                                                                                                 
+       100                                                                                                                                                                 
+
+Pregunta 6 conlsulta dbs_objects en root
+
+Session altered.
+
+
+  COUNT(*) O                                                                                                                                                               
+---------- -                                                                                                                                                               
+     72168 Y                                                                                                                                                               
+       247 N                                                                                                                                                               
+
+pregunta 6 consulta dba_objects en rgpdip03_s1
+
+Session altered.
+
+
+  COUNT(*) O                                                                                                                                                               
+---------- -                                                                                                                                                               
+     72354 Y                                                                                                                                                               
+         3 N                                                                                                                                                               
+
+Analizar resultados [Enter] para continuar
+
+7 Limpieza
+
+User dropped.
+
+
+Session altered.
+
+
+User dropped.
+
+[Enter] para continuar
+
+Ejecutando consultas del punto seis
+Pregunta 6 conlsulta dbs_objects en root
+
+Session altered.
+
+
+  COUNT(*) O                                                                                                                                                               
+---------- -                                                                                                                                                               
+     72168 Y                                                                                                                                                               
+       247 N                                                                                                                                                               
+
+pregunta 6 consulta dba_objects en rgpdip03_s1
+
+Session altered.
+
+
+  COUNT(*) O                                                                                                                                                               
+---------- -                                                                                                                                                               
+     72354 Y                                                                                                                                                               
+         2 N                                                                                                                                                               
+
+Analizar resultados [Enter] para continuar
+
+Apagando spool

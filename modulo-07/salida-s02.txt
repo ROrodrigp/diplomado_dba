@@ -1,0 +1,56 @@
+idle> start s-02-shutdown.sql
+Antes de continuar asegurarse que la CDB esta iniciada, asi como ORACLE_SID=rgpdip04 [Enter]
+
+[Enter] para continuar
+
+Conectando a una rgpdip04_s1
+Connected.
+¿Qué sucederá al ejectuar shutdown immediate? [Enter]
+
+Pluggable Database closed.
+Pregunta 2
+
+Session altered.
+
+
+    CON_ID NAME 															    OPEN_MODE
+---------- -------------------------------------------------------------------------------------------------------------------------------- ----------
+	 2 PDB$SEED															    READ ONLY
+	 3 RGPDIP04_S1															    MOUNTED
+	 4 RGPDIP04_S2															    READ WRITE
+
+Analizar resultados [Enter] para continuar
+
+Pregunta 3 detener la CDB
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ERROR:
+ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+
+
+Warning: You are no longer connected to ORACLE.
+pregunta 4, inciando nuevamente
+Connected to an idle instance.
+ORACLE instance started.
+
+Total System Global Area  805304048 bytes
+Fixed Size		    9139952 bytes
+Variable Size		  276824064 bytes
+Database Buffers	  511705088 bytes
+Redo Buffers		    7634944 bytes
+Database mounted.
+Database opened.
+Ejecutando nuevamente consulta 2
+
+Session altered.
+
+
+    CON_ID NAME 															    OPEN_MODE
+---------- -------------------------------------------------------------------------------------------------------------------------------- ----------
+	 2 PDB$SEED															    READ ONLY
+	 3 RGPDIP04_S1															    READ WRITE
+	 4 RGPDIP04_S2															    READ WRITE
+
+Analizar resultados [Enter] para continuar

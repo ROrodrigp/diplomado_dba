@@ -2,15 +2,15 @@ set linesize window
 col pdb_name format a30
 col name format a30
 col open_time format a40 
-
+spool salida-s01-consultas.txt
 prompt Consulta 1, conectando a root 
 prompt Conectando a root 
-connect sys/system3@rgpdip03
+connect sys/system3@rgpdip03 as sysdba
 select dbid, name, cdb, con_id, con_dbid
 from v$database;
 
 prompt Consulta 1, conectando a rgpdip03_s1
-connect sys/system3@rgpdip03_s1
+connect sys/system3@rgpdip03_s1 as sysdba 
 select dbid, name, cdb, con_id, con_dbid
 from v$database;
 
@@ -18,22 +18,22 @@ pause Analizar resultados [Enter] para continuar
 
 
 prompt Consulta 2 en root - dba_pdbs
-connect sys/system3@rgpdip03
+connect sys/system3@rgpdip03 as sysdba 
 select pdb_id, pdb_name, dbid, status from dba_pdbs;
 prompt Consulta 2 en rgpdip03_s2 - dba_pdbs
-connect sys/system3@rgpdip03_s2
+connect sys/system3@rgpdip03_s2 as sysdba 
 select pdb_id, pdb_name, dbid, status from dba_pdbs;
 
 pause Analizar resultados [Enter] para continuar
 
 prompt Consulta 3 en root - v$pdbs
-connect sys/system3@rgpdip03
+connect sys/system3@rgpdip03 as sysdba 
 select con_id, name, open_mode, open_time from v$pdbs;
 prompt Consulta 3 en rgpdip03_s1 - v$pdbs
-connect sys/system3@rgpdip03_s1
+connect sys/system3@rgpdip03_s1 as sysdba
 select con_id, name, open_mode, open_time from v$pdbs;
 prompt Consulta 3 en rgpdip03_s2 - v$pdbs
-connect sys/system3@rgpdip03_s2
+connect sys/system3@rgpdip03_s2 as sysdba 
 select con_id, name, open_mode, open_time from v$pdbs;
 
 
@@ -92,7 +92,7 @@ prompt Pregunta 6 conlsulta dbs_objects en root
 alter session set container=cdb$root;
 select count(*), oracle_maintained from dba_objects group by oracle_maintained;
 prompt pregunta 6 consulta dba_objects en rgpdip03_s1
-alter session set container=rgpdip03_s1
+alter session set container=rgpdip03_s1;
 select count(*), oracle_maintained from dba_objects group by oracle_maintained;
 pause Analizar resultados [Enter] para continuar 
 
@@ -101,7 +101,7 @@ prompt 7 Limpieza
 drop user rodrigo07 cascade;
 --eliminando en rgpdip02
 alter session set container=rgpdip03_s2;
-drop user rodrigo07 cascade 
+drop user rodrigo07 cascade;
 
 pause [Enter] para continuar
 
@@ -111,6 +111,9 @@ prompt Pregunta 6 conlsulta dbs_objects en root
 alter session set container=cdb$root;
 select count(*), oracle_maintained from dba_objects group by oracle_maintained;
 prompt pregunta 6 consulta dba_objects en rgpdip03_s1
-alter session set container=rgpdip03_s1
+alter session set container=rgpdip03_s1;
 select count(*), oracle_maintained from dba_objects group by oracle_maintained;
 pause Analizar resultados [Enter] para continuar 
+prompt Apagando spool 
+spool off
+exit 

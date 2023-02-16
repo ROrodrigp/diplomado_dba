@@ -1,0 +1,26 @@
+Creando PDB con rutas particulares
+Conectar a root
+Connected.
+
+                                                                                                                                                                           
+
+Creando PDB rgpdip03_s3
+
+Pluggable database created.
+
+Revisar datafiles generados en ORACLE_BASE/oradata [Enter] para continuar
+
+[oracle@pc-ragp rgpdip03_s3]$ pwd
+/u01/app/oracle/oradata/RGPDIP03/rgpdip03_s3
+[oracle@pc-ragp rgpdip03_s3]$ ll
+total 716888
+-rw-r-----. 1 oracle oinstall 346038272 Feb 16 16:41 sysaux01.dbf
+-rw-r-----. 1 oracle oinstall 283123712 Feb 16 16:41 system01.dbf
+-rw-r-----. 1 oracle oinstall  37756928 Feb 16 16:41 temp012023-02-03_20-08-48-357-PM.dbf
+-rw-r-----. 1 oracle oinstall 104865792 Feb 16 16:41 undotbs01.dbf
+
+limpieza
+
+Pluggable database dropped.
+
+sys@rgpdip03> exit

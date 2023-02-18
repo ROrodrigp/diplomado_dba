@@ -1,0 +1,273 @@
+Creando un Application container
+Detener rgpdip04
+
+Iniciar rgpdip03
+
+Conectando a rgpdip03
+Connected.
+
+                                                                                                          
+
+Crear un application container rgpdip03_app_c1
+
+Pluggable database created.
+
+Abriendo rgpdip03_app_c1
+
+Pluggable database altered.
+
+Conectando a rgpdip03_app_c1
+
+Session altered.
+
+Mostrando los datos del container
+
+CON_ID                                                                                                    
+------------------------------                                                                            
+8                                                                                                         
+
+CON_NAME                                                                                                  
+------------------------------                                                                            
+RGPDIP03_APP_C1                                                                                           
+Analizar resultados [Enter] para continuar
+
+Crear PDB rgpdip03_app_c1_s1
+
+Pluggable database created.
+
+Abrir rgpdip03_app_c1_s1
+
+Pluggable database altered.
+
+Realizar sync entre PDB y application container
+
+Session altered.
+
+
+Pluggable database altered.
+
+Crear un application rgpdip03_app_c1_app1
+
+Session altered.
+
+
+Pluggable database altered.
+
+Creando objetos comunes
+Creando un tablespace
+
+System altered.
+
+
+Tablespace created.
+
+Crear un usuario
+
+User created.
+
+
+Grant succeeded.
+
+Crear una tabla
+
+Table created.
+
+Insertando datos
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Terminar de asociar objetos comunes
+
+Pluggable database altered.
+
+Realizando sync
+
+Session altered.
+
+
+Pluggable database altered.
+
+Mostrando datos de objetos comunes
+
+        ID NOMBRE                                                                                         
+---------- --------------------------------------------------                                             
+         1 Licenciatura en Administración                                                                 
+         2 Ingeniería en Sistemas Computacionales                                                         
+         3 Licenciatura en Contaduría Pública                                                             
+
+Revisar resultados, [Enter] para continuar
+
+Creando nueva PDB rgpdip03_app_c1_s2
+
+Session altered.
+
+
+Pluggable database created.
+
+Abrir rgpdip03_app_c1_s2
+
+Pluggable database altered.
+
+Mostrar los datos en rgpdip03_app_c1_s2 sin hacer un sync
+
+Session altered.
+
+select * from app1_test_user.carrera
+                             *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+Analizar resultados, [Enter] para continuar
+
+Hacer sync en rgpdip03_app_c1_s2, mostrando datos
+
+Pluggable database altered.
+
+
+        ID NOMBRE                                                                                         
+---------- --------------------------------------------------                                             
+         1 Licenciatura en Administración                                                                 
+         2 Ingeniería en Sistemas Computacionales                                                         
+         3 Licenciatura en Contaduría Pública                                                             
+
+Analizar resultados, [Enter] para continuar
+
+Generando version 1.2 de rgpdip03_app_c1_app1
+
+Session altered.
+
+
+Pluggable database altered.
+
+Insertar un nuevo dato
+
+1 row created.
+
+Agregando una nueva columna
+
+Table altered.
+
+Agregando un procedimiento almacenado
+
+Procedure created.
+
+No errors.
+Marcar el final del upgrade
+
+Pluggable database altered.
+
+Revisar la nueva version
+
+Session altered.
+
+Hacer sync
+
+Pluggable database altered.
+
+Invocando a procedimiento almacenado
+¿Qué pasará al modificar un registro a través del procedimiento? [Enter] ..
+
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+Mostrando datos de la tabla
+
+        ID NOMBRE                                             TOTAL_CREDITOS                              
+---------- -------------------------------------------------- --------------                              
+         1 Licenciatura en Administración                                 11                              
+         2 Ingeniería en Sistemas Computacionales                                                         
+         3 Licenciatura en Contaduría Pública                                                             
+         4 Licenciatura en filosofia                                                                      
+
+Haciendo sync en rgpdip03_app_c1_s2
+
+Session altered.
+
+
+Pluggable database altered.
+
+Mostrando datos desde rgpdip03_app_c1_s2
+
+        ID NOMBRE                                             TOTAL_CREDITOS                              
+---------- -------------------------------------------------- --------------                              
+         1 Licenciatura en Administración                                                                 
+         2 Ingeniería en Sistemas Computacionales                                                         
+         3 Licenciatura en Contaduría Pública                                                             
+         4 Licenciatura en filosofia                                                                      
+
+Analizar resultados [Enter] para continuar
+
+Consultas al DD
+
+Session altered.
+
+
+APP_NAME             APP_VERSIO APP_STATUS                                                                
+-------------------- ---------- ------------                                                              
+APP$F4FF532602544661 1.0        NORMAL                                                                    
+E0530100007F78B2                                                                                          
+                                                                                                          
+RGPDIP03_APP_C1_APP1 1.1        NORMAL                                                                    
+
+datos de PDBs asociadas a un APP container
+
+NAME                           APP_NAME             APP_VERSIO APP_STATUS                                 
+------------------------------ -------------------- ---------- ------------                               
+RGPDIP03_APP_C1_S1             APP$F4FF532602544661 1.0        NORMAL                                     
+                               E0530100007F78B2                                                           
+                                                                                                          
+RGPDIP03_APP_C1_S2             RGPDIP03_APP_C1_APP1 1.1        NORMAL                                     
+RGPDIP03_APP_C1_S1             RGPDIP03_APP_C1_APP1 1.1        NORMAL                                     
+
+Analizar resultados [Enter] para realizar limpieza
+
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+
+Pluggable database dropped.
+
+
+Pluggable database altered.
+
+
+Tablespace dropped.
+
+
+User dropped.
+
+
+Pluggable database altered.
+
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+sys@rgpdip03> exit

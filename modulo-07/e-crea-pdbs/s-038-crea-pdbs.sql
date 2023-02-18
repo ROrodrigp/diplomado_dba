@@ -64,7 +64,7 @@ create user app1_test_user identified by rodrigo
   quota unlimited on app1_test01_ts
   container=all;
 
-gran create session, create table, create procedure
+grant create session, create table, create procedure
   to app1_test_user;
 
 prompt Crear una tabla 
@@ -74,10 +74,9 @@ create table app1_test_user.carrera(
 );
 
 prompt Insertando datos 
-INSERT INTO app1_test_user.carrera (id, nombre)
-VALUES (1, 'Licenciatura en Administración'),
-       (2, 'Ingeniería en Sistemas Computacionales'),
-       (3, 'Licenciatura en Contaduría Pública');
+INSERT INTO app1_test_user.carrera (id, nombre) VALUES (1, 'Licenciatura en Administración');
+INSERT INTO app1_test_user.carrera (id, nombre) VALUES (2, 'Ingeniería en Sistemas Computacionales');
+INSERT INTO app1_test_user.carrera (id, nombre) VALUES (3, 'Licenciatura en Contaduría Pública');
 commit; 
 
 prompt Terminar de asociar objetos comunes 
@@ -129,6 +128,7 @@ alter table app1_test_user.carrera add total_creditos number;
 
 prompt Agregando un procedimiento almacenado 
 create or replace procedure app1_test_user.p_asigna_creditos(p_carrera_id number) is
+begin
   update  app1_test_user.carrera set total_creditos = id+10
   where id = p_carrera_id;
 end;
@@ -148,9 +148,17 @@ alter pluggable database application rgpdip03_app_c1_app1 sync;
 prompt Invocando a procedimiento almacenado
 pause ¿Qué pasará al modificar un registro a través del procedimiento? [Enter] ..
 exec app1_test_user.p_asigna_creditos(1);
+commit; 
 
 prompt Mostrando datos de la tabla 
 select  * from app1_test_user.carrera;
+
+prompt Haciendo sync en rgpdip03_app_c1_s2
+alter session set container=rgpdip03_app_c1_s2;
+alter pluggable database application rgpdip03_app_c1_app1 sync;
+
+prompt Mostrando datos desde rgpdip03_app_c1_s2
+select * from app1_test_user.carrera;
 
 pause Analizar resultados [Enter] para continuar 
 
@@ -159,6 +167,7 @@ alter session set container=rgpdip03_app_c1;
 
 col app_name format a20
 col app_version format a10 
+col name format a30 
 select app_name, app_version, app_status 
 from dba_applications;
 

@@ -1,7 +1,7 @@
 spool m07-e03-08.txt
 prompt Creando un Application container 
 
-prompt Detener rgpdip034
+prompt Detener rgpdip04
 !sh s-030-stop-cdb.sh rgpdip04 system04
 
 prompt Iniciar rgpdip03
@@ -54,6 +54,7 @@ alter pluggable database application rgpdip03_app_c1_app1 begin install '1.0';
 
 prompt Creando objetos comunes 
 prompt Creando un tablespace 
+alter system set db_create_file_dest='/u01/app/oracle/oradata' scope=memory;
 create tablespace app1_test01_ts
 datafile size 1m autoextend on next 1m;
 
@@ -84,7 +85,7 @@ alter pluggable database application rgpdip03_app_c1_app1 end install;
 
 prompt Realizando sync 
 alter session set container=rgpdip03_app_c1_s1;
-alter pluggable database application rgpdip03_app_c1_s1 sync;
+alter pluggable database application rgpdip03_app_c1_app1 sync;
 
 prompt Mostrando datos de objetos comunes 
 select * from app1_test_user.carrera;
@@ -110,7 +111,7 @@ select * from app1_test_user.carrera;
 pause Analizar resultados, [Enter] para continuar 
 
 prompt Hacer sync en rgpdip03_app_c1_s2, mostrando datos 
-alter pluggable database application rgpdip03_app_c1_s2 sync;
+alter pluggable database application rgpdip03_app_c1_app1 sync;
 
 select * from app1_test_user.carrera;
 pause Analizar resultados, [Enter] para continuar 
@@ -142,7 +143,7 @@ prompt Revisar la nueva version
 alter session set container=rgpdip03_app_c1_s1;
 
 prompt Hacer sync 
-alter pluggable database application rgpdip03_app_c1_s1 sync;
+alter pluggable database application rgpdip03_app_c1_app1 sync;
 
 prompt Invocando a procedimiento almacenado
 pause ¿Qué pasará al modificar un registro a través del procedimiento? [Enter] ..
@@ -162,4 +163,26 @@ select app_name, app_version, app_status
 from dba_applications;
 
 prompt datos de PDBs asociadas a un APP container 
+select c.name, ap.app_name, ap.app_version, ap.app_status
+from dba_app_pdb_status ap
+join v$containers c on c.con_uid=ap.con_uid;
 
+pause Analizar resultados [Enter] para realizar limpieza 
+
+alter session set container=rgpdip03_app_c1;
+alter pluggable database rgpdip03_app_c1_s1 close;
+alter pluggable database rgpdip03_app_c1_s2 close;
+
+drop pluggable database rgpdip03_app_c1_s1 including datafiles;
+drop pluggable database rgpdip03_app_c1_s2 including datafiles;
+
+alter pluggable database application rgpdip03_app_c1_app1 begin uninstall; 
+
+drop tablespace app1_test01_ts including contents and datafiles;
+drop user app1_test_user cascade;
+
+alter pluggable database application rgpdip03_app_c1_app1 end uninstall; 
+
+alter session set container=cdb$root;
+alter pluggable database rgpdip03_app_c1 close;
+drop pluggable database rgpdip03_app_c1 including datafiles;

@@ -1,0 +1,74 @@
+[root@pc-ragp asm]# ./s-01-configura-root.sh
+Configurando ambiente ASM
+Creando grupos para ASM
+Actualizando grupos del usuario oracle
+Creando usuario grid
+Actualizando el password de grid
+Changing password for user grid.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+Crear directorios
+Crear loop devices
+Creando disk1.img - 2G
+25+0 records in
+25+0 records out
+2621440000 bytes (2.6 GB, 2.4 GiB) copied, 2.17227 s, 1.2 GB/s
+Creando disk2.img - 2G
+25+0 records in
+25+0 records out
+2621440000 bytes (2.6 GB, 2.4 GiB) copied, 2.13493 s, 1.2 GB/s
+Creando disk3.img - 2G
+25+0 records in
+25+0 records out
+2621440000 bytes (2.6 GB, 2.4 GiB) copied, 2.14634 s, 1.2 GB/s
+Creando disk4.img - 2G
+25+0 records in
+25+0 records out
+2621440000 bytes (2.6 GB, 2.4 GiB) copied, 2.09487 s, 1.3 GB/s
+Creando disk5.img - 2G
+25+0 records in
+25+0 records out
+2621440000 bytes (2.6 GB, 2.4 GiB) copied, 1.99184 s, 1.3 GB/s
+Creando disk6.img - 2G
+25+0 records in
+25+0 records out
+2621440000 bytes (2.6 GB, 2.4 GiB) copied, 2.01793 s, 1.3 GB/s
+Creando disk7.img - 2G
+25+0 records in
+25+0 records out
+2621440000 bytes (2.6 GB, 2.4 GiB) copied, 2.09567 s, 1.3 GB/s
+Cambiando permisos archivos img
+Asociando archivos img a un loop device
+Verificando loop devices
+/dev/loop1: [2049]:1966108 (/unam-diplomado-bd/loop-devices/disk-01.img)
+/dev/loop17: [2049]:3014771 (/unam-diplomado-bd/loop-devices/asm/disk7.img)
+/dev/loop15: [2049]:3014769 (/unam-diplomado-bd/loop-devices/asm/disk5.img)
+/dev/loop13: [2049]:3014767 (/unam-diplomado-bd/loop-devices/asm/disk3.img)
+/dev/loop11: [2049]:3014765 (/unam-diplomado-bd/loop-devices/asm/disk1.img)
+/dev/loop2: [2049]:1966110 (/unam-diplomado-bd/loop-devices/disk-03.img)
+/dev/loop0: [2049]:1966109 (/unam-diplomado-bd/loop-devices/disk-02.img)
+/dev/loop16: [2049]:3014770 (/unam-diplomado-bd/loop-devices/asm/disk6.img)
+/dev/loop14: [2049]:3014768 (/unam-diplomado-bd/loop-devices/asm/disk4.img)
+/dev/loop12: [2049]:3014766 (/unam-diplomado-bd/loop-devices/asm/disk2.img)
+Asociar  loop device como raw
+/dev/raw/raw1:  bound to major 7, minor 11
+/dev/raw/raw2:  bound to major 7, minor 12
+/dev/raw/raw3:  bound to major 7, minor 13
+/dev/raw/raw4:  bound to major 7, minor 14
+/dev/raw/raw5:  bound to major 7, minor 15
+/dev/raw/raw6:  bound to major 7, minor 16
+/dev/raw/raw7:  bound to major 7, minor 17
+Cambiando permisos a raw devices
+Mostrando raw devices
+total 0
+crw-rw----. 1 grid asmdba 162, 1 Feb 24 19:36 raw1
+crw-rw----. 1 grid asmdba 162, 2 Feb 24 19:36 raw2
+crw-rw----. 1 grid asmdba 162, 3 Feb 24 19:36 raw3
+crw-rw----. 1 grid asmdba 162, 4 Feb 24 19:36 raw4
+crw-rw----. 1 grid asmdba 162, 5 Feb 24 19:36 raw5
+crw-rw----. 1 grid asmdba 162, 6 Feb 24 19:36 raw6
+crw-rw----. 1 grid asmdba 162, 7 Feb 24 19:36 raw7
+crw-rw----. 1 grid asmdba 162, 0 Feb 24 18:31 rawctl
+[root@pc-ragp asm]#

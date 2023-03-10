@@ -1,0 +1,125 @@
+1. Conectarse con el usuario user06
+Connected.
+
+                                                                                                                                                                           
+
+Creando la tabla fb_version
+
+Table created.
+
+
+PL/SQL procedure successfully completed.
+
+insertando tres registros
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Mostrando datos de la  tabla
+
+        ID NAME            FECHAHORA                                                                                                                                       
+---------- --------------- ------------------------------                                                                                                                  
+         1 valor1          10-03-2023 13:38:44                                                                                                                             
+         2 valor2          10-03-2023 13:38:44                                                                                                                             
+         3 valor3          10-03-2023 13:38:44                                                                                                                             
+
+2. Consultando el SCN actual y la marca de tiempo
+
+      SCN1                                                                                                                                                                 
+----------                                                                                                                                                                 
+   4320002                                                                                                                                                                 
+
+
+PL/SQL procedure successfully completed.
+
+3. Realizando una actualización
+
+1 row updated.
+
+
+Commit complete.
+
+Mostrando datos de la tabla
+
+        ID NAME            FECHAHORA                                                                                                                                       
+---------- --------------- ------------------------------                                                                                                                  
+         1 cambio1         10-03- 2023 13:38:49                                                                                                                            
+         2 valor2          10-03-2023 13:38:44                                                                                                                             
+         3 valor3          10-03-2023 13:38:44                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+4. Realizando nuevamente una actualizacion
+
+1 row updated.
+
+
+Commit complete.
+
+Mostrando datos actualizados
+
+        ID NAME            FECHAHORA                                                                                                                                       
+---------- --------------- ------------------------------                                                                                                                  
+         1 cambio2         10-03- 2023 13:38:54                                                                                                                            
+         2 valor2          10-03-2023 13:38:44                                                                                                                             
+         3 valor3          10-03-2023 13:38:44                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+5. Eliminar un registro de la tabla
+
+1 row deleted.
+
+
+Commit complete.
+
+Mostrando datos actualizados
+
+        ID NAME            FECHAHORA                                                                                                                                       
+---------- --------------- ------------------------------                                                                                                                  
+         2 valor2          10-03-2023 13:38:44                                                                                                                             
+         3 valor3          10-03-2023 13:38:44                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+6. Obtener el SCN actual
+
+      SCN2                                                                                                                                                                 
+----------                                                                                                                                                                 
+   4320015                                                                                                                                                                 
+
+
+PL/SQL procedure successfully completed.
+
+7. Mostrando el historico de los eventos ocurridos
+Consulta 1 fechaHora
+
+        ID NAME            FECHAHORA                                                                                                                                       
+---------- --------------- ------------------------------                                                                                                                  
+         1 cambio2         10-03- 2023 13:38:54                                                                                                                            
+         1 cambio2         10-03- 2023 13:38:54                                                                                                                            
+         1 cambio1         10-03- 2023 13:38:49                                                                                                                            
+         1 valor1          10-03-2023 13:38:44                                                                                                                             
+
+Consulta 2 SCN
+Enter value for scn1: 4320002
+Enter value for scn2: 4320015
+
+        ID NAME            FECHAHORA                                                                                                                                       
+---------- --------------- ------------------------------                                                                                                                  
+         1 cambio2         10-03- 2023 13:38:54                                                                                                                            
+         1 cambio2         10-03- 2023 13:38:54                                                                                                                            
+         1 cambio1         10-03- 2023 13:38:49                                                                                                                            
+         1 valor1          10-03-2023 13:38:44                                                                                                                             
+

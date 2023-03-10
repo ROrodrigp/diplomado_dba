@@ -1,0 +1,158 @@
+1. Conectarse con el usuario user06
+Connected.
+
+                                                                                                                                                                           
+
+Creando la tabla venta
+
+Table created.
+
+
+PL/SQL procedure successfully completed.
+
+2.  Configurar la tabla para regresarla en el tiempo
+
+Table altered.
+
+3. Tomar el scn actual y el tiempo
+
+FECHAHORA1                SCN1                                                                                                                                             
+------------------- ----------                                                                                                                                             
+10-03-2023 14:09:39    4321928                                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+4.  Agregar el primer registro a la tabla
+registro 1
+
+1 row created.
+
+
+Commit complete.
+
+
+   IDVENTA      MONTO                                                                                                                                                      
+---------- ----------                                                                                                                                                      
+         1       1300                                                                                                                                                      
+
+
+PL/SQL procedure successfully completed.
+
+5. Tomando  el scn y el tiempo
+
+FECHAHORA2                SCN2                                                                                                                                             
+------------------- ----------                                                                                                                                             
+10-03-2023 14:09:49    4321946                                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+6.  Agregando dos datos mas a la tabla
+registro 2
+
+1 row created.
+
+
+Commit complete.
+
+
+   IDVENTA      MONTO                                                                                                                                                      
+---------- ----------                                                                                                                                                      
+         1       1300                                                                                                                                                      
+         2       1500                                                                                                                                                      
+
+
+FECHAHORA3                SCN3                                                                                                                                             
+------------------- ----------                                                                                                                                             
+10-03-2023 14:09:54    4321951                                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+registro 3
+
+1 row created.
+
+
+Commit complete.
+
+
+   IDVENTA      MONTO                                                                                                                                                      
+---------- ----------                                                                                                                                                      
+         1       1300                                                                                                                                                      
+         2       1500                                                                                                                                                      
+         3        500                                                                                                                                                      
+
+
+FECHAHORA4                SCN4                                                                                                                                             
+------------------- ----------                                                                                                                                             
+10-03-2023 14:09:59    4321955                                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+7. Mostrar el contenido de la tabla
+
+   IDVENTA      MONTO                                                                                                                                                      
+---------- ----------                                                                                                                                                      
+         1       1300                                                                                                                                                      
+         2       1500                                                                                                                                                      
+         3        500                                                                                                                                                      
+
+
+PL/SQL procedure successfully completed.
+
+Eliminando el contenido de la tabla
+
+3 rows deleted.
+
+
+Commit complete.
+
+Mostrando los cambios
+
+no rows selected
+
+
+PL/SQL procedure successfully completed.
+
+8. Tomar el scn y el tiempo
+
+FECHAHORA5                SCN5                                                                                                                                             
+------------------- ----------                                                                                                                                             
+10-03-2023 14:10:15    4321961                                                                                                                                             
+
+
+PL/SQL procedure successfully completed.
+
+9. Restaurar la tabla a algún punto en el tiempo
+Con SCN
+Enter value for scn: 4321951
+
+Flashback complete.
+
+
+   IDVENTA      MONTO                                                                                                                                                      
+---------- ----------                                                                                                                                                      
+         1       1300                                                                                                                                                      
+         2       1500                                                                                                                                                      
+
+con fechaHora
+Enter value for fechahora: 10-03-2023 14:09:59
+
+Flashback complete.
+
+
+   IDVENTA      MONTO                                                                                                                                                      
+---------- ----------                                                                                                                                                      
+         1       1300                                                                                                                                                      
+         2       1500                                                                                                                                                      
+
+10. Mostrar el contenido final de la tabla venta
+
+   IDVENTA      MONTO                                                                                                                                                      
+---------- ----------                                                                                                                                                      
+         1       1300                                                                                                                                                      
+         2       1500                                                                                                                                                      
+

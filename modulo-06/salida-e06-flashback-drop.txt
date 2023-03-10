@@ -1,0 +1,206 @@
+1. Conectando como usuario sys
+Connected.
+
+                                                                                                                                                                           
+
+Verificando la papelera
+
+no rows selected
+
+Activando la papelera de reciclaje
+
+Session altered.
+
+Verificando la papelera
+
+no rows selected
+
+2. Con el usuario user06
+Connected.
+
+                                                                                                                                                                           
+
+Creando tabla fb_drop
+
+Table created.
+
+Insertando datos
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Mostrando datos de la tabla
+
+        ID DATOS                                                                                                                                                           
+---------- ----------                                                                                                                                                      
+         1 dato1                                                                                                                                                           
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+         4 dato4                                                                                                                                                           
+
+3. Eliminar la tabla y verificar
+
+Table dropped.
+
+
+Commit complete.
+
+Verificando que sea eliminada
+select * from fb_drop
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+4. Mostrar el contenido de la papelera
+
+OBJECT_NAME                    ORIGINAL_NAME   CREATETIME                                                                                                                  
+------------------------------ --------------- -------------------                                                                                                         
+BIN$9pLqMJ/VQ6PgUwEAAH8smA==$0 FB_DROP         2023-03-10:14:50:43                                                                                                         
+
+5.    Consultar el contenido de object_name
+Enter value for object_name: BIN$9pLqMJ/VQ6PgUwEAAH8smA==$0
+
+        ID DATOS                                                                                                                                                           
+---------- ----------                                                                                                                                                      
+         1 dato1                                                                                                                                                           
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+         4 dato4                                                                                                                                                           
+
+6. Recupera la tabla eliminada
+
+Flashback complete.
+
+Verificando la existencia de la tabla
+
+        ID DATOS                                                                                                                                                           
+---------- ----------                                                                                                                                                      
+         1 dato1                                                                                                                                                           
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+         4 dato4                                                                                                                                                           
+
+7. Eliminar la tabla nuevamente y verificar
+
+Table dropped.
+
+
+Commit complete.
+
+Verificando la segunda eliminación
+select * from fb_drop
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+8. Crear la tabla nuevamente e insertar datos distintos
+
+Table created.
+
+insertando datos
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Consultando datos segunda tabla
+
+        ID DATOS                                                                                                                                                           
+---------- ----------                                                                                                                                                      
+         5 dato5                                                                                                                                                           
+         6 dato6                                                                                                                                                           
+         7 dato7                                                                                                                                                           
+
+9. Consultar la papelera de reciclaje
+
+OBJECT_NAME                    ORIGINAL_NAME   CREATETIME                                                                                                                  
+------------------------------ --------------- -------------------                                                                                                         
+BIN$9pLqMJ/WQ6PgUwEAAH8smA==$0 FB_DROP         2023-03-10:14:50:43                                                                                                         
+
+10. Eliminar la tabla nuevamente y verificar
+
+Table dropped.
+
+
+Commit complete.
+
+verifiacando la tercera eliminación
+select * from fb_drop
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+11. Consultar la papelera de reciclaje
+
+OBJECT_NAME                    ORIGINAL_NAME   CREATETIME                                                                                                                  
+------------------------------ --------------- -------------------                                                                                                         
+BIN$9pLqMJ/WQ6PgUwEAAH8smA==$0 FB_DROP         2023-03-10:14:50:43                                                                                                         
+BIN$9pLqMJ/XQ6PgUwEAAH8smA==$0 FB_DROP         2023-03-10:14:51:10                                                                                                         
+
+12. Recupera las tablas eliminadas y renombrarlas
+fb_drop1
+Enter value for object_name1: BIN$9pLqMJ/WQ6PgUwEAAH8smA==$0
+
+Flashback complete.
+
+Consulta de la tabla fb_drop1
+
+        ID DATOS                                                                                                                                                           
+---------- ----------                                                                                                                                                      
+         1 dato1                                                                                                                                                           
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+         4 dato4                                                                                                                                                           
+
+fb_drop2
+Enter value for object_name2: BIN$9pLqMJ/XQ6PgUwEAAH8smA==$0
+
+Flashback complete.
+
+Consulta de la tabla fb_drop2
+
+        ID DATOS                                                                                                                                                           
+---------- ----------                                                                                                                                                      
+         5 dato5                                                                                                                                                           
+         6 dato6                                                                                                                                                           
+         7 dato7                                                                                                                                                           
+
+13. Desactivar la papelera de reciclaje
+
+Session altered.
+
+14. Borrar ambas tablas
+
+Table dropped.
+
+
+Table dropped.
+
+
+Commit complete.
+
+Consultar la papelera de reciclaje
+
+no rows selected
+

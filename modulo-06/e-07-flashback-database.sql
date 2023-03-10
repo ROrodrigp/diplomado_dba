@@ -1,6 +1,6 @@
 set verify off
 set linesize window
-spool salida-e06-flashback-drop.txt
+spool salida-e07-flashback-database.txt
 
 define syslogon='sys/system2 as sysdba' 
 define userlogon='user06/user06'

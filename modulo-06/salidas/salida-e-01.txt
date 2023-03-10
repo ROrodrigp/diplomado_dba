@@ -1,0 +1,8 @@
+[root@pc-ragp modulo-06]# ./e-01-directorio-fra.sh
+1. Creando directorio para la FRA
+2 Cambiar permisos
+Mostrando estructuras de directorio
+/unam-diplomado-bd/fast-recovery-area
+
+0 directories, 0 files
+[root@pc-ragp modulo-06]#

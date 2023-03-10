@@ -1,0 +1,142 @@
+Connected.
+
+                                                                                                                                                                           
+
+1. Creando al usuario user06
+
+User created.
+
+
+Grant succeeded.
+
+2. Conectandose con el usuario user06
+Connected.
+
+                                                                                                                                                                           
+
+Creando la  tabla fb_version
+
+Table created.
+
+3. Ingresando datos a la tabla
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Mostrando datos de la tabla
+
+        ID NAME                                                                                                                                                            
+---------- ----------                                                                                                                                                      
+         1 dato1                                                                                                                                                           
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+
+
+PL/SQL procedure successfully completed.
+
+4. Obtener el SCN actual y la marca de tiempo
+
+FECHAHORA1                                                                                                                                                                 
+-------------------                                                                                                                                                        
+10-03-2023 13:06:34                                                                                                                                                        
+
+
+      SCN1                                                                                                                                                                 
+----------                                                                                                                                                                 
+   4318714                                                                                                                                                                 
+
+5. Modificar un dato en la tabla y confirmar
+
+1 row updated.
+
+
+Commit complete.
+
+
+        ID NAME                                                                                                                                                            
+---------- ----------                                                                                                                                                      
+         1 cambio1                                                                                                                                                         
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+
+
+PL/SQL procedure successfully completed.
+
+6. Obtener nuevamente el SCN actual y la marca de tiempo
+
+FECHAHORA2                                                                                                                                                                 
+-------------------                                                                                                                                                        
+10-03-2023 13:06:39                                                                                                                                                        
+
+
+      SCN2                                                                                                                                                                 
+----------                                                                                                                                                                 
+   4318719                                                                                                                                                                 
+
+7. Eliminar un registro en la tabla y confirmar
+
+1 row deleted.
+
+
+Commit complete.
+
+
+        ID NAME                                                                                                                                                            
+---------- ----------                                                                                                                                                      
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+
+
+PL/SQL procedure successfully completed.
+
+8. Nuevamente obtener el SCN actual y la marca de tiempo
+
+FECHAHORA3                                                                                                                                                                 
+-------------------                                                                                                                                                        
+10-03-2023 13:06:44                                                                                                                                                        
+
+
+      SCN3                                                                                                                                                                 
+----------                                                                                                                                                                 
+   4318724                                                                                                                                                                 
+
+9. Mostrando la información en diferentes momentos
+Enter value for fechahora1: 10-03-2023 13:06:34
+
+        ID NAME                                                                                                                                                            
+---------- ----------                                                                                                                                                      
+         1 cambio1                                                                                                                                                         
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+
+Enter value for scn3: 4318724
+
+        ID NAME                                                                                                                                                            
+---------- ----------                                                                                                                                                      
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+
+10. Recuperamos el dato eliminado
+Enter value for scn2: 4318719
+
+1 row created.
+
+
+Commit complete.
+
+Mostrando la información recuperada
+
+        ID NAME                                                                                                                                                            
+---------- ----------                                                                                                                                                      
+         2 dato2                                                                                                                                                           
+         3 dato3                                                                                                                                                           
+         1 cambio1                                                                                                                                                         
+

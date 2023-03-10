@@ -71,7 +71,6 @@ commit;
 
 prompt Mostrando la información recuperada
 select * from fb_query;
-drop table fb_query;
 
 spool off
 exit

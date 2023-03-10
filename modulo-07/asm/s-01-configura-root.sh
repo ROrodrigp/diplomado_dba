@@ -53,29 +53,22 @@ chown grid:asmdba *.img
 chmod 660 *.img
 
 echo "Asociando archivos img a un loop device"
-losetup /dev/loop11 disk1.img
-losetup /dev/loop12 disk2.img
-losetup /dev/loop13 disk3.img
-losetup /dev/loop14 disk4.img
-losetup /dev/loop15 disk5.img
-losetup /dev/loop16 disk6.img
-losetup /dev/loop17 disk7.img
+for i in 1 2 3 4 5 6 7
+do 
+  disk="disk${i}.img"
+  loopDevice=$(losetup -f)
+  rawDevice="/dev/raw/asmraw0${i}"
 
-echo "Verificando loop devices"
-losetup -a 
+  echo "Asociando ${loopDevice} a ${disk}"
+  losetup ${loopDevice} ${disk}
 
-echo "Asociar  loop device como raw"
-raw /dev/raw/raw01 /dev/loop11
-raw /dev/raw/raw02 /dev/loop12
-raw /dev/raw/raw03 /dev/loop13
-raw /dev/raw/raw04 /dev/loop14
-raw /dev/raw/raw05 /dev/loop15
-raw /dev/raw/raw06 /dev/loop16
-raw /dev/raw/raw07 /dev/loop17
+  echo "Asociando a ${rawDevice}"
+  raw ${rawDevice} ${loopDevice} 
+done
 
 echo "Cambiando permisos a raw devices"
-chown grid:asmdba /dev/raw/raw*
-chmod 660 /dev/raw/raw*
+chown grid:asmdba /dev/raw/asmraw*
+chmod 660 /dev/raw/asmraw*
 
 echo "Mostrando raw devices"
 ls -l /dev/raw/

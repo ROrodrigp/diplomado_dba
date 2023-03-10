@@ -1,3 +1,4 @@
+spool e-02-configuracion-fra.txt
 set verify off
 
 define syslogon='sys/system2 as sysdba'
@@ -34,9 +35,11 @@ select flashback_on from v$database;
 prompt 9 Mostrando el tiempo de retencion de datos undo 
 show parameter undo_ret
 
-prompt Modificando el tiempo de retencion de datos undo 
+prompt 10. Modificando el tiempo de retencion de datos undo 
 alter system set undo_retention=1800 scope both;
 
-prompt Mostrando nuevamente el tiempo de retencion 
+prompt 11. Mostrando nuevamente el tiempo de retencion 
 show parameter undo_ret
+
+spool off 
 exit

@@ -1,0 +1,75 @@
+Creando usuario
+
+User created.
+
+Configurando alerta
+      metrics_id              => DBMS_SERVER_ALERT.SESSIONS_CURRENT,
+                                                   *
+ERROR at line 3:
+ORA-06550: line 3, column 52:
+PLS-00302: component 'SESSIONS_CURRENT' must be declared
+ORA-06550: line 2, column 4:
+PL/SQL: Statement ignored 
+
+
+Generando sesiones...
+Por favor, ejecute algunas sesiones para superar el umbral de la alerta...
+Presione ENTER para continuar...
+
+
+sys@rgpdip02> SELECT METRIC_NAME, OBJECT_TYPE
+  2  FROM DBA_THRESHOLDS
+  3  GROUP BY METRIC_NAME, OBJECT_TYPE
+  4  ORDER BY METRIC_NAME;
+GROUP BY METRIC_NAME, OBJECT_TYPE
+         *
+ERROR at line 3:
+ORA-00904: "METRIC_NAME": invalid identifier 
+
+
+sys@rgpdip02> SELECT DISTINCT METRIC_NAME
+  2  FROM DBA_THRESHOLDS;
+SELECT DISTINCT METRIC_NAME
+                *
+ERROR at line 1:
+ORA-00904: "METRIC_NAME": invalid identifier 
+
+
+sys@rgpdip02> SELECT DISTINCT METRIC_NAME
+  2  FROM DBA_THRESHOLDS;
+SELECT DISTINCT METRIC_NAME
+                *
+ERROR at line 1:
+ORA-00904: "METRIC_NAME": invalid identifier 
+
+
+sys@rgpdip02> desc DBA_THRESHOLDS
+ Name                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------- -------- -----------------------------------------------------------------
+ METRICS_NAME                                                                                             VARCHAR2(64)
+ WARNING_OPERATOR                                                                                         VARCHAR2(12)
+ WARNING_VALUE                                                                                            VARCHAR2(256)
+ CRITICAL_OPERATOR                                                                                        VARCHAR2(12)
+ CRITICAL_VALUE                                                                                           VARCHAR2(256)
+ OBSERVATION_PERIOD                                                                                       NUMBER
+ CONSECUTIVE_OCCURRENCES                                                                                  NUMBER
+ INSTANCE_NAME                                                                                            VARCHAR2(16)
+ OBJECT_TYPE                                                                                              VARCHAR2(64)
+ OBJECT_NAME                                                                                              VARCHAR2(513)
+ STATUS                                                                                                   VARCHAR2(7)
+
+sys@rgpdip02> select METRICS_NAME from DBA_THRESHOLDS
+  2  ;
+
+METRICS_NAME                                                                                                                                                               
+----------------------------------------------------------------                                                                                                           
+Tablespace Space Usage                                                                                                                                                     
+Tablespace Space Usage                                                                                                                                                     
+Tablespace Space Usage                                                                                                                                                     
+Tablespace Space Usage                                                                                                                                                     
+
+sys@rgpdip02> DROP USER m08_user CASCADE;
+
+User dropped.
+
+sys@rgpdip02> exit

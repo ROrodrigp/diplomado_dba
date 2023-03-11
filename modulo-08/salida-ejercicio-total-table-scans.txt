@@ -1,0 +1,96 @@
+Creando usuario
+
+User created.
+
+[Enter para continuar]
+
+Creando tabla en tablespace users
+
+Table created.
+
+[Enter para continuar]
+
+Insertando datos en tabla
+
+PL/SQL procedure successfully completed.
+
+[Enter para continuar]
+
+Configurando alerta
+BEGIN
+*
+ERROR at line 1:
+ORA-13908: Invalid combination of metrics id and object type parameters.
+ORA-06512: at "SYS.DBMS_SERVER_ALERT", line 7
+ORA-06512: at line 2 
+
+
+[Enter para continuar]
+exit
+Generando alerta
+      SELECT COUNT(*) INTO i FROM m08_user.m08_table;
+                           *
+ERROR at line 5:
+ORA-06550: line 5, column 28:
+PLS-00403: expression 'I' cannot be used as an INTO-target of a SELECT/FETCH statement
+ORA-06550: line 5, column 30:
+PL/SQL: ORA-00904: : invalid identifier
+ORA-06550: line 5, column 7:
+PL/SQL: SQL Statement ignored 
+
+
+[Enter para continuar]
+
+
+sys@rgpdip02> BEGIN
+  2     DBMS_SERVER_ALERT.SET_THRESHOLD(
+  3        metrics_id              => DBMS_SERVER_ALERT.TOTAL_TABLE_SCANS_SEC,
+  4        warning_operator        => DBMS_SERVER_ALERT.OPERATOR_GE,
+  5        warning_value           => '10',
+  6        critical_operator       => DBMS_SERVER_ALERT.OPERATOR_GE,
+  7        critical_value          => '20',
+  8        observation_period      => 1,
+  9        consecutive_occurrences => 1,
+ 10        instance_name           => NULL,
+ 11        object_type             => DBMS_SERVER_ALERT.OBJECT_TYPE_TABLE,
+ 12        object_name             => 'm08_user.m08_table'
+ 13     );
+ 14  END;
+ 15  /
+      object_type             => DBMS_SERVER_ALERT.OBJECT_TYPE_TABLE,
+                                                   *
+ERROR at line 11:
+ORA-06550: line 11, column 52:
+PLS-00302: component 'OBJECT_TYPE_TABLE' must be declared
+ORA-06550: line 2, column 4:
+PL/SQL: Statement ignored 
+
+
+sys@rgpdip02> BEGIN
+  2     DBMS_SERVER_ALERT.SET_THRESHOLD(
+  3        metrics_id              => DBMS_SERVER_ALERT.TOTAL_TABLE_SCANS_SEC,
+  4        warning_operator        => DBMS_SERVER_ALERT.OPERATOR_GE,
+  5        warning_value           => '10',
+  6        critical_operator       => DBMS_SERVER_ALERT.OPERATOR_GE,
+  7        critical_value          => '20',
+  8        observation_period      => 1,
+  9        consecutive_occurrences => 1,
+ 10        instance_name           => NULL,
+ 11        object_name             => 'm08_user.m08_table'
+ 12     );
+ 13  END;
+ 14  /
+   DBMS_SERVER_ALERT.SET_THRESHOLD(
+   *
+ERROR at line 2:
+ORA-06550: line 2, column 4:
+PLS-00306: wrong number or types of arguments in call to 'SET_THRESHOLD'
+ORA-06550: line 2, column 4:
+PL/SQL: Statement ignored 
+
+
+sys@rgpdip02> DROP USER m08_user CASCADE;
+
+User dropped.
+
+sys@rgpdip02> exit

@@ -1,0 +1,41 @@
+Creando usuario...
+
+User created.
+
+
+User altered.
+
+Mostrando numero actual de sesiones
+
+Current Number of Logons                                                                                                                                                   
+------------------------                                                                                                                                                   
+                      61                                                                                                                                                   
+
+Configurando alerta...
+
+PL/SQL procedure successfully completed.
+
+Esperando activación de la alarma... (Presione ENTER para continuar)
+
+Mostrando numero actual de sesiones
+
+Current Number of Logons                                                                                                                                                   
+------------------------                                                                                                                                                   
+                      65                                                                                                                                                   
+
+
+Mostrando alertas...
+
+SEQUENCE_ID OWNER
+----------- --------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+REASON
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATION_TIME								    TIME_SUGGESTED
+--------------------------------------------------------------------------- ---------------------------------------------------------------------------
+ ##########
+SYSTEM
+Metrics "Current Logons Count" is at 64
+10-MAR-23 07.57.26.288643 PM -06:00					    10-MAR-23 07.57.26.288643 PM -06:00
+

@@ -1,0 +1,106 @@
+Creando snapshot 1
+Conectando como sys
+Connected.
+
+                                                                                                                                                                           
+
+
+PL/SQL procedure successfully completed.
+
+Simulando operacion diaria eficiente
+Connected.
+
+                                                                                                                                                                           
+
+Mostrando los datos de la ultima cita registrada
+
+Table created.
+
+Generando reporte de las primeras 10 especialidades
+
+Table created.
+
+Generando un nuevo snapshot 2
+Connected.
+
+                                                                                                                                                                           
+
+esperando 1 minuto
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+Simulando operacion diaria eficiente
+Connected.
+
+                                                                                                                                                                           
+
+Generando un reporte de las ultimas recetas
+
+Table created.
+
+Creando un indice
+
+Index created.
+
+consultando cedula de los medicos que comiencen con 5
+
+Table created.
+
+generando un nuevo snapshot 3
+Connected.
+
+                                                                                                                                                                           
+
+esperando 1 minuto
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+Crear un nuevo baseline con los 3 snapshots anteriores
+Enter value for snapshot_inicial_id: 1
+old   3:     start_snap_id   =>    &snapshot_inicial_id,
+new   3:     start_snap_id   =>    1,
+Enter value for snapshot_fin_id: 3
+old   4:     end_snap_id     =>    &snapshot_fin_id,
+new   4:     end_snap_id     =>    3,
+Enter value for num_baseline: 1
+old   5:     baseline_name   =>    'rodrigo_bl_normal_&num_baseline',
+new   5:     baseline_name   =>    'rodrigo_bl_normal_1',
+
+PL/SQL procedure successfully completed.
+
+Mostrando los baseline creados
+
+BASELINE_ID BASELINE_NAME        START_SNAP_ID END_SNAP_ID CREATION_TIME                                                                                                   
+----------- -------------------- ------------- ----------- ------------------                                                                                              
+          1 rodrigo_bl_normal_1              1           3 24-MAR-23                                                                                                       
+          0 SYSTEM_MOVING_WINDOW             1           3 03-FEB-23                                                                                                       
+          0 SYSTEM_MOVING_WINDOW            19          23 03-FEB-23                                                                                                       
+
+Revisar resultados, [Enter] para hacer limpieza
+
+Hacer limpieza
+Connected.
+
+                                                                                                                                                                           
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Index dropped.
+

@@ -1,0 +1,829 @@
+sys@rgpdip03_s1> connect rodrigo_med/rodrigo@rgpdip03_s1
+Connected.
+
+                                                                                                                                                                           
+
+rodrigo_med@rgpdip03_s1> select index_name from user_indexes where table_name='MEDICO';
+
+INDEX_NAME                                                                                                                                                                 
+--------------------------------------------------------------------------------------------------------------------------------                                           
+MEDICO_PK                                                                                                                                                                  
+
+rodrigo_med@rgpdip03_s1> explain plan for
+  2  select count(nombre) from medico;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 3744333010                                                                                                                                                
+                                                                                                                                                                           
+---------------------------------------------------------------------------                                                                                                
+| Id  | Operation             | Name      | Rows  | Cost (%CPU)| Time     |                                                                                                
+---------------------------------------------------------------------------                                                                                                
+|   0 | SELECT STATEMENT      |           |     1 |     4   (0)| 00:00:01 |                                                                                                
+|   1 |  SORT AGGREGATE       |           |     1 |            |          |                                                                                                
+|   2 |   INDEX FAST FULL SCAN| MEDICO_PK |  5000 |     4   (0)| 00:00:01 |                                                                                                
+---------------------------------------------------------------------------                                                                                                
+
+9 rows selected.
+
+rodrigo_med@rgpdip03_s1> select index_name from user_indexes where table_name='PACIENTE';
+
+INDEX_NAME                                                                                                                                                                 
+--------------------------------------------------------------------------------------------------------------------------------                                           
+PACIENTE_PK                                                                                                                                                                
+
+rodrigo_med@rgpdip03_s1> explain plan for select count(email) from paciente;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 66640179                                                                                                                                                  
+                                                                                                                                                                           
+-------------------------------------------------------------------------------                                                                                            
+| Id  | Operation          | Name     | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                            
+-------------------------------------------------------------------------------                                                                                            
+|   0 | SELECT STATEMENT   |          |     1 |    20 |   478   (1)| 00:00:01 |                                                                                            
+|   1 |  SORT AGGREGATE    |          |     1 |    20 |            |          |                                                                                            
+|   2 |   TABLE ACCESS FULL| PACIENTE | 15000 |   292K|   478   (1)| 00:00:01 |                                                                                            
+-------------------------------------------------------------------------------                                                                                            
+
+9 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select count(*) from paciente;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2895057998                                                                                                                                                
+                                                                                                                                                                           
+-----------------------------------------------------------------------------                                                                                              
+| Id  | Operation             | Name        | Rows  | Cost (%CPU)| Time     |                                                                                              
+-----------------------------------------------------------------------------                                                                                              
+|   0 | SELECT STATEMENT      |             |     1 |     9   (0)| 00:00:01 |                                                                                              
+|   1 |  SORT AGGREGATE       |             |     1 |            |          |                                                                                              
+|   2 |   INDEX FAST FULL SCAN| PACIENTE_PK | 15000 |     9   (0)| 00:00:01 |                                                                                              
+-----------------------------------------------------------------------------                                                                                              
+
+9 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from cita where cita_id > 10;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 939197949                                                                                                                                                 
+                                                                                                                                                                           
+--------------------------------------------------------------------------                                                                                                 
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                                 
+--------------------------------------------------------------------------                                                                                                 
+|   0 | SELECT STATEMENT  |      | 19991 |   644K|    30   (0)| 00:00:01 |                                                                                                 
+|*  1 |  TABLE ACCESS FULL| CITA | 19991 |   644K|    30   (0)| 00:00:01 |                                                                                                 
+--------------------------------------------------------------------------                                                                                                 
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter("CITA_ID">10)                                                                                                                                                
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from cita where cita_id = 10;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 3200104333                                                                                                                                                
+                                                                                                                                                                           
+---------------------------------------------------------------------------------------                                                                                    
+| Id  | Operation                   | Name    | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                    
+---------------------------------------------------------------------------------------                                                                                    
+|   0 | SELECT STATEMENT            |         |     1 |    33 |     2   (0)| 00:00:01 |                                                                                    
+|   1 |  TABLE ACCESS BY INDEX ROWID| CITA    |     1 |    33 |     2   (0)| 00:00:01 |                                                                                    
+|*  2 |   INDEX UNIQUE SCAN         | CITA_PK |     1 |       |     1   (0)| 00:00:01 |                                                                                    
+---------------------------------------------------------------------------------------                                                                                    
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access("CITA_ID"=10)                                                                                                                                                
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> select index_name from user_indexes where table_name='ESPECIALIDAD';
+
+INDEX_NAME                                                                                                                                                                 
+--------------------------------------------------------------------------------------------------------------------------------                                           
+ESPECIALIDAD_PK                                                                                                                                                            
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from especialidad where especialidad=1;
+explain plan for select * from especialidad where especialidad=1
+                                                  *
+ERROR at line 1:
+ORA-00904: "ESPECIALIDAD": invalid identifier 
+
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from especialidad where especialidad_id=1;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 784204365                                                                                                                                                 
+                                                                                                                                                                           
+-----------------------------------------------------------------------------------------------                                                                            
+| Id  | Operation                   | Name            | Rows  | Bytes | Cost (%CPU)| Time     |                                                                            
+-----------------------------------------------------------------------------------------------                                                                            
+|   0 | SELECT STATEMENT            |                 |     1 |    45 |     1   (0)| 00:00:01 |                                                                            
+|   1 |  TABLE ACCESS BY INDEX ROWID| ESPECIALIDAD    |     1 |    45 |     1   (0)| 00:00:01 |                                                                            
+|*  2 |   INDEX UNIQUE SCAN         | ESPECIALIDAD_PK |     1 |       |     0   (0)| 00:00:01 |                                                                            
+-----------------------------------------------------------------------------------------------                                                                            
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access("ESPECIALIDAD_ID"=1)                                                                                                                                         
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> create index especialidad_nombre on especialidad(nombre);
+
+Index created.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from especialidad where nombre='HUGO';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 375765735                                                                                                                                                 
+                                                                                                                                                                           
+-----------------------------------------------------------------------------------------------------------                                                                
+| Id  | Operation                           | Name                | Rows  | Bytes | Cost (%CPU)| Time     |                                                                
+-----------------------------------------------------------------------------------------------------------                                                                
+|   0 | SELECT STATEMENT                    |                     |     1 |    45 |     2   (0)| 00:00:01 |                                                                
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| ESPECIALIDAD        |     1 |    45 |     2   (0)| 00:00:01 |                                                                
+|*  2 |   INDEX RANGE SCAN                  | ESPECIALIDAD_NOMBRE |     1 |       |     1   (0)| 00:00:01 |                                                                
+-----------------------------------------------------------------------------------------------------------                                                                
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access("NOMBRE"='HUGO')                                                                                                                                             
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan fror select * from especialidad;
+explain plan fror select * from especialidad
+             *
+ERROR at line 1:
+ORA-00971: missing SET keyword 
+
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from especialidad;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2074608659                                                                                                                                                
+                                                                                                                                                                           
+----------------------------------------------------------------------------------                                                                                         
+| Id  | Operation         | Name         | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                         
+----------------------------------------------------------------------------------                                                                                         
+|   0 | SELECT STATEMENT  |              |    53 |  2385 |     3   (0)| 00:00:01 |                                                                                         
+|   1 |  TABLE ACCESS FULL| ESPECIALIDAD |    53 |  2385 |     3   (0)| 00:00:01 |                                                                                         
+----------------------------------------------------------------------------------                                                                                         
+
+8 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select /*+ full(e)*/ * from especialidad where nombre='HUGO';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 375765735                                                                                                                                                 
+                                                                                                                                                                           
+-----------------------------------------------------------------------------------------------------------                                                                
+| Id  | Operation                           | Name                | Rows  | Bytes | Cost (%CPU)| Time     |                                                                
+-----------------------------------------------------------------------------------------------------------                                                                
+|   0 | SELECT STATEMENT                    |                     |     1 |    45 |     2   (0)| 00:00:01 |                                                                
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| ESPECIALIDAD        |     1 |    45 |     2   (0)| 00:00:01 |                                                                
+|*  2 |   INDEX RANGE SCAN                  | ESPECIALIDAD_NOMBRE |     1 |       |     1   (0)| 00:00:01 |                                                                
+-----------------------------------------------------------------------------------------------------------                                                                
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access("NOMBRE"='HUGO')                                                                                                                                             
+                                                                                                                                                                           
+Hint Report (identified by operation id / Query Block Name / Object Alias):                                                                                                
+Total hints for statement: 1 (N - Unresolved (1))                                                                                                                          
+---------------------------------------------------------------------------                                                                                                
+                                                                                                                                                                           
+   1 -  SEL$1                                                                                                                                                              
+         N -  full(e)                                                                                                                                                      
+
+21 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select /*+ full(e)*/ * from especialidad e where nombre='HUGO';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2074608659                                                                                                                                                
+                                                                                                                                                                           
+----------------------------------------------------------------------------------                                                                                         
+| Id  | Operation         | Name         | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                         
+----------------------------------------------------------------------------------                                                                                         
+|   0 | SELECT STATEMENT  |              |     1 |    45 |     3   (0)| 00:00:01 |                                                                                         
+|*  1 |  TABLE ACCESS FULL| ESPECIALIDAD |     1 |    45 |     3   (0)| 00:00:01 |                                                                                         
+----------------------------------------------------------------------------------                                                                                         
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter("NOMBRE"='HUGO')                                                                                                                                             
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> drop index especialidad_nombre;
+
+Index dropped.
+
+rodrigo_med@rgpdip03_s1> create index paciente_nombre_ix on paciente(nombre);
+
+Index created.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from paciente where nombre='Norma';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2162920359                                                                                                                                                
+                                                                                                                                                                           
+----------------------------------------------------------------------------------------------------------                                                                 
+| Id  | Operation                           | Name               | Rows  | Bytes | Cost (%CPU)| Time     |                                                                 
+----------------------------------------------------------------------------------------------------------                                                                 
+|   0 | SELECT STATEMENT                    |                    |    75 | 57975 |    75   (0)| 00:00:01 |                                                                 
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| PACIENTE           |    75 | 57975 |    75   (0)| 00:00:01 |                                                                 
+|*  2 |   INDEX RANGE SCAN                  | PACIENTE_NOMBRE_IX |    75 |       |     1   (0)| 00:00:01 |                                                                 
+----------------------------------------------------------------------------------------------------------                                                                 
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access("NOMBRE"='Norma')                                                                                                                                            
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from paciente where nombre like 'N%';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 588422155                                                                                                                                                 
+                                                                                                                                                                           
+------------------------------------------------------------------------------                                                                                             
+| Id  | Operation         | Name     | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+|   0 | SELECT STATEMENT  |          |   756 |   570K|   478   (1)| 00:00:01 |                                                                                             
+|*  1 |  TABLE ACCESS FULL| PACIENTE |   756 |   570K|   478   (1)| 00:00:01 |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter("NOMBRE" LIKE 'N%')                                                                                                                                          
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select nombre from paciente where nombre like 'N%';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2379109952                                                                                                                                                
+                                                                                                                                                                           
+---------------------------------------------------------------------------------------                                                                                    
+| Id  | Operation        | Name               | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                    
+---------------------------------------------------------------------------------------                                                                                    
+|   0 | SELECT STATEMENT |                    |   756 |  5292 |     3   (0)| 00:00:01 |                                                                                    
+|*  1 |  INDEX RANGE SCAN| PACIENTE_NOMBRE_IX |   756 |  5292 |     3   (0)| 00:00:01 |                                                                                    
+---------------------------------------------------------------------------------------                                                                                    
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - access("NOMBRE" LIKE 'N%')                                                                                                                                          
+       filter("NOMBRE" LIKE 'N%')                                                                                                                                          
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select nombre,ap_paterno,ap_materno from paciente where nombre like 'N%';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 588422155                                                                                                                                                 
+                                                                                                                                                                           
+------------------------------------------------------------------------------                                                                                             
+| Id  | Operation         | Name     | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+|   0 | SELECT STATEMENT  |          |   756 | 17388 |   478   (1)| 00:00:01 |                                                                                             
+|*  1 |  TABLE ACCESS FULL| PACIENTE |   756 | 17388 |   478   (1)| 00:00:01 |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter("NOMBRE" LIKE 'N%')                                                                                                                                          
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> connect sys/system3@rgpdip03_s1 as sysdba
+Connected.
+
+                                                                                                                                                                           
+
+sys@rgpdip03_s1> begin
+  2  dbms_stats.gather_schema_stats(
+  3  ownname => 'RODRIGO_MED',
+  4  degree => 3);
+  5  end;
+  6  /
+
+PL/SQL procedure successfully completed.
+
+sys@rgpdip03_s1> connect rodrigo_med/rodrigo@rgpdip03_s1
+Connected.
+
+                                                                                                                                                                           
+
+rodrigo_med@rgpdip03_s1> explain plan for select nombre,ap_paterno,ap_materno from paciente where nombre like 'N%';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2162920359                                                                                                                                                
+                                                                                                                                                                           
+----------------------------------------------------------------------------------------------------------                                                                 
+| Id  | Operation                           | Name               | Rows  | Bytes | Cost (%CPU)| Time     |                                                                 
+----------------------------------------------------------------------------------------------------------                                                                 
+|   0 | SELECT STATEMENT                    |                    |   303 |  6969 |   300   (0)| 00:00:01 |                                                                 
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| PACIENTE           |   303 |  6969 |   300   (0)| 00:00:01 |                                                                 
+|*  2 |   INDEX RANGE SCAN                  | PACIENTE_NOMBRE_IX |   303 |       |     2   (0)| 00:00:01 |                                                                 
+----------------------------------------------------------------------------------------------------------                                                                 
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access("NOMBRE" LIKE 'N%')                                                                                                                                          
+       filter("NOMBRE" LIKE 'N%')                                                                                                                                          
+
+15 rows selected.
+
+rodrigo_med@rgpdip03_s1> select count(*) from paciente where nombre like 'N%';
+
+  COUNT(*)                                                                                                                                                                 
+----------                                                                                                                                                                 
+       303                                                                                                                                                                 
+
+rodrigo_med@rgpdip03_s1> drop indice paciente_nombre_ix;
+drop indice paciente_nombre_ix
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+rodrigo_med@rgpdip03_s1> drop index paciente_nombre_ix;
+
+Index dropped.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from medicamento sample block(5);
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 3428167842                                                                                                                                                
+                                                                                                                                                                           
+-----------------------------------------------------------------------------------                                                                                        
+| Id  | Operation           | Name        | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                        
+-----------------------------------------------------------------------------------                                                                                        
+|   0 | SELECT STATEMENT    |             |   100 | 54500 |     5   (0)| 00:00:01 |                                                                                        
+|   1 |  TABLE ACCESS SAMPLE| MEDICAMENTO |   100 | 54500 |     5   (0)| 00:00:01 |                                                                                        
+-----------------------------------------------------------------------------------                                                                                        
+
+8 rows selected.
+
+rodrigo_med@rgpdip03_s1> create unique index paciente_email_ix on paciente(email);
+
+Index created.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from paciente where email like '%gmail.com';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 588422155                                                                                                                                                 
+                                                                                                                                                                           
+------------------------------------------------------------------------------                                                                                             
+| Id  | Operation         | Name     | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+|   0 | SELECT STATEMENT  |          |   667 |   503K|   478   (1)| 00:00:01 |                                                                                             
+|*  1 |  TABLE ACCESS FULL| PACIENTE |   667 |   503K|   478   (1)| 00:00:01 |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter("EMAIL" LIKE '%gmail.com' AND "EMAIL" IS NOT NULL)                                                                                                           
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select email from paciente;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 588422155                                                                                                                                                 
+                                                                                                                                                                           
+------------------------------------------------------------------------------                                                                                             
+| Id  | Operation         | Name     | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+|   0 | SELECT STATEMENT  |          | 15000 |   292K|   478   (1)| 00:00:01 |                                                                                             
+|   1 |  TABLE ACCESS FULL| PACIENTE | 15000 |   292K|   478   (1)| 00:00:01 |                                                                                             
+------------------------------------------------------------------------------                                                                                             
+
+8 rows selected.
+
+rodrigo_med@rgpdip03_s1> create index paciente_nombre_ix on paciente(nomre);
+create index paciente_nombre_ix on paciente(nomre)
+                                            *
+ERROR at line 1:
+ORA-00904: "NOMRE": invalid identifier 
+
+
+rodrigo_med@rgpdip03_s1> create index paciente_nombre_ix on paciente(nombre);
+
+Index created.
+
+rodrigo_med@rgpdip03_s1> explain plan for select nombre from paciente;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2700640973                                                                                                                                                
+                                                                                                                                                                           
+-------------------------------------------------------------------------------------------                                                                                
+| Id  | Operation            | Name               | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                
+-------------------------------------------------------------------------------------------                                                                                
+|   0 | SELECT STATEMENT     |                    | 15000 |   102K|    12   (0)| 00:00:01 |                                                                                
+|   1 |  INDEX FAST FULL SCAN| PACIENTE_NOMBRE_IX | 15000 |   102K|    12   (0)| 00:00:01 |                                                                                
+-------------------------------------------------------------------------------------------                                                                                
+
+8 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select email from paciente where email is not null;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 683605242                                                                                                                                                 
+                                                                                                                                                                           
+------------------------------------------------------------------------------------------                                                                                 
+| Id  | Operation            | Name              | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                 
+------------------------------------------------------------------------------------------                                                                                 
+|   0 | SELECT STATEMENT     |                   | 13344 |   260K|    18   (0)| 00:00:01 |                                                                                 
+|*  1 |  INDEX FAST FULL SCAN| PACIENTE_EMAIL_IX | 13344 |   260K|    18   (0)| 00:00:01 |                                                                                 
+------------------------------------------------------------------------------------------                                                                                 
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter("EMAIL" IS NOT NULL)                                                                                                                                         
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> prompt El indice no guarda valores nulos
+El indice no guarda valores nulos
+rodrigo_med@rgpdip03_s1> desc paciente
+ Name                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------- -------- -----------------------------------------------------------------
+ PACIENTE_ID                                                                                     NOT NULL NUMBER(10)
+ NOMBRE                                                                                          NOT NULL VARCHAR2(40)
+ AP_PATERNO                                                                                      NOT NULL VARCHAR2(40)
+ AP_MATERNO                                                                                      NOT NULL VARCHAR2(40)
+ GENERO                                                                                          NOT NULL VARCHAR2(40)
+ NUM_SEGURO                                                                                      NOT NULL VARCHAR2(13)
+ CURP                                                                                            NOT NULL VARCHAR2(18)
+ DIRECCION                                                                                       NOT NULL VARCHAR2(1000)
+ EMAIL                                                                                                    VARCHAR2(200)
+ FECHA_INICIO_VIGENCIA                                                                           NOT NULL DATE
+ FECHA_FIN_VIGENCIA                                                                                       VARCHAR2(40)
+ OCUPACION                                                                                                VARCHAR2(100)
+ ANTECEDENTES                                                                                             VARCHAR2(2000)
+
+rodrigo_med@rgpdip03_s1> explain plan for select count(*) from paciente where email is not null;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2618213944                                                                                                                                                
+                                                                                                                                                                           
+-------------------------------------------------------------------------------------------                                                                                
+| Id  | Operation             | Name              | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                
+-------------------------------------------------------------------------------------------                                                                                
+|   0 | SELECT STATEMENT      |                   |     1 |    20 |    18   (0)| 00:00:01 |                                                                                
+|   1 |  SORT AGGREGATE       |                   |     1 |    20 |            |          |                                                                                
+|*  2 |   INDEX FAST FULL SCAN| PACIENTE_EMAIL_IX | 13344 |   260K|    18   (0)| 00:00:01 |                                                                                
+-------------------------------------------------------------------------------------------                                                                                
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - filter("EMAIL" IS NOT NULL)                                                                                                                                         
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select count(*) from paciente;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 2895057998                                                                                                                                                
+                                                                                                                                                                           
+-----------------------------------------------------------------------------                                                                                              
+| Id  | Operation             | Name        | Rows  | Cost (%CPU)| Time     |                                                                                              
+-----------------------------------------------------------------------------                                                                                              
+|   0 | SELECT STATEMENT      |             |     1 |     9   (0)| 00:00:01 |                                                                                              
+|   1 |  SORT AGGREGATE       |             |     1 |            |          |                                                                                              
+|   2 |   INDEX FAST FULL SCAN| PACIENTE_PK | 15000 |     9   (0)| 00:00:01 |                                                                                              
+-----------------------------------------------------------------------------                                                                                              
+
+9 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select count(*) from paciente where email is null;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 66640179                                                                                                                                                  
+                                                                                                                                                                           
+-------------------------------------------------------------------------------                                                                                            
+| Id  | Operation          | Name     | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                            
+-------------------------------------------------------------------------------                                                                                            
+|   0 | SELECT STATEMENT   |          |     1 |    20 |   478   (1)| 00:00:01 |                                                                                            
+|   1 |  SORT AGGREGATE    |          |     1 |    20 |            |          |                                                                                            
+|*  2 |   TABLE ACCESS FULL| PACIENTE |  1656 | 33120 |   478   (1)| 00:00:01 |                                                                                            
+-------------------------------------------------------------------------------                                                                                            
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - filter("EMAIL" IS NULL)                                                                                                                                             
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> select count(*) from paciente where email is null;
+
+  COUNT(*)                                                                                                                                                                 
+----------                                                                                                                                                                 
+      1656                                                                                                                                                                 
+
+rodrigo_med@rgpdip03_s1> select (select count(*) from paciente) - (select count(*) from paciente where email is not null) from dual;
+
+(SELECTCOUNT(*)FROMPACIENTE)-(SELECTCOUNT(*)FROMPACIENTEWHEREEMAILISNOTNULL)                                                                                               
+----------------------------------------------------------------------------                                                                                               
+                                                                        1656                                                                                               
+
+rodrigo_med@rgpdip03_s1> explain plan for select (select count(*) from paciente) - (select count(*) from paciente where email is not null) from dual;
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 1655969352                                                                                                                                                
+                                                                                                                                                                           
+---------------------------------------------------------------------------------------------                                                                              
+| Id  | Operation               | Name              | Rows  | Bytes | Cost (%CPU)| Time     |                                                                              
+---------------------------------------------------------------------------------------------                                                                              
+|   0 | SELECT STATEMENT        |                   |     1 |       |    29   (0)| 00:00:01 |                                                                              
+|   1 |  SORT AGGREGATE         |                   |     1 |       |            |          |                                                                              
+|   2 |   INDEX FAST FULL SCAN  | PACIENTE_PK       | 15000 |       |     9   (0)| 00:00:01 |                                                                              
+|   3 |    SORT AGGREGATE       |                   |     1 |    20 |            |          |                                                                              
+|*  4 |     INDEX FAST FULL SCAN| PACIENTE_EMAIL_IX | 13344 |   260K|    18   (0)| 00:00:01 |                                                                              
+|   5 |  FAST DUAL              |                   |     1 |       |     2   (0)| 00:00:01 |                                                                              
+---------------------------------------------------------------------------------------------                                                                              
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   4 - filter("EMAIL" IS NOT NULL)                                                                                                                                         
+
+17 rows selected.
+
+rodrigo_med@rgpdip03_s1> drop index paciente_nombre_ix;
+
+Index dropped.
+
+rodrigo_med@rgpdip03_s1> drop index paciente_email_ix;
+
+Index dropped.
+
+rodrigo_med@rgpdip03_s1> desc cita;
+ Name                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------- -------- -----------------------------------------------------------------
+ CITA_ID                                                                                         NOT NULL NUMBER(10)
+ FECHA_CITA                                                                                      NOT NULL TIMESTAMP(6)
+ CONSULTORIO                                                                                     NOT NULL VARCHAR2(5)
+ PACIENTE_ID                                                                                     NOT NULL NUMBER(10)
+ DIAGNOSTICO_ID                                                                                  NOT NULL NUMBER(10)
+ MEDICO_ID                                                                                       NOT NULL NUMBER(10)
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from cita where to_char(FECHA_CITA,'yyyy')='2021';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 939197949                                                                                                                                                 
+                                                                                                                                                                           
+--------------------------------------------------------------------------                                                                                                 
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                                 
+--------------------------------------------------------------------------                                                                                                 
+|   0 | SELECT STATEMENT  |      |   200 |  6600 |    31   (4)| 00:00:01 |                                                                                                 
+|*  1 |  TABLE ACCESS FULL| CITA |   200 |  6600 |    31   (4)| 00:00:01 |                                                                                                 
+--------------------------------------------------------------------------                                                                                                 
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter(TO_CHAR(INTERNAL_FUNCTION("FECHA_CITA"),'yyyy')='2021')                                                                                                      
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> create index cita_fecha_cita_ix on cita(fecha_cita);
+
+Index created.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from cita where to_char(FECHA_CITA,'yyyy')='2021';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 939197949                                                                                                                                                 
+                                                                                                                                                                           
+--------------------------------------------------------------------------                                                                                                 
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |                                                                                                 
+--------------------------------------------------------------------------                                                                                                 
+|   0 | SELECT STATEMENT  |      |   200 |  6600 |    31   (4)| 00:00:01 |                                                                                                 
+|*  1 |  TABLE ACCESS FULL| CITA |   200 |  6600 |    31   (4)| 00:00:01 |                                                                                                 
+--------------------------------------------------------------------------                                                                                                 
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   1 - filter(TO_CHAR(INTERNAL_FUNCTION("FECHA_CITA"),'yyyy')='2021')                                                                                                      
+
+13 rows selected.
+
+rodrigo_med@rgpdip03_s1> explain plan for select * from cita where fecha_cita >= to_date('01-01-2021','dd-mm-yyyy')
+  2  and fecha_cita <= to_date('31-12-2021','dd-mm-yyyy');
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 1448302098                                                                                                                                                
+                                                                                                                                                                           
+----------------------------------------------------------------------------------------------------------                                                                 
+| Id  | Operation                           | Name               | Rows  | Bytes | Cost (%CPU)| Time     |                                                                 
+----------------------------------------------------------------------------------------------------------                                                                 
+|   0 | SELECT STATEMENT                    |                    |     1 |    33 |     3   (0)| 00:00:01 |                                                                 
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| CITA               |     1 |    33 |     3   (0)| 00:00:01 |                                                                 
+|*  2 |   INDEX RANGE SCAN                  | CITA_FECHA_CITA_IX |     1 |       |     2   (0)| 00:00:01 |                                                                 
+----------------------------------------------------------------------------------------------------------                                                                 
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access("FECHA_CITA">=TIMESTAMP' 2021-01-01 00:00:00' AND "FECHA_CITA"<=TIMESTAMP'                                                                                   
+              2021-12-31 00:00:00')                                                                                                                                        
+
+15 rows selected.
+
+rodrigo_med@rgpdip03_s1> create index cita_fecha_cita_fix on cita(to_char(FECHA_CITA,'yyyy'));
+
+Index created.
+
+rodrigo_med@rgpdip03_s1>  explain plan for select * from cita where to_char(FECHA_CITA,'yyyy')='2021';
+
+Explained.
+
+rodrigo_med@rgpdip03_s1> select plan_table_output from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT                                                                                                                                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 4227341256                                                                                                                                                
+                                                                                                                                                                           
+-----------------------------------------------------------------------------------------------------------                                                                
+| Id  | Operation                           | Name                | Rows  | Bytes | Cost (%CPU)| Time     |                                                                
+-----------------------------------------------------------------------------------------------------------                                                                
+|   0 | SELECT STATEMENT                    |                     |   200 |  6600 |    29   (0)| 00:00:01 |                                                                
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| CITA                |   200 |  6600 |    29   (0)| 00:00:01 |                                                                
+|*  2 |   INDEX RANGE SCAN                  | CITA_FECHA_CITA_FIX |    80 |       |     1   (0)| 00:00:01 |                                                                
+-----------------------------------------------------------------------------------------------------------                                                                
+                                                                                                                                                                           
+Predicate Information (identified by operation id):                                                                                                                        
+---------------------------------------------------                                                                                                                        
+                                                                                                                                                                           
+   2 - access(TO_CHAR(INTERNAL_FUNCTION("FECHA_CITA"),'yyyy')='2021')                                                                                                      
+
+14 rows selected.
+
+rodrigo_med@rgpdip03_s1> select * from cita where to_char(FECHA_CITA,'yyyy')='2021';
+
+no rows selected
+
+rodrigo_med@rgpdip03_s1> select * from cita where fecha_cita >= to_date('01-01-2021','dd-mm-yyyy')
+  2  and fecha_cita <= to_date('31-12-2021','dd-mm-yyyy');
+
+no rows selected
+
+rodrigo_med@rgpdip03_s1> spool off;

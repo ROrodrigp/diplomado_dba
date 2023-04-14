@@ -1,0 +1,134 @@
+Creando snapshot 1
+Conectando como sys
+Connected.
+
+                                                                                                                                                                           
+
+
+PL/SQL procedure successfully completed.
+
+Simulando carga pesada
+Connected.
+
+                                                                                                                                                                           
+
+Haciendo copia de cita
+
+Table created.
+
+Generando reporte de las primeras 10 especialidades
+
+Table created.
+
+
+53 rows updated.
+
+
+Commit complete.
+
+Generando un nuevo snapshot 2
+Connected.
+
+                                                                                                                                                                           
+
+esperando 1 minuto
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+Simulando carga pesada
+Connected.
+
+                                                                                                                                                                           
+
+Generando un reporte de las ultimas recetas
+
+Table created.
+
+
+20000 rows updated.
+
+Creando un indice
+
+Table created.
+
+
+Index created.
+
+
+5000 rows updated.
+
+consultando cedula de los medicos que comiencen con 5
+
+Table created.
+
+Creando tabla grande
+
+Table created.
+
+generando un nuevo snapshot 3
+Connected.
+
+                                                                                                                                                                           
+
+esperando 1 minuto
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+Revisar resultados, [Enter] para hacer limpieza
+
+Hacer limpieza
+Connected.
+
+                                                                                                                                                                           
+
+
+20000 rows deleted.
+
+
+53 rows deleted.
+
+
+20000 rows deleted.
+
+
+5000 rows deleted.
+
+
+5000 rows deleted.
+
+
+5000 rows deleted.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+generando un nuevo snapshot 4
+Connected.
+
+                                                                                                                                                                           
+
+
+PL/SQL procedure successfully completed.
+
+Listo !

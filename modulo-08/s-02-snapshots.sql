@@ -53,10 +53,13 @@ create table medicos_reporte_2 as
   select * from medico;
 
 prompt Creando tabla grande 
-create table medico_diagnostico_pc as 
-  select medico_id, m.nombre as m_nombre, ap_paterno, ap_materno, cedula,
-  trayectoria, especialidad_id, diagnostico_id, d.nombre as d_nombre, clave
-  from medico m cross join diagnostico d;
+create table medico_especialidad_2
+  as select medico_id, m.nombre as m_nombre, ap_paterno, ap_materno, cedula,
+    trayectoria, m.especialidad_id as m_especialidad,
+    e.nombre as e_nombre, anios, requisito
+    from medico m 
+    join especialidad e
+    on m.especialidad_id = e.especialidad_id;
 
 
 
@@ -80,7 +83,7 @@ delete from especialidad_copia;
 delete from receta_copia;
 delete from medico_copia;
 delete from medicos_reporte_2;
-delete from medico_diagnostico_pc;
+delete from medico_especialidad_2;
 
 
 drop table cita_copia;
@@ -88,7 +91,7 @@ drop table especialidad_copia;
 drop table receta_copia;
 drop table medico_copia;
 drop table medicos_reporte_2;
-drop table medico_diagnostico_pc;
+drop table medico_especialidad_2;
 
 prompt generando un nuevo snapshot 4 
 connect sys/system3@rgpdip03_s1  as sysdba

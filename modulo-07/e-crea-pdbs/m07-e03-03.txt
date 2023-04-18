@@ -1,0 +1,164 @@
+Creando clon de una PDB, hacer plug en otra CDB - Manual
+Iniciar rgpdip03
+
+Conectar a rgpdip03 (root)
+Connected.
+
+                                                                                                                                                                           
+
+Cerrar la pdb
+
+Pluggable database altered.
+
+Hacer unplug de rgpdip03_s1
+
+Pluggable database altered.
+
+Mostrando datos de las pdbs
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                                                            
+---------- ------------------------------ ---------- ----------                                                                                                            
+         2 PDB$SEED                       READ ONLY  NO                                                                                                                    
+         3 RGPDIP03_S1                    MOUNTED                                                                                                                          
+         4 RGPDIP03_S2                    READ WRITE NO                                                                                                                    
+Mostrando datos de las PDBs (dba_pdbs)
+
+    PDB_ID PDB_NAME                       STATUS                                                                                                                           
+---------- ------------------------------ ----------                                                                                                                       
+         3 RGPDIP03_S1                    UNPLUGGED                                                                                                                        
+         2 PDB$SEED                       NORMAL                                                                                                                           
+         4 RGPDIP03_S2                    NORMAL                                                                                                                           
+
+Analizar [enter] para continuar
+
+Eliminar la PDB
+
+Pluggable database dropped.
+
+Mover la PDB (datafiles y XML) a /home/oracle/backups/rgpdip03_s1
+No olvidar actualizar las rutas en el XML
+[Enter] para continuar
+
+El siguiente paso es hacer plug en rgpdip04
+Detener rgpdip03
+
+Iniciar rgpdip04
+
+Validar compatibilidad conectando a rgpdip04
+Connected.
+
+                                                                                                                                                                           
+
+
+CON_ID                                                                                                                                                                     
+------------------------------                                                                                                                                             
+1                                                                                                                                                                          
+
+CON_NAME                                                                                                                                                                   
+------------------------------                                                                                                                                             
+CDB$ROOT                                                                                                                                                                   
+COMPATIBLE                                                                                                                                                                 
+
+PL/SQL procedure successfully completed.
+
+Validar resultados
+
+Agregar la nueva PDB
+
+Pluggable database created.
+
+Mostrando datos de las PDBs
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                                                            
+---------- ------------------------------ ---------- ----------                                                                                                            
+         2 PDB$SEED                       READ ONLY  NO                                                                                                                    
+         3 RGPDIP04_S1                    READ WRITE NO                                                                                                                    
+         4 RGPDIP04_S2                    READ WRITE NO                                                                                                                    
+         5 RGPDIP04_M3                    MOUNTED                                                                                                                          
+
+    PDB_ID PDB_NAME                       STATUS                                                                                                                           
+---------- ------------------------------ ----------                                                                                                                       
+         3 RGPDIP04_S1                    NORMAL                                                                                                                           
+         2 PDB$SEED                       NORMAL                                                                                                                           
+         4 RGPDIP04_S2                    NORMAL                                                                                                                           
+         5 RGPDIP04_M3                    NEW                                                                                                                              
+
+Analizar [enter] para continuar
+
+Abriendo rgpdip04_m3
+
+Pluggable database altered.
+
+Conectar a rgpdip04_m3
+
+Session altered.
+
+Mostrando datos de la nueva PDB
+
+CON_ID                                                                                                                                                                     
+------------------------------                                                                                                                                             
+5                                                                                                                                                                          
+
+CON_NAME                                                                                                                                                                   
+------------------------------                                                                                                                                             
+RGPDIP04_M3                                                                                                                                                                
+Analizar resultado[Enter] para comenzar con limpieza
+
+conectando a rgpdip04 (root)
+
+Session altered.
+
+Cerrando a rgpdip04_m3
+
+Pluggable database altered.
+
+unplug para rgpdip04_m3
+
+Pluggable database altered.
+
+Eliminando rgpdip04_m3
+
+Pluggable database dropped.
+
+Realizar las siguientes acciones de forma manual
+1. Mover datafiles a carpeta de backups
+2. Editar xml
+3. Mover xml a carpeta rgpdip04_m3
+Realizar cambios [Enter] para continuar
+
+Detener rgpdip04
+
+Iniciar rgpdip03
+
+Checar compatibilidad, conectando a rgpdip03
+Connected.
+
+                                                                                                                                                                           
+
+COMPATIBLE                                                                                                                                                                 
+
+PL/SQL procedure successfully completed.
+
+Validar resultados [Enter para continuar]
+
+Crear nueva pdb
+
+Pluggable database created.
+
+Abriendo rgpdip03_s1
+
+Pluggable database altered.
+
+
+Pluggable database altered.
+
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED                                                                                                            
+---------- ------------------------------ ---------- ----------                                                                                                            
+         2 PDB$SEED                       READ ONLY  NO                                                                                                                    
+         3 RGPDIP03_S1                    READ WRITE NO                                                                                                                    
+         4 RGPDIP03_S2                    READ WRITE NO                                                                                                                    
+Analizar resultado [enter] para borrar backups
+
+
+

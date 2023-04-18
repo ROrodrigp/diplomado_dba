@@ -1,0 +1,166 @@
+Creando PDB tipo refreshable
+Iniciar rgpdip03
+
+Iniciar rgpdip04
+
+conectando a rgpdip03
+Connected.
+
+                                                                                                                                                                           
+
+Abriendo rgpdip03_s1
+alter pluggable database rgpdip03_s1 open read write
+*
+ERROR at line 1:
+ORA-65019: pluggable database RGPDIP03_S1 already open 
+
+
+Crear un tablespace para guardar datos
+
+Session altered.
+
+
+Tablespace created.
+
+Creando un usuario comun
+
+Session altered.
+
+
+User created.
+
+
+Grant succeeded.
+
+Conectando a rgpdip04 para crear la liga
+Connected.
+
+                                                                                                                                                                           
+
+Crear liga
+
+Database link created.
+
+Crear PDB de tipo refreshable
+
+Pluggable database created.
+
+Consultando el ultimo refresh
+
+LAST_REFRESH_SCN                                                                                                                                                           
+----------------                                                                                                                                                           
+         3029325                                                                                                                                                           
+
+Analizar el valor del SCN [enter] para continuar
+
+Crear una tabla y un registro en rgpdip03_s1
+Connected.
+
+                                                                                                                                                                           
+
+Creando un usuario de prueba
+
+User created.
+
+
+Grant succeeded.
+
+Creando la tabla test_refresh
+
+Table created.
+
+Insertando datos de prueba
+
+1 row created.
+
+
+Commit complete.
+
+
+        ID                                                                                                                                                                 
+----------                                                                                                                                                                 
+         1                                                                                                                                                                 
+
+Revisar tabla y datos creados [Enter] para continuar
+
+conectando a la rgpdip04_r3
+Connected.
+
+                                                                                                                                                                           
+
+Hacer switch a rgpdip04_r3
+
+Pluggable database altered.
+
+
+Session altered.
+
+Verificando datos
+Qué se obtendría al intentar consultar la tabla? [Enter] para continuar
+
+select * from rodrigo_refresh.test_refresh
+                              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+Hacer refresh (desde root)
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+Pluggable database altered.
+
+Consultando datos nuevamente
+Qué se esperaría? [Enter] para continuar
+
+
+Pluggable database altered.
+
+
+Session altered.
+
+
+        ID                                                                                                                                                                 
+----------                                                                                                                                                                 
+         1                                                                                                                                                                 
+
+Mostrar el ultimo scn
+
+LAST_REFRESH_SCN                                                                                                                                                           
+----------------                                                                                                                                                           
+         3029732                                                                                                                                                           
+
+Analizar resultados [Enter] para realizar limpieza
+
+
+Session altered.
+
+
+Pluggable database altered.
+
+
+Pluggable database dropped.
+
+
+Database link dropped.
+
+Connected.
+
+                                                                                                                                                                           
+
+
+User dropped.
+
+
+Session altered.
+
+
+Tablespace dropped.
+
+
+User dropped.
+

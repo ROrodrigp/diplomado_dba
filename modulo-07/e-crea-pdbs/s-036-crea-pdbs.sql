@@ -13,7 +13,15 @@ connect sys/system3@rgpdip03 as sysdba
 prompt Abriendo rgpdip03_s1
 alter pluggable database rgpdip03_s1 open read write;
 
+
+prompt Crear un tablespace para guardar datos
+alter session set container=rgpdip03_s1;
+create tablespace test_refresh_ts
+  datafile '/u01/app/oracle/oradata/RGPDIP03/rgpdip03_s1/test_refresh.dbf'
+  size 1M autoextend on next 1M;
+
 prompt Creando un usuario comun
+alter session set container=cdb$root;
 create user c##rodrigo_remote identified by rodrigo container=all;
 grant create session, create pluggable database to c##rodrigo_remote
   container=all;
@@ -44,11 +52,6 @@ pause Analizar el valor del SCN [enter] para continuar
 prompt Crear una tabla y un registro en rgpdip03_s1
 connect sys/system3@rgpdip03_s1 as sysdba
 
-prompt Crear un tablespace para guardar datos
-create tablespace test_refresh_ts
-  datafile '/u01/app/oracle/oradata/RGPDIP03/rgpdip03_s1/test_refresh.dbf'
-  size 1M autoextend on next 1M;
-
 prompt Creando un usuario de prueba
 create user rodrigo_refresh identified by rodrigo
   default tablespace test_refresh_ts
@@ -64,6 +67,8 @@ prompt Insertando datos de prueba
 
 insert into rodrigo_refresh.test_refresh values (1);
 commit;
+
+select * from rodrigo_refresh.test_refresh;
 
 pause Revisar tabla y datos creados [Enter] para continuar
 prompt conectando a la rgpdip04_r3
@@ -113,8 +118,10 @@ drop user c##rodrigo_remote cascade;
 
 --eliminando el tablespace 
 alter session set container=rgpdip03_s1;
-drop tablespace test_refresh_ts including datafiles;
+drop tablespace test_refresh_ts including contents and datafiles;
 
 --Eliminar al usuario rodrigo_refresh
 drop user rodrigo_refresh cascade;
 
+spool off
+exit 

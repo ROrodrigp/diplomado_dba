@@ -12,7 +12,7 @@ prompt Cerrar la pdb
 alter pluggable database rgpdip03_s1 close;
 
 prompt Hacer unplug de rgpdip03_s1
-alter pluggable database rgpdip03_s1 unplug into '/home/oracle/backups/rgpdip03_s1.xml'
+alter pluggable database rgpdip03_s1 unplug into '/home/oracle/backups/rgpdip03_s1.xml';
 
 prompt Mostrando datos de las pdbs 
 show pdbs 
@@ -49,7 +49,7 @@ set serveroutput on
 declare
   v_compatible boolean;
 begin
-  v_compatible := dbms_pdb.check_compatibility(
+  v_compatible := dbms_pdb.check_plug_compatibility(
     pdb_descr_file => '/home/oracle/backups/rgpdip03_s1/rgpdip03_s1.xml',
     pdb_name => 'rgpdip03_s1'
   );
@@ -123,7 +123,7 @@ set serveroutput on
 declare
   v_compatible boolean;
 begin
-  v_compatible := dbms_pdb.check_compatibility(
+  v_compatible := dbms_pdb.check_plug_compatibility(
     pdb_descr_file => '/home/oracle/backups/rgpdip04_m3/rgpdip04_m3.xml',
     pdb_name => 'rgpdip04_m3'
   );

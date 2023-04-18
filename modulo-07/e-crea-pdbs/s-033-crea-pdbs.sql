@@ -147,6 +147,7 @@ create pluggable database rgpdip03_s1
 
 prompt Abriendo rgpdip03_s1
 alter pluggable database rgpdip03_s1 open  read write;
+alter pluggable database rgpdip03_s1  save state;
 show pdbs 
 
 pause Analizar resultado [enter] para borrar backups 
